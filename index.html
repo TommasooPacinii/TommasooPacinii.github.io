@@ -387,8 +387,8 @@
   }
   .gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
     gap: 16px;
   }
   .gallery-card {
@@ -405,7 +405,8 @@
     transition: transform 0.4s ease;
   }
   .gallery-card:hover img { transform: scale(1.03); }
-  .gallery-card.tall { grid-row: span 2; min-height: 480px; }
+  .gallery-card.tall { grid-row: span 2; }
+  .gallery-card.short { min-height: 240px; }
   .gallery-card.short { min-height: 220px; }
   .gallery-label {
     position: absolute;
@@ -794,56 +795,47 @@
     EF711F0E-...JPG         → images/london-car.jpg      (@London Rolls Royce)
   -->
   <div class="gallery">
-    <!-- Grande sinistra -->
-    <div class="gallery-card tall">
-      <img src="images/london-bigben.jpg" alt="Travelling">
-      <div class="gallery-label">
-        <span class="gallery-city">@London</span>
-        <span class="gallery-caption">Exploring places where creativity and architecture meet.</span>
-      </div>
-      <span class="gallery-tag">Travelling</span>
+  <div class="gallery-card tall">
+    <img src="images/london-bigben.jpg" alt="London">
+    <div class="gallery-label">
+      <span class="gallery-city">@London</span>
+      <span class="gallery-caption">Inspired by timeless design.</span>
     </div>
-
-    <!-- Centro alto -->
-    <div class="gallery-card short">
-      <img src="images/prato-skate.jpg" alt="Prato">
-      <div class="gallery-label">
-        <span class="gallery-city">@Paris</span>
-        <span class="gallery-caption">Inspired by timeless design.</span>
-      </div>
-      <span class="gallery-tag">Design</span>
-    </div>
-
-    <!-- Destra alta -->
-    <div class="gallery-card short">
-      <img src="images/barcelona.jpg" alt="Barcelona">
-      <div class="gallery-label">
-        <span class="gallery-city">@Barcelona</span>
-        <span class="gallery-caption">Exploring places where creativity and architecture meet.</span>
-      </div>
-      <span class="gallery-tag">Travelling</span>
-    </div>
-
-    <!-- Centro basso -->
-    <div class="gallery-card short">
-      <img src="images/prato-basket.jpg" alt="Paris">
-      <div class="gallery-label">
-        <span class="gallery-city">@Prato</span>
-        <span class="gallery-caption">My first school of discipline and team mindset.</span>
-      </div>
-      <span class="gallery-tag">Sport</span>
-    </div>
-
-    <!-- Destra bassa -->
-    <div class="gallery-card short">
-      <img src="images/london-car.jpg" alt="London">
-      <div class="gallery-label">
-        <span class="gallery-city">@London</span>
-        <span class="gallery-caption">Observing the world with a global perspective.</span>
-      </div>
-      <span class="gallery-tag">Travelling</span>
-    </div>
+    <span class="gallery-tag">Design</span>
   </div>
+  <div class="gallery-card short">
+    <img src="images/prato-skate.jpg" alt="Paris">
+    <div class="gallery-label">
+      <span class="gallery-city">@Paris</span>
+      <span class="gallery-caption">Inspired by timeless design.</span>
+    </div>
+    <span class="gallery-tag">Design</span>
+  </div>
+  <div class="gallery-card short">
+    <img src="images/barcelona.jpg" alt="Barcelona">
+    <div class="gallery-label">
+      <span class="gallery-city">@Barcelona</span>
+      <span class="gallery-caption">Exploring places where creativity and architecture meet.</span>
+    </div>
+    <span class="gallery-tag">Travelling</span>
+  </div>
+  <div class="gallery-card short">
+    <img src="images/prato-basket.jpg" alt="Prato">
+    <div class="gallery-label">
+      <span class="gallery-city">@Prato</span>
+      <span class="gallery-caption">My first school of discipline and team mindset.</span>
+    </div>
+    <span class="gallery-tag">Sport</span>
+  </div>
+  <div class="gallery-card short">
+    <img src="images/london-car.jpg" alt="London">
+    <div class="gallery-label">
+      <span class="gallery-city">@London</span>
+      <span class="gallery-caption">Observing the world with a global perspective.</span>
+    </div>
+    <span class="gallery-tag">Travelling</span>
+  </div>
+</div>
 </section>
 
 <!-- PASSIONS -->
