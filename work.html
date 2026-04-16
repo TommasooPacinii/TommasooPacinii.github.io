@@ -11,7 +11,7 @@
   :root {
     --bg: #ECEAF4;
     --bg-card: #ffffff;
-    --bg-dark: #14122A;
+    --bg-dark: #111111;
     --bg-surface: #E4E2EE;
     --purple: #7B6EE8;
     --purple-light: #EEEDFE;
@@ -21,6 +21,7 @@
     --text-secondary: #6B6880;
     --text-muted: #9896A8;
     --border: #D6D4E8;
+    --accent: #C8A96E;
     --font-display: 'DM Serif Display', serif;
     --font-body: 'DM Sans', sans-serif;
     --radius-card: 20px;
@@ -30,58 +31,63 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   body {
     font-family: var(--font-body);
     background: var(--bg);
     color: var(--text-primary);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 36px;
-    padding: 24px 48px;
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(236, 234, 244, 0.85);
+    background: rgba(236, 234, 244, 0.88);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    padding: 20px 0;
   }
-
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    width: 100%;
+  }
   nav a {
     font-size: 13px;
-    font-weight: 400;
     color: var(--text-muted);
     text-decoration: none;
-    letter-spacing: 0.01em;
     transition: color var(--transition);
-    padding-bottom: 2px;
+    letter-spacing: 0.01em;
   }
-
   nav a:hover { color: var(--text-primary); }
   nav a.active {
     color: var(--text-primary);
     border-bottom: 1.5px solid var(--text-primary);
+    padding-bottom: 2px;
   }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
-    padding: 64px 64px 48px;
-    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    align-items: center;
+    padding: 64px 48px 48px;
+    max-width: 1200px;
     margin: 0 auto;
     opacity: 0;
     transform: translateY(16px);
     animation: fadeUp 0.6s ease forwards;
   }
-
+  .hero-left { max-width: 560px; }
   .hero-label {
     font-size: 11px;
     letter-spacing: 0.12em;
@@ -92,7 +98,6 @@
     align-items: center;
     gap: 8px;
   }
-
   .hero-label::before {
     content: '';
     display: inline-block;
@@ -100,35 +105,115 @@
     height: 1px;
     background: var(--text-muted);
   }
-
   .hero h1 {
     font-family: var(--font-body);
     font-size: clamp(22px, 3vw, 32px);
     font-weight: 400;
     color: var(--text-secondary);
     line-height: 1.4;
-    max-width: 560px;
+    margin-bottom: 24px;
   }
-
-  .hero h1 em {
+  .hero h1 .gradient-text {
     font-family: var(--font-display);
     font-style: italic;
-    color: var(--text-primary);
+    background: linear-gradient(90deg, #C8A96E 0%, #AFA9EC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-size: 1.1em;
   }
 
-  /* FILTERS */
+  /* Badge "Open to opportunities" */
+  .hero-badge-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #E0DED8;
+    border-radius: 100px;
+    padding: 10px 18px;
+    font-size: 12px;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+  .hero-badge-inline::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4CAF50;
+    display: inline-block;
+    flex-shrink: 0;
+    animation: breathing 2s ease-in-out infinite;
+  }
+  @keyframes breathing {
+    0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(76,175,80,0.4); }
+    50% { transform: scale(1.3); opacity: 0.85; box-shadow: 0 0 0 4px rgba(76,175,80,0); }
+  }
+
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* ── CURSOR ORBIT ── */
+  .cursor-orbit-wrapper {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cursor-hero-img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 20px 40px rgba(123,110,232,0.3));
+  }
+  .orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(123,110,232,0.2);
+    animation: spin linear infinite;
+  }
+  .orbit-1 { width: 240px; height: 240px; animation-duration: 8s; }
+  .orbit-2 { width: 300px; height: 300px; animation-duration: 14s; animation-direction: reverse; }
+  .orbit-3 { width: 360px; height: 360px; animation-duration: 20s; }
+  .planet {
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .planet-1 { width: 12px; height: 12px; background: #7B6EE8; margin-top: -6px; }
+  .planet-2 { width: 8px;  height: 8px;  background: #C8A96E; margin-top: -4px; }
+  .planet-3 { width: 10px; height: 10px; background: #AFA9EC; margin-top: -5px; }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orbit { animation: none; }
+  }
+
+  /* ── FILTERS ── */
   .filters {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    padding: 0 64px 40px;
-    max-width: 1100px;
+    padding: 24px 48px 40px;
+    max-width: 1200px;
     margin: 0 auto;
     opacity: 0;
     animation: fadeUp 0.6s ease 0.1s forwards;
   }
-
   .filter-btn {
     font-family: var(--font-body);
     font-size: 12px;
@@ -142,30 +227,28 @@
     transition: all var(--transition);
     letter-spacing: 0.01em;
   }
-
   .filter-btn:hover {
     background: var(--bg-card);
     color: var(--text-primary);
     border-color: var(--purple-mid);
   }
-
   .filter-btn.active {
     background: var(--text-primary);
     color: #fff;
     border-color: var(--text-primary);
   }
 
-  /* PROJECTS LIST */
+  /* ── PROJECTS LIST ── */
   .projects {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 0 64px;
-    max-width: 1100px;
+    padding: 0 48px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
-  /* PROJECT CARD */
+  /* ── PROJECT CARD ── */
   .card {
     background: var(--bg-card);
     border-radius: var(--radius-card);
@@ -177,18 +260,17 @@
     opacity: 0;
     animation: fadeUp 0.5s ease forwards;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
   }
-
   .card:nth-child(1) { animation-delay: 0.15s; }
   .card:nth-child(2) { animation-delay: 0.22s; }
   .card:nth-child(3) { animation-delay: 0.29s; }
-
   .card:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 40px rgba(123, 110, 232, 0.1);
   }
-
-  .card.dimmed { opacity: 0.45; animation: fadeUp 0.5s ease 0.22s forwards; }
+  .card.dimmed { opacity: 0.45; }
   .card.dimmed:hover { opacity: 0.65; transform: none; box-shadow: none; }
 
   .card-img {
@@ -200,13 +282,11 @@
     min-height: 200px;
     overflow: hidden;
   }
-
   .card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-
   .card-img-placeholder {
     display: flex;
     flex-direction: column;
@@ -217,7 +297,6 @@
     height: 100%;
     min-height: 200px;
   }
-
   .card-img-placeholder svg { opacity: 0.25; }
 
   .featured-badge {
@@ -241,13 +320,11 @@
     justify-content: space-between;
     gap: 16px;
   }
-
   .card-tags {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
   }
-
   .tag {
     font-size: 10px;
     font-weight: 500;
@@ -256,11 +333,10 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
-
-  .tag-ux { background: var(--purple-light); color: var(--purple-dark); }
-  .tag-data { background: #E1F5EE; color: #0F6E56; }
-  .tag-web { background: #FAECE7; color: #993C1D; }
-  .tag-vr  { background: #E6F1FB; color: #185FA5; }
+  .tag-ux      { background: var(--purple-light); color: var(--purple-dark); }
+  .tag-data    { background: #E1F5EE; color: #0F6E56; }
+  .tag-web     { background: #FAECE7; color: #993C1D; }
+  .tag-vr      { background: #E6F1FB; color: #185FA5; }
   .tag-neutral { background: #F1EFE8; color: #5F5E5A; }
 
   .card-title {
@@ -269,14 +345,14 @@
     color: var(--text-primary);
     line-height: 1.25;
     letter-spacing: -0.01em;
+    margin-top: 12px;
   }
-
   .card-desc {
     font-size: 13px;
     color: var(--text-secondary);
     line-height: 1.65;
+    margin-top: 10px;
   }
-
   .card-footer {
     display: flex;
     align-items: center;
@@ -284,426 +360,376 @@
     padding-top: 16px;
     border-top: 1px solid var(--bg-surface);
   }
-
   .card-tools {
     font-size: 11px;
     color: var(--text-muted);
     letter-spacing: 0.02em;
   }
-
   .card-cta {
     font-family: var(--font-body);
     font-size: 12px;
     font-weight: 500;
     color: var(--purple);
-    background: none;
-    border: none;
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 5px;
     transition: gap var(--transition), color var(--transition);
-    padding: 0;
     text-decoration: none;
   }
-
-  .card-cta:hover { color: var(--purple-dark); gap: 8px; }
+  .card:hover .card-cta { color: var(--purple-dark); gap: 8px; }
   .card-cta.disabled { color: var(--text-muted); pointer-events: none; }
 
-  /* CASE STUDY */
-  .case-study-section {
-    max-width: 1100px;
-    margin: 60px auto 0;
-    padding: 0 64px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease 0.4s forwards;
+  /* ── SKILLS SECTION ── */
+  .skills-section {
+    background: #14122A;
+    margin-top: 80px;
+    padding: 80px 48px;
   }
-
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .skills-inner {
+    max-width: 1200px;
+    margin: 0 auto;
   }
-
-  .section-label::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 1px;
-    background: var(--text-muted);
+  .skills-header {
+    text-align: center;
+    margin-bottom: 36px;
   }
-
-  .case-study {
-    background: var(--bg-card);
-    border-radius: var(--radius-card);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  /* CS HERO */
-  .cs-hero {
-    background: var(--bg-dark);
-    padding: 56px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cs-hero::before {
-    content: '';
-    position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: rgba(123, 110, 232, 0.12);
-    pointer-events: none;
-  }
-
-  .cs-hero::after {
-    content: '';
-    position: absolute;
-    bottom: -60px;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: rgba(123, 110, 232, 0.07);
-    pointer-events: none;
-  }
-
-  .cs-eyebrow {
+  .skills-eyebrow {
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--purple-mid);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
-
-  .cs-hero h2 {
+  .skills-title {
     font-family: var(--font-display);
     font-size: clamp(28px, 4vw, 42px);
     font-weight: 400;
-    color: #fff;
-    line-height: 1.15;
-    max-width: 500px;
-    margin-bottom: 8px;
-  }
-
-  .cs-hero .cs-subtitle {
-    font-size: 14px;
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 28px;
-    max-width: 420px;
-    line-height: 1.6;
-  }
-
-  .cs-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-
-  .cs-tag {
-    font-size: 10px;
-    font-weight: 500;
-    padding: 5px 13px;
-    border-radius: var(--radius-pill);
-    background: rgba(175, 169, 236, 0.15);
-    color: var(--purple-mid);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: 1px solid rgba(175, 169, 236, 0.2);
-  }
-
-  /* CS META */
-  .cs-meta-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .cs-meta-block {
-    background: var(--bg-card);
-    padding: 20px 28px;
-  }
-
-  .cs-meta-label {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-  }
-
-  .cs-meta-value {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-primary);
-    line-height: 1.4;
-  }
-
-  /* CS BODY */
-  .cs-body { padding: 52px 60px; }
-
-  .cs-section { margin-bottom: 52px; }
-
-  .cs-section-num {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--purple-mid);
+    font-style: italic;
+    color: #ffffff;
     margin-bottom: 10px;
-    font-weight: 500;
-  }
-
-  .cs-section h3 {
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 14px;
     letter-spacing: -0.01em;
   }
-
-  .cs-section p {
+  .skills-subtitle {
     font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.75;
-    max-width: 680px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
   }
 
-  .cs-section p + p { margin-top: 12px; }
-
-  /* OUTCOMES */
-  .cs-outcomes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 24px;
+  /* Tabs */
+  .skills-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
   }
-
-  .outcome-card {
-    background: var(--bg-surface);
-    border-radius: 14px;
-    padding: 24px 20px;
-    text-align: center;
-  }
-
-  .outcome-num {
-    font-family: var(--font-display);
-    font-size: 40px;
-    color: var(--purple);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .outcome-label {
+  .skills-tab {
+    font-family: var(--font-body);
     font-size: 12px;
-    color: var(--text-secondary);
+    font-weight: 400;
+    padding: 8px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: rgba(255,255,255,0.45);
+    cursor: pointer;
+    transition: all var(--transition);
+    letter-spacing: 0.01em;
+  }
+  .skills-tab:hover {
+    border-color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.8);
+  }
+  .skills-tab.active {
+    background: #ffffff;
+    color: #14122A;
+    border-color: #ffffff;
+    font-weight: 500;
+  }
+
+  /* Panels */
+  .skills-panels { position: relative; }
+  .skills-panel { display: none; }
+  .skills-panel.active {
+    display: block;
+    animation: fadeUp 0.3s ease forwards;
+  }
+
+  /* Arc container */
+  .tools-arc {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 360px;
+    margin: 0 auto;
+  }
+
+  /* Arc item — handles arc positioning */
+  .arc-item {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100px;
+    margin-left: -50px;
+    transform-origin: bottom center;
+    transform: rotate(var(--angle)) translateY(-240px) rotate(calc(-1 * var(--angle)));
+  }
+
+  /* Arc card — handles visual + hover/active state */
+  .arc-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 20px 10px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition),
+                box-shadow var(--transition), border-color var(--transition);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .arc-card:hover {
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .arc-card.active {
+    background: rgba(175,169,236,0.22);
+    border-color: rgba(175,169,236,0.5);
+    box-shadow: 0 8px 32px rgba(123,110,232,0.3);
+    transform: scale(1.08);
+  }
+  .arc-icon {
+    font-size: 30px;
+    display: block;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .arc-name {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    display: block;
     line-height: 1.4;
   }
 
-  /* GALLERY */
-  .cs-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 24px;
+  /* Center info panel */
+  .arc-center {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    text-align: center;
+    pointer-events: none;
   }
-
-  .cs-gallery-item {
-    background: var(--bg-surface);
-    border-radius: 14px;
-    aspect-ratio: 16/10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .cs-gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 14px;
-  }
-
-  .gallery-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .gallery-placeholder span {
-    font-size: 11px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .gallery-placeholder svg { opacity: 0.2; }
-
-  /* PROCESS STEPS */
-  .cs-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: 24px;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  .cs-step {
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 20px;
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border);
-    align-items: start;
-  }
-
-  .cs-step:last-child { border-bottom: none; }
-
-  .cs-step-num {
+  .arc-center-category {
     font-family: var(--font-display);
-    font-size: 24px;
-    color: var(--purple-mid);
+    font-size: 36px;
+    font-style: italic;
+    color: rgba(255,255,255,0.06);
     line-height: 1;
-    padding-top: 2px;
+    margin-bottom: 10px;
+    white-space: nowrap;
   }
-
-  .cs-step-title {
+  .arc-center-name {
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 4px;
+    color: rgba(255,255,255,0.9);
+    display: block;
+    min-height: 20px;
+    margin-bottom: 5px;
+    transition: opacity 0.2s;
   }
-
-  .cs-step-desc {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* CS FOOTER */
-  .cs-footer {
-    border-top: 1px solid var(--border);
-    padding: 24px 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .cs-footer-note {
+  .arc-center-desc {
     font-size: 12px;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.45);
+    line-height: 1.55;
+    display: block;
+    min-height: 36px;
+    transition: opacity 0.2s;
+  }
+  .arc-center-hint {
+    font-size: 11px;
+    color: rgba(255,255,255,0.22);
+    display: block;
+    transition: opacity 0.2s;
   }
 
-  .cs-next {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--purple);
-    background: none;
-    border: 1px solid var(--purple-light);
-    border-radius: var(--radius-pill);
-    padding: 10px 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all var(--transition);
-    text-decoration: none;
-  }
+  /* Mobile flat grid */
+  .arc-grid-mobile { display: none; }
 
-  .cs-next:hover {
-    background: var(--purple-light);
-    gap: 10px;
-  }
-
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
-    background: var(--bg-dark);
-    margin-top: 80px;
-    padding: 48px 64px;
+    background: #111111;
+    padding: 80px 48px;
     text-align: center;
+    margin-top: 80px;
+    width: 100%;
   }
-
+  .footer-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 16px;
+  }
+  footer h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 400;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
   footer p {
     font-size: 14px;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 32px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
   }
-
-  footer a {
-    font-size: 16px;
-    color: rgba(255,255,255,0.7);
+  .footer-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 100px;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    font-weight: 500;
+    transition: background var(--transition);
+  }
+  .footer-email:hover { background: rgba(255, 255, 255, 0.14); }
+  .footer-bottom {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.2);
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
     transition: color var(--transition);
   }
+  .footer-links a:hover { color: rgba(255, 255, 255, 0.7); }
 
-  footer a:hover { color: #fff; }
-
-  footer .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 28px;
-    padding-top: 28px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-
-  footer .footer-links a {
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-    font-weight: 400;
-  }
-
-  footer .footer-links a:hover { color: rgba(255,255,255,0.6); }
-
-  /* ANIMATIONS */
+  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { gap: 20px; padding: 16px 24px; }
-    .hero { padding: 40px 24px 32px; }
-    .filters { padding: 0 24px 28px; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 0; }
+    .nav-inner { padding: 0 24px; }
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 40px 24px 48px;
+      gap: 32px;
+    }
+    .hero-left { max-width: 100%; }
+    .hero-right { justify-content: center; }
+    .cursor-orbit-wrapper { width: 240px; height: 240px; }
+    .cursor-hero-img { width: 140px; height: 140px; }
+    .orbit-1 { width: 170px; height: 170px; }
+    .orbit-2 { width: 210px; height: 210px; }
+    .orbit-3 { width: 250px; height: 250px; }
+    .filters { padding: 16px 24px 28px; }
     .projects { padding: 0 24px; }
     .card { grid-template-columns: 1fr; }
     .card-img { min-height: 180px; }
-    .cs-meta-grid { grid-template-columns: 1fr 1fr; }
-    .case-study-section { padding: 0 24px; }
-    .cs-hero { padding: 36px 28px; }
-    .cs-body { padding: 36px 28px; }
-    .cs-footer { padding: 20px 28px; flex-direction: column; gap: 16px; align-items: flex-start; }
-    .cs-outcomes { grid-template-columns: 1fr; }
-    .cs-gallery { grid-template-columns: 1fr; }
-    footer { padding: 40px 24px; }
+    .skills-section { padding: 60px 24px; }
+    .skills-tabs { gap: 8px; }
+    .skills-tab { font-size: 11px; padding: 7px 16px; }
+    /* Arc → flat grid on mobile */
+    .tools-arc { height: auto; min-height: unset; }
+    .arc-item {
+      position: static;
+      transform: none !important;
+      width: auto;
+      margin: 0;
+      display: inline-block;
+    }
+    .arc-center { display: none; }
+    .tools-arc {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 8px 0 16px;
+    }
+    .arc-card { width: 90px; }
+    footer { padding: 60px 24px; }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 22px; }
+    .filters { gap: 6px; }
+    .filter-btn { font-size: 11px; padding: 6px 12px; }
+    footer { padding: 60px 24px; }
+    footer h2 { font-size: 36px; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a href="index.html">About</a>
-  <a href="work.html" class="active">Work</a>
-  <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
+  <div class="nav-inner">
+    <a href="index.html">About</a>
+    <a href="work.html" class="active">Work</a>
+    <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-label">Selected projects</div>
-  <h1>A collection of projects that reflect how I approach <em>research, design,</em> and problem-solving.</h1>
+  <div class="hero-left">
+    <div class="hero-label">Selected projects</div>
+    <h1>A collection of projects that reflect how I approach <span class="gradient-text">research, design,</span> and problem-solving.</h1>
+    <div class="hero-badge-inline">Open to opportunities</div>
+  </div>
+  <div class="hero-right">
+    <!--
+      ISTRUZIONE: copia Glass_Cursor.png nella cartella images/ e rinominala glass-cursor.png
+    -->
+    <div class="cursor-orbit-wrapper">
+      <div class="orbit orbit-1">
+        <div class="planet planet-1"></div>
+      </div>
+      <div class="orbit orbit-2">
+        <div class="planet planet-2"></div>
+      </div>
+      <div class="orbit orbit-3">
+        <div class="planet planet-3"></div>
+      </div>
+      <img src="images/glass-cursor.png" alt="Glass Cursor" class="cursor-hero-img">
+    </div>
+  </div>
 </section>
 
 <!-- FILTERS -->
@@ -713,14 +739,14 @@
   <button class="filter-btn" data-filter="ai">AI Product Design</button>
   <button class="filter-btn" data-filter="figma">Figma</button>
   <button class="filter-btn" data-filter="proto">Prototyping</button>
-  <button class="filter-btn" data-filter="data">Data & BI</button>
+  <button class="filter-btn" data-filter="data">Data &amp; BI</button>
 </div>
 
 <!-- PROJECTS -->
 <div class="projects">
 
   <!-- CARD 1 — ETS FEATURED -->
-  <div class="card" onclick="document.getElementById('ets-case-study').scrollIntoView({behavior:'smooth'})">
+  <a class="card" href="ets-case-study.html">
     <div class="card-img">
       <!-- Replace with: <img src="images/ets-cover.jpg" alt="ETS Energy Platform"> -->
       <div class="card-img-placeholder">
@@ -735,18 +761,18 @@
           <span class="tag tag-ux">UX Design</span>
           <span class="tag tag-ux">Prototyping</span>
         </div>
-        <div class="card-title" style="margin-top:12px;">ETS – Energy Platform Concept</div>
-        <div class="card-desc" style="margin-top:10px;">The goal was to explore how structural cost-tracking could simplify user comprehension and reduce reporting complexity for energy operators.</div>
+        <div class="card-title">ETS – Energy Platform Concept</div>
+        <div class="card-desc">The goal was to explore how structural cost-tracking could simplify user comprehension and reduce reporting complexity for energy operators.</div>
       </div>
       <div class="card-footer">
         <span class="card-tools">Figma · FigJam · 2024–2025</span>
-        <button class="card-cta">View case study →</button>
+        <span class="card-cta">View case study →</span>
       </div>
     </div>
-  </div>
+  </a>
 
-  <!-- CARD 2 — PLACEHOLDER -->
-  <div class="card dimmed">
+  <!-- CARD 2 — PROJECT 2 -->
+  <a class="card dimmed" href="project2.html">
     <div class="card-img" style="background:#F4F2EE;">
       <div class="card-img-placeholder">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#9896A8" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -759,18 +785,18 @@
           <span class="tag tag-neutral">Brand Design</span>
           <span class="tag tag-neutral">Project UI</span>
         </div>
-        <div class="card-title" style="margin-top:12px; color: var(--text-muted);">Project 2</div>
-        <div class="card-desc" style="margin-top:10px;">Case study in progress — content coming soon.</div>
+        <div class="card-title" style="color: var(--text-muted);">Project 2</div>
+        <div class="card-desc">Case study in progress — content coming soon.</div>
       </div>
       <div class="card-footer">
         <span class="card-tools">TBD</span>
-        <button class="card-cta disabled">Coming soon</button>
+        <span class="card-cta disabled">Coming soon</span>
       </div>
     </div>
-  </div>
+  </a>
 
   <!-- CARD 3 — VR WANDER -->
-  <div class="card">
+  <a class="card" href="vr-wander.html">
     <div class="card-img" style="background:#EEF2F8;">
       <div class="card-img-placeholder">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -782,199 +808,218 @@
           <span class="tag tag-ux">UX Research</span>
           <span class="tag tag-vr">VR</span>
         </div>
-        <div class="card-title" style="margin-top:12px;">How a VR study on Wander revealed emotional connection as a key UX driver.</div>
-        <div class="card-desc" style="margin-top:10px;">A journey into VR research using Meta Quest 3, uncovering the emotional power of spatial environments.</div>
+        <div class="card-title">How a VR study on Wander revealed emotional connection as a key UX driver.</div>
+        <div class="card-desc">A journey into VR research using Meta Quest 3, uncovering the emotional power of spatial environments.</div>
       </div>
       <div class="card-footer">
         <span class="card-tools">Meta Quest 3 · Figma · 2024</span>
-        <button class="card-cta">View case study →</button>
+        <span class="card-cta">View case study →</span>
       </div>
     </div>
-  </div>
+  </a>
 
 </div>
 
-<!-- ETS CASE STUDY -->
-<section class="case-study-section" id="ets-case-study">
-  <div class="section-label">Case study</div>
-  <div class="case-study">
+<!-- TOOLS & SKILLS — arc carousel -->
+<section class="skills-section">
+  <div class="skills-inner">
 
-    <!-- HERO -->
-    <div class="cs-hero">
-      <div class="cs-eyebrow">ETS — Energy Trading & Sustainability</div>
-      <h2>Energy Platform Concept</h2>
-      <p class="cs-subtitle">Redesigning how energy operators track, understand, and report on cost and consumption data.</p>
-      <div class="cs-tags">
-        <span class="cs-tag">UX Research</span>
-        <span class="cs-tag">UX Design</span>
-        <span class="cs-tag">Prototyping</span>
-        <span class="cs-tag">Figma</span>
-        <span class="cs-tag">Design System</span>
-      </div>
+    <div class="skills-header">
+      <p class="skills-eyebrow">Toolkit</p>
+      <h2 class="skills-title">Tools &amp; Skills</h2>
+      <p class="skills-subtitle">Technologies and tools I use across my work</p>
     </div>
 
-    <!-- META -->
-    <div class="cs-meta-grid">
-      <div class="cs-meta-block">
-        <div class="cs-meta-label">Role</div>
-        <div class="cs-meta-value">UX Designer · Researcher</div>
-      </div>
-      <div class="cs-meta-block">
-        <div class="cs-meta-label">Duration</div>
-        <div class="cs-meta-value">2024 – 2025</div>
-      </div>
-      <div class="cs-meta-block">
-        <div class="cs-meta-label">Tools</div>
-        <div class="cs-meta-value">Figma · FigJam · Maze</div>
-      </div>
-      <div class="cs-meta-block">
-        <div class="cs-meta-label">Type</div>
-        <div class="cs-meta-value">Concept · Personal project</div>
-      </div>
+    <!-- TAB BUTTONS -->
+    <div class="skills-tabs">
+      <button class="skills-tab active" data-panel="analyst">Technical Analyst</button>
+      <button class="skills-tab" data-panel="designer">Designer</button>
+      <button class="skills-tab" data-panel="programming">Programming</button>
     </div>
 
-    <!-- BODY -->
-    <div class="cs-body">
+    <div class="skills-panels">
 
-      <!-- 01 OVERVIEW -->
-      <div class="cs-section">
-        <div class="cs-section-num">01 — Overview</div>
-        <h3>What is ETS?</h3>
-        <p>ETS is a concept platform designed to simplify energy cost-tracking and sustainability reporting for mid-size companies. The goal was to explore how structural cost data could be presented in a way that reduces cognitive load and improves comprehension for non-technical stakeholders.</p>
-        <p><!-- REPLACE: Add your real project description here. What was the context? Who commissioned it or inspired it? --></p>
-      </div>
-
-      <!-- 02 CHALLENGE -->
-      <div class="cs-section">
-        <div class="cs-section-num">02 — The challenge</div>
-        <h3>Energy data is complex. Dashboards make it worse.</h3>
-        <p>Most energy management tools are built for engineers — dense tables, raw numbers, no narrative context. Business teams struggle to extract decisions from the data. The challenge was to design a system that translates complexity into clarity without losing accuracy.</p>
-        <p><!-- REPLACE: Add the specific challenge you faced or observed. What pain points were you solving? --></p>
-      </div>
-
-      <!-- 03 PROCESS -->
-      <div class="cs-section">
-        <div class="cs-section-num">03 — Process</div>
-        <h3>From research to high-fidelity prototype</h3>
-        <p>Starting from competitor analysis and user interviews, I mapped pain points around data interpretation and reporting workflows, then iterated through multiple rounds of wireframes to a tested prototype.</p>
-
-        <div class="cs-steps">
-          <div class="cs-step">
-            <div class="cs-step-num">1</div>
-            <div>
-              <div class="cs-step-title">Discovery & research</div>
-              <div class="cs-step-desc">Competitor analysis across 5 energy platforms. Identified key usability gaps in data hierarchy and reporting flows. <!-- REPLACE with your actual research findings --></div>
+      <!-- PANEL: Technical Analyst — 5 tools: -60 -30 0 30 60 -->
+      <div class="skills-panel active" id="panel-analyst">
+        <div class="tools-arc">
+          <div class="arc-item" style="--angle: -60deg">
+            <div class="arc-card" data-name="Power BI" data-desc="Interactive dashboards and business intelligence reporting">
+              <span class="arc-icon">📊</span>
+              <span class="arc-name">Power BI</span>
             </div>
           </div>
-          <div class="cs-step">
-            <div class="cs-step-num">2</div>
-            <div>
-              <div class="cs-step-title">Information architecture</div>
-              <div class="cs-step-desc">Mapped user journeys and defined the core navigation structure across 4 main modules: Dashboard, Cost tracking, Reports, Alerts. <!-- REPLACE --></div>
+          <div class="arc-item" style="--angle: -30deg">
+            <div class="arc-card" data-name="SQL" data-desc="Data querying and transformation">
+              <span class="arc-icon">🗄️</span>
+              <span class="arc-name">SQL</span>
             </div>
           </div>
-          <div class="cs-step">
-            <div class="cs-step-num">3</div>
-            <div>
-              <div class="cs-step-title">Wireframing & iteration</div>
-              <div class="cs-step-desc">3 rounds of low-to-mid fidelity wireframes, refining layout logic and component hierarchy based on internal feedback. <!-- REPLACE --></div>
+          <div class="arc-item" style="--angle: 0deg">
+            <div class="arc-card" data-name="Excel / Sheets" data-desc="Data analysis and spreadsheet automation">
+              <span class="arc-icon">📈</span>
+              <span class="arc-name">Excel/Sheets</span>
             </div>
           </div>
-          <div class="cs-step">
-            <div class="cs-step-num">4</div>
-            <div>
-              <div class="cs-step-title">High-fidelity design & system</div>
-              <div class="cs-step-desc">Built a 40-component design system in Figma. Delivered 20+ high-fidelity screens across desktop and mobile breakpoints. <!-- REPLACE --></div>
+          <div class="arc-item" style="--angle: 30deg">
+            <div class="arc-card" data-name="Python" data-desc="Data processing and automation scripts">
+              <span class="arc-icon">🐍</span>
+              <span class="arc-name">Python</span>
             </div>
+          </div>
+          <div class="arc-item" style="--angle: 60deg">
+            <div class="arc-card" data-name="Data Analysis" data-desc="Statistical analysis and insight extraction">
+              <span class="arc-icon">🔍</span>
+              <span class="arc-name">Data Analysis</span>
+            </div>
+          </div>
+          <div class="arc-center">
+            <div class="arc-center-category">Analyst</div>
+            <span class="arc-center-name"></span>
+            <span class="arc-center-desc"></span>
+            <span class="arc-center-hint">Click a tool to see details</span>
           </div>
         </div>
       </div>
 
-      <!-- 04 OUTCOMES -->
-      <div class="cs-section">
-        <div class="cs-section-num">04 — Outcomes</div>
-        <h3>Key results</h3>
-        <p><!-- REPLACE: Add real results, what was achieved, what you learned. --></p>
-        <div class="cs-outcomes">
-          <div class="outcome-card">
-            <div class="outcome-num">20+</div>
-            <div class="outcome-label">High-fidelity screens delivered</div>
+      <!-- PANEL: Designer — 5 tools: -60 -30 0 30 60 -->
+      <div class="skills-panel" id="panel-designer">
+        <div class="tools-arc">
+          <div class="arc-item" style="--angle: -60deg">
+            <div class="arc-card" data-name="Figma" data-desc="UI/UX design, prototyping and design systems">
+              <span class="arc-icon">🎨</span>
+              <span class="arc-name">Figma</span>
+            </div>
           </div>
-          <div class="outcome-card">
-            <div class="outcome-num">40</div>
-            <div class="outcome-label">Component design system</div>
+          <div class="arc-item" style="--angle: -30deg">
+            <div class="arc-card" data-name="Framer" data-desc="Interactive web design and publishing">
+              <span class="arc-icon">⚡</span>
+              <span class="arc-name">Framer</span>
+            </div>
           </div>
-          <div class="outcome-card">
-            <div class="outcome-num">3</div>
-            <div class="outcome-label">Core user flows tested</div>
+          <div class="arc-item" style="--angle: 0deg">
+            <div class="arc-card" data-name="Adobe Photoshop" data-desc="Image editing and visual design">
+              <span class="arc-icon">🖼️</span>
+              <span class="arc-name">Photoshop</span>
+            </div>
+          </div>
+          <div class="arc-item" style="--angle: 30deg">
+            <div class="arc-card" data-name="Premiere Pro" data-desc="Video editing and motion graphics">
+              <span class="arc-icon">🎬</span>
+              <span class="arc-name">Premiere Pro</span>
+            </div>
+          </div>
+          <div class="arc-item" style="--angle: 60deg">
+            <div class="arc-card" data-name="Canva" data-desc="Quick design and brand materials">
+              <span class="arc-icon">✏️</span>
+              <span class="arc-name">Canva</span>
+            </div>
+          </div>
+          <div class="arc-center">
+            <div class="arc-center-category">Designer</div>
+            <span class="arc-center-name"></span>
+            <span class="arc-center-desc"></span>
+            <span class="arc-center-hint">Click a tool to see details</span>
           </div>
         </div>
       </div>
 
-      <!-- 05 GALLERY -->
-      <div class="cs-section">
-        <div class="cs-section-num">05 — Selected screens</div>
-        <h3>From concept to prototype</h3>
-        <p><!-- REPLACE: Add a short description of what the screenshots show. --></p>
-        <div class="cs-gallery">
-          <div class="cs-gallery-item">
-            <!-- REPLACE: <img src="images/ets-dashboard.jpg" alt="ETS Dashboard view"> -->
-            <div class="gallery-placeholder">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7B6EE8" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              <span>Dashboard view</span>
+      <!-- PANEL: Programming — 3 tools: -60 0 60 -->
+      <div class="skills-panel" id="panel-programming">
+        <div class="tools-arc">
+          <div class="arc-item" style="--angle: -60deg">
+            <div class="arc-card" data-name="HTML" data-desc="Semantic web structure and markup">
+              <span class="arc-icon">🏗️</span>
+              <span class="arc-name">HTML</span>
             </div>
           </div>
-          <div class="cs-gallery-item">
-            <!-- REPLACE: <img src="images/ets-cost.jpg" alt="Cost breakdown screen"> -->
-            <div class="gallery-placeholder">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7B6EE8" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              <span>Cost breakdown</span>
+          <div class="arc-item" style="--angle: 0deg">
+            <div class="arc-card" data-name="CSS" data-desc="Styling, animations and responsive layouts">
+              <span class="arc-icon">🎭</span>
+              <span class="arc-name">CSS</span>
             </div>
           </div>
-          <div class="cs-gallery-item">
-            <!-- REPLACE: <img src="images/ets-report.jpg" alt="Reporting flow"> -->
-            <div class="gallery-placeholder">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7B6EE8" stroke-width="1.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              <span>Reporting flow</span>
+          <div class="arc-item" style="--angle: 60deg">
+            <div class="arc-card" data-name="JavaScript" data-desc="Interactive features and DOM manipulation">
+              <span class="arc-icon">⚙️</span>
+              <span class="arc-name">JavaScript</span>
             </div>
           </div>
-          <div class="cs-gallery-item">
-            <!-- REPLACE: <img src="images/ets-mobile.jpg" alt="Mobile view"> -->
-            <div class="gallery-placeholder">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7B6EE8" stroke-width="1.2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              <span>Mobile view</span>
-            </div>
+          <div class="arc-center">
+            <div class="arc-center-category">Code</div>
+            <span class="arc-center-name"></span>
+            <span class="arc-center-desc"></span>
+            <span class="arc-center-hint">Click a tool to see details</span>
           </div>
         </div>
       </div>
 
     </div>
-
-    <!-- FOOTER -->
-    <div class="cs-footer">
-      <span class="cs-footer-note">ETS – Energy Platform Concept · 2024–2025</span>
-      <a class="cs-next" href="#">Next project →</a>
-    </div>
-
   </div>
 </section>
 
-<!-- PAGE FOOTER -->
+<!-- FOOTER -->
 <footer>
-  <p>Let's talk</p>
-  <a href="mailto:tommasoopacinii@gmail.com">tommasoopacinii@gmail.com</a>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
-    <a href="#">Resume</a>
+  <div class="footer-eyebrow">Let's talk</div>
+  <h2>I'm ready to<br>STEP IN</h2>
+  <p>Open to full-time roles, freelance projects, and conversations that go somewhere unexpected.</p>
+  <a href="mailto:tommasoopacinii@gmail.com" class="footer-email">
+    tommasoopacinii@gmail.com
+  </a>
+  <div class="footer-bottom">
+    <span>© 2025 Tommaso Pacini</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
+      <a href="#">Resume</a>
+    </div>
   </div>
 </footer>
 
 <script>
+  /* ── Filter buttons ── */
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
+    });
+  });
+
+  /* ── Skills tab switching ── */
+  document.querySelectorAll('.skills-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const panelId = 'panel-' + this.dataset.panel;
+      // Update tabs
+      document.querySelectorAll('.skills-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      // Update panels
+      document.querySelectorAll('.skills-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(panelId).classList.add('active');
+    });
+  });
+
+  /* ── Arc card click — show description in center ── */
+  document.querySelectorAll('.arc-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const arc = this.closest('.tools-arc');
+      const nameEl  = arc.querySelector('.arc-center-name');
+      const descEl  = arc.querySelector('.arc-center-desc');
+      const hintEl  = arc.querySelector('.arc-center-hint');
+      const wasActive = this.classList.contains('active');
+
+      // Deactivate all cards in this arc
+      arc.querySelectorAll('.arc-card').forEach(c => c.classList.remove('active'));
+
+      if (wasActive) {
+        // Toggle off — reset center
+        nameEl.textContent = '';
+        descEl.textContent = '';
+        hintEl.style.opacity = '1';
+      } else {
+        // Activate clicked card
+        this.classList.add('active');
+        nameEl.textContent = this.dataset.name;
+        descEl.textContent = this.dataset.desc;
+        hintEl.style.opacity = '0';
+      }
     });
   });
 </script>
