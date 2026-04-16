@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tommaso Pacini — Digital Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F0EEE6;
+    --bg-card: #ffffff;
+    --bg-dark: #111111;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --text-muted: #999999;
+    --accent: #C8A96E;
+    --border: #E0DED8;
+    --purple: #7B6EE8;
+    --purple-light: #AFA9EC;
+    --font-body: 'DM Sans', sans-serif;
+    --font-display: 'DM Serif Display', serif;
+    --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 20px 48px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(240,238,230,0.88);
+    backdrop-filter: blur(12px);
+  }
+  nav a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition);
+    letter-spacing: 0.01em;
+  }
+  nav a:hover, nav a.active { color: var(--text-primary); }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 40px;
+    align-items: center;
+    padding: 64px 48px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-left { max-width: 520px; }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-label::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--text-muted);
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: var(--font-body);
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .hero h1 .name {
+    font-family: var(--font-display);
+    font-style: italic;
+    background: linear-gradient(90deg, #C8A96E 0%, #AFA9EC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .hero-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 32px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .btn-dark {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--text-primary);
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 100px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity var(--transition);
+  }
+  .btn-dark:hover { opacity: 0.8; }
+  .btn-outline {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    background: transparent;
+    padding: 12px 22px;
+    border-radius: 100px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color var(--transition);
+  }
+  .btn-outline:hover { border-color: var(--text-primary); }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-photo {
+    width: 340px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    border: 5px solid #ffffff;
+    border-radius: 24px;
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: -16px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: #ffffff;
+    border: 1px solid #E0DED8;
+    border-radius: 100px;
+    padding: 10px 18px;
+    font-size: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #4CAF50;
+    display: inline-block;
+    margin-right: 8px;
+    animation: breathing 2s ease-in-out infinite;
+  }
+  @keyframes breathing {
+    0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(76,175,80,0.4); }
+    50% { transform: scale(1.3); opacity: 0.85; box-shadow: 0 0 0 4px rgba(76,175,80,0); }
+  }
+
+  /* ── STATS ── */
+  .stats {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    max-width: 100%;
+    margin: 0;
+    background: #ffffff;
+  }
+  .stat {
+    padding: 32px 48px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    max-width: 120px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--text-muted);
+    display: inline-block;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .experience h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 48px;
+    letter-spacing: -0.01em;
+  }
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+  }
+  .exp-item {
+    display: contents;
+  }
+  .exp-item-left {
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+  }
+  .exp-item-right {
+    padding: 24px 0 24px 40px;
+    border-top: 1px solid var(--border);
+  }
+  .exp-period {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .exp-location {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .exp-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tag-green { background: #E8F5E0; color: #3A6B20; }
+  .tag-blue  { background: #E0EEF8; color: #1A5080; }
+  .tag-current { background: #111; color: #fff; }
+  .exp-company {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .exp-role {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .exp-bullets li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding-left: 12px;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+
+  /* ── TOOLKIT ── */
+  .toolkit {
+    padding: 80px 48px;
+    max-width: 100%;
+    margin: 0;
+    border-top: 1px solid var(--border);
+    background: #ffffff;
+  }
+  .toolkit h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+  .toolkit-group { margin-bottom: 24px; }
+  .toolkit-group-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .toolkit-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    white-space: nowrap;
+  }
+  .pill-purple { background: #EEEDFE; color: #534AB7; border-color: #EEEDFE; }
+  .pill-green  { background: #E1F5EE; color: #0F6E56; border-color: #E1F5EE; }
+  .pill-orange { background: #FAECE7; color: #993C1D; border-color: #FAECE7; }
+
+  /* ── BEYOND ── */
+  .beyond {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .beyond h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+  .gallery-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--border);
+  }
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .gallery-card:hover img { transform: scale(1.03); }
+  .gallery-card.tall { grid-row: span 2; min-height: 480px; }
+  .gallery-card.short { min-height: 220px; }
+  .gallery-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 40px 16px 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  }
+  .gallery-city {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .gallery-caption {
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+  }
+  .gallery-tag {
+    position: absolute;
+    top: 12px; right: 12px;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.9);
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PASSIONS ── */
+  .passions {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+  .passions-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 16px;
+  }
+  .passion-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .passion-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .passion-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .passion-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg-dark);
+    padding: 80px 48px;
+    text-align: center;
+  }
+  .footer-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 16px;
+  }
+  footer h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 400;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  footer p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 32px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .footer-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: background var(--transition);
+  }
+  .footer-email:hover { background: rgba(255,255,255,0.14); }
+  .footer-bottom {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom span {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav {
+      padding: 16px 24px;
+      gap: 20px;
+    }
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 40px 24px 60px;
+      gap: 32px;
+    }
+    .hero-left { max-width: 100%; }
+    .hero h1 { font-size: 52px; }
+    .hero-right {
+      display: flex;
+      justify-content: center;
+    }
+    .hero-photo {
+      width: 100%;
+      max-width: 340px;
+      height: 380px;
+    }
+    .stats {
+      grid-template-columns: repeat(2,1fr);
+      margin: 0;
+    }
+    .stat { padding: 24px; }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(3) { border-top: 1px solid var(--border); }
+    .experience { padding: 60px 24px; }
+    .experience h2 { font-size: 36px; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .exp-item-left { padding: 24px 0 8px; border-top: 1px solid var(--border); }
+    .exp-item-right { padding: 0 0 24px 0; border-top: none; }
+    .toolkit { padding: 60px 24px; }
+    .toolkit h2 { font-size: 36px; }
+    .toolkit-pills { gap: 6px; }
+    .pill { font-size: 11px; padding: 5px 12px; }
+    .beyond { padding: 60px 24px; }
+    .beyond h2 { font-size: 36px; }
+    .gallery {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .gallery-card.tall {
+      grid-row: span 1;
+      min-height: 260px;
+    }
+    .gallery-card.short { min-height: 220px; }
+    .passions { padding: 60px 24px; }
+    .passions-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .passion-card { padding: 18px; }
+    footer { padding: 60px 24px; }
+    footer h2 { font-size: 36px; }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    nav { gap: 16px; }
+    .hero h1 { font-size: 40px; }
+    .hero-body { font-size: 13px; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .stat-num { font-size: 32px; }
+    .passions-grid { grid-template-columns: 1fr; }
+    .cs-meta-grid { grid-template-columns: 1fr 1fr; }
+    .cs-outcomes { grid-template-columns: 1fr; }
+    .cs-gallery { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="active">Home</a>
+  <a href="work.html">Work</a>
+  <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-label">About me</div>
+    <h1>Hi, I'm<br><span class="name">Tommaso.</span></h1>
+    <p class="hero-subtitle">Data Engineer | Digital Builder | Tech &amp; Design Enthusiast</p>
+    <p class="hero-body">
+      I work with data, build digital projects and explore the intersection between technology, design and business. Currently working in tech while developing independent projects in e-commerce, branding and digital experiences.<br><br>
+      Focused on growth, international opportunities and building meaningful products.
+    </p>
+    <div class="hero-ctas">
+      <a href="mailto:tommasoopacinii@gmail.com" class="btn-dark">Say hello ↗</a>
+      <a href="#" class="btn-outline">View resume</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!--
+      ISTRUZIONE: rinomina il file IMG_7208.jpeg in "hero-photo.jpg"
+      e mettilo nella cartella images/
+    -->
+    <div class="hero-badge">Open to opportunities</div>
+    <img src="images/hero-photo.jpg" alt="Tommaso Pacini" class="hero-photo">
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">years working in tech &amp; data environments</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">5+</div>
+    <div class="stat-label">digital projects between data, web and branding</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3</div>
+    <div class="stat-label">industries experience (cyber security &amp; fashion tech)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">tools &amp; technologies used across data and web</div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="experience">
+  <div class="section-eyebrow">Experience</div>
+  <h2>Where I've been.</h2>
+
+  <div class="exp-grid">
+    <!-- Personal -->
+    <div class="exp-item-left">
+      <div class="exp-period">2022 – Present</div>
+      <div class="exp-location">Florence, IT</div>
+      <span class="exp-tag tag-green">Research</span>
+    </div>
+    <div class="exp-item-right">
+      <div class="exp-company">Personal &amp; Digital Projects</div>
+      <div class="exp-role">Projects</div>
+      <ul class="exp-bullets">
+        <li>Designed and developed website concepts and digital experiences</li>
+        <li>Working on e-commerce and branding projects related to sports communities</li>
+        <li>Created UI concepts inspired by modern product design standards</li>
+        <li>Exploring the intersection between tech, design and online business</li>
+      </ul>
+    </div>
+
+    <!-- Baker Hughes -->
+    <div class="exp-item-left">
+      <div class="exp-period">Jun 2025 – Present</div>
+      <div class="exp-location">Remote, IT</div>
+      <span class="exp-tag tag-current">Current</span>
+    </div>
+    <div class="exp-item-right">
+      <div class="exp-company">Baker Hughes</div>
+      <div class="exp-role">Project Manager Operator</div>
+      <ul class="exp-bullets">
+        <li>Designed 20+ high-fidelity screens and a 40-component design system for a B2C AI SaaS MVP</li>
+        <li>Prototyped 3 core AI-driven features, turning complex job-tracking logic into something that actually makes sense to use</li>
+        <li>Worked directly with founders and engineers to keep design feasible and the pre-launch timeline on track</li>
+      </ul>
+    </div>
+
+    <!-- Gucci-Celine -->
+    <div class="exp-item-left">
+      <div class="exp-period">2023 – 2025</div>
+      <div class="exp-location">Florence, IT</div>
+      <span class="exp-tag tag-blue">Internship</span>
+    </div>
+    <div class="exp-item-right">
+      <div class="exp-company">Gucci-Celine</div>
+      <div class="exp-role">BI Developer / Data Analyst (Power BI)</div>
+      <ul class="exp-bullets">
+        <li>Developed interactive dashboards using Power BI for business monitoring</li>
+        <li>Worked with data transformation and visualization to support business teams</li>
+        <li>Improved reporting processes reducing manual analysis activities</li>
+        <li>Collaborated with stakeholders to translate business needs into data solutions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLKIT -->
+<section class="toolkit">
+  <div class="section-eyebrow">Toolkit</div>
+  <h2>What I work with.</h2>
+
+  <div class="toolkit-group">
+    <div class="toolkit-group-label">Research and Strategy</div>
+    <div class="toolkit-pills">
+      <span class="pill pill-purple">User Interviews</span>
+      <span class="pill pill-purple">Usability Testing</span>
+      <span class="pill pill-purple">Surveys</span>
+      <span class="pill pill-purple">Heuristic Evaluation</span>
+      <span class="pill pill-purple">Competitive Analysis</span>
+      <span class="pill pill-purple">Information Architecture</span>
+      <span class="pill pill-purple">Data Analysis</span>
+    </div>
+  </div>
+
+  <div class="toolkit-group">
+    <div class="toolkit-group-label">Design and Prototyping</div>
+    <div class="toolkit-pills">
+      <span class="pill pill-green">Figma</span>
+      <span class="pill pill-green">Figma Make</span>
+      <span class="pill pill-green">Canva</span>
+      <span class="pill pill-green">Adobe Photoshop</span>
+      <span class="pill pill-green">Premier Pro</span>
+      <span class="pill pill-green">Design Systems</span>
+    </div>
+  </div>
+
+  <div class="toolkit-group">
+    <div class="toolkit-group-label">Technical</div>
+    <div class="toolkit-pills">
+      <span class="pill pill-orange">Power BI</span>
+      <span class="pill pill-orange">SQL</span>
+      <span class="pill pill-orange">Excel / Google Sheets</span>
+      <span class="pill pill-orange">Python</span>
+      <span class="pill pill-orange">WCAG / Accessibility</span>
+      <span class="pill pill-orange">Agile</span>
+      <span class="pill pill-orange">Design Thinking</span>
+      <span class="pill pill-orange">AI-Driven Design</span>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND THE SCREEN -->
+<section class="beyond">
+  <div class="section-eyebrow">Beyond the screen</div>
+  <h2>What I love to do</h2>
+
+  <!--
+    ISTRUZIONI IMMAGINI — crea una cartella "images/" e rinomina i file così:
+    IMG_7208.jpeg           → images/hero-photo.jpg      (foto profilo hero)
+    _DSC0765.JPG            → images/london-bigben.jpg   (@London Big Ben)
+    _DSC0738.JPG            → images/prato-skate.jpg     (@Prato skate)
+    Partita_novembre_...JPG → images/prato-basket.jpg    (@Prato basket)
+    IMG_8918.jpeg           → images/barcelona.jpg       (@Barcelona)
+    EF711F0E-...JPG         → images/london-car.jpg      (@London Rolls Royce)
+  -->
+  <div class="gallery">
+    <!-- Grande sinistra -->
+    <div class="gallery-card tall">
+      <img src="images/london-bigben.jpg" alt="Travelling">
+      <div class="gallery-label">
+        <span class="gallery-city">@London</span>
+        <span class="gallery-caption">Exploring places where creativity and architecture meet.</span>
+      </div>
+      <span class="gallery-tag">Travelling</span>
+    </div>
+
+    <!-- Centro alto -->
+    <div class="gallery-card short">
+      <img src="images/prato-skate.jpg" alt="Prato">
+      <div class="gallery-label">
+        <span class="gallery-city">@Paris</span>
+        <span class="gallery-caption">Inspired by timeless design.</span>
+      </div>
+      <span class="gallery-tag">Design</span>
+    </div>
+
+    <!-- Destra alta -->
+    <div class="gallery-card short">
+      <img src="images/barcelona.jpg" alt="Barcelona">
+      <div class="gallery-label">
+        <span class="gallery-city">@Barcelona</span>
+        <span class="gallery-caption">Exploring places where creativity and architecture meet.</span>
+      </div>
+      <span class="gallery-tag">Travelling</span>
+    </div>
+
+    <!-- Centro basso -->
+    <div class="gallery-card short">
+      <img src="images/prato-basket.jpg" alt="Paris">
+      <div class="gallery-label">
+        <span class="gallery-city">@Prato</span>
+        <span class="gallery-caption">My first school of discipline and team mindset.</span>
+      </div>
+      <span class="gallery-tag">Sport</span>
+    </div>
+
+    <!-- Destra bassa -->
+    <div class="gallery-card short">
+      <img src="images/london-car.jpg" alt="London">
+      <div class="gallery-label">
+        <span class="gallery-city">@London</span>
+        <span class="gallery-caption">Observing the world with a global perspective.</span>
+      </div>
+      <span class="gallery-tag">Travelling</span>
+    </div>
+  </div>
+</section>
+
+<!-- PASSIONS -->
+<section class="passions">
+  <div class="passions-grid">
+    <div class="passion-card">
+      <span class="passion-icon">✈️</span>
+      <div class="passion-title">Travelling</div>
+      <p class="passion-text">Always drawn to the lesser-known place — the side street, the view you won't find on the first page of search results. I bring a camera everywhere and treat photography as a practice in paying attention.</p>
+    </div>
+    <div class="passion-card">
+      <span class="passion-icon">🏀</span>
+      <div class="passion-title">Sport</div>
+      <p class="passion-text">Football and basketball have always been part of my life. They taught me discipline, teamwork and the importance of consistency both on and off the court.</p>
+    </div>
+    <div class="passion-card">
+      <span class="passion-icon">🎵</span>
+      <div class="passion-title">Music</div>
+      <p class="passion-text">I enjoy exploring different music genres depending on the moment — music is one of my main sources of inspiration and focus.</p>
+    </div>
+    <div class="passion-card">
+      <span class="passion-icon">🎨</span>
+      <div class="passion-title">Design</div>
+      <p class="passion-text">I'm passionate about digital design, branding and visual identity. I like observing how great design communicates ideas in a simple and effective way.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-eyebrow">Let's talk</div>
+  <h2>I'm ready to<br>STEP IN</h2>
+  <p>Open to full-time roles, freelance projects, and conversations that go somewhere unexpected.</p>
+  <a href="mailto:tommasoopacinii@gmail.com" class="footer-email">
+    tommasoopacinii@gmail.com
+  </a>
+  <div class="footer-bottom">
+    <span>© 2025 Tommaso Pacini</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
+      <a href="#">Resume</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
