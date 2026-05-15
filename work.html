@@ -162,26 +162,27 @@
   /* ── CURSOR ORBIT ── */
   .cursor-orbit-wrapper {
     position: relative;
-    width: 340px;
-    height: 340px;
+    width: 500px;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .cursor-hero-img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 20px 40px rgba(123,110,232,0.3));
-  }
+  width: 380px;
+  height: 380px;
+  object-fit: contain;
+  position: relative;
+  z-index: 10;
+  filter: drop-shadow(0 20px 40px rgba(123,110,232,0.3));
+}
   .orbit {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(123,110,232,0.2);
-    animation: spin linear infinite;
-  }
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(123,110,232,0.2);
+  animation: spin linear infinite;
+  z-index: 1;
+}
   .orbit-1 { width: 240px; height: 240px; animation-duration: 8s; }
   .orbit-2 { width: 300px; height: 300px; animation-duration: 14s; animation-direction: reverse; }
   .orbit-3 { width: 360px; height: 360px; animation-duration: 20s; }
@@ -338,6 +339,7 @@
   .tag-web     { background: #FAECE7; color: #993C1D; }
   .tag-vr      { background: #E6F1FB; color: #185FA5; }
   .tag-neutral { background: #F1EFE8; color: #5F5E5A; }
+  .tag-dark    { background: #14122A; color: rgba(255,255,255,0.85); }
 
   .card-title {
     font-size: 20px;
@@ -747,25 +749,22 @@
 
   <!-- CARD 1 — ETS FEATURED -->
   <a class="card" href="ets-case-study.html">
-    <div class="card-img">
-      <!-- Replace with: <img src="images/ets-cover.jpg" alt="ETS Energy Platform"> -->
-      <div class="card-img-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#7B6EE8" stroke-width="1.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
-      <span class="featured-badge">Featured project</span>
+    <div class="card-img" style="background:#1A1C14; position:relative; overflow:hidden;">
+      <img src="images/ets-cover.jpg" alt="ETS Wind Landing Page">
+      <span class="featured-badge" style="background:#A8C037;color:#14120A;">Featured</span>
     </div>
     <div class="card-body">
       <div>
         <div class="card-tags">
-          <span class="tag tag-ux">UX Research</span>
-          <span class="tag tag-ux">UX Design</span>
-          <span class="tag tag-ux">Prototyping</span>
+          <span class="tag tag-dark">Vibe Coding</span>
+          <span class="tag tag-dark">UX Design</span>
+          <span class="tag tag-dark">Frontend</span>
         </div>
-        <div class="card-title">ETS – Energy Platform Concept</div>
-        <div class="card-desc">The goal was to explore how structural cost-tracking could simplify user comprehension and reduce reporting complexity for energy operators.</div>
+        <div class="card-title">ETS Wind — Landing page built with AI</div>
+        <div class="card-desc">A complete marketing website for a European renewable energy company, designed and developed from scratch through live collaboration with Claude AI.</div>
       </div>
       <div class="card-footer">
-        <span class="card-tools">Figma · FigJam · 2024–2025</span>
+        <span class="card-tools">Claude Code · HTML/CSS/JS · 2024–2025</span>
         <span class="card-cta">View case study →</span>
       </div>
     </div>
@@ -844,31 +843,31 @@
         <div class="tools-arc">
           <div class="arc-item" style="--angle: -60deg">
             <div class="arc-card" data-name="Power BI" data-desc="Interactive dashboards and business intelligence reporting">
-              <span class="arc-icon">📊</span>
-              <span class="arc-name">Power BI</span>
+             <img src="images/logos/powerbi.png" width="40" height="40" alt="Power BI">
+             <div class="tool-name">Power BI</div>
             </div>
           </div>
           <div class="arc-item" style="--angle: -30deg">
             <div class="arc-card" data-name="SQL" data-desc="Data querying and transformation">
-              <span class="arc-icon">🗄️</span>
+              <img src="images/logos/sql.svg" width="40" height="40" alt="SQL">
               <span class="arc-name">SQL</span>
             </div>
           </div>
           <div class="arc-item" style="--angle: 0deg">
             <div class="arc-card" data-name="Excel / Sheets" data-desc="Data analysis and spreadsheet automation">
-              <span class="arc-icon">📈</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" width="40" height="40" alt="Excel">
               <span class="arc-name">Excel/Sheets</span>
             </div>
           </div>
           <div class="arc-item" style="--angle: 30deg">
-            <div class="arc-card" data-name="Python" data-desc="Data processing and automation scripts">
-              <span class="arc-icon">🐍</span>
-              <span class="arc-name">Python</span>
+            <div class="arc-card" data-name="Tableau" data-desc="Data processing and automation scripts">
+              <img src="images/logos/tableau.png" width="40" height="40" alt="Tableau">
+              <span class="arc-name">Tableau</span>
             </div>
           </div>
           <div class="arc-item" style="--angle: 60deg">
             <div class="arc-card" data-name="Data Analysis" data-desc="Statistical analysis and insight extraction">
-              <span class="arc-icon">🔍</span>
+             <img src="images/logos/gcp.svg" width="40" height="40" alt="GCP">
               <span class="arc-name">Data Analysis</span>
             </div>
           </div>

@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETS Wind — Case Study · Tommaso Pacini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ECEAF4;
+    --bg-card: #ffffff;
+    --bg-dark: #14122A;
+    --bg-surface: #E4E2EE;
+    --purple: #7B6EE8;
+    --purple-light: #EEEDFE;
+    --purple-mid: #AFA9EC;
+    --purple-dark: #3C3489;
+    --text-primary: #14122A;
+    --text-secondary: #6B6880;
+    --text-muted: #9896A8;
+    --border: #D6D4E8;
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius-card: 20px;
+    --radius-pill: 100px;
+    --radius-sm: 8px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --ets-green: #A8C037;
+    --ets-dark: #1A1C14;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(236, 234, 244, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 20px 0;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    width: 100%;
+  }
+  nav a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition);
+    letter-spacing: 0.01em;
+  }
+  nav a:hover { color: var(--text-primary); }
+  nav a.active {
+    color: var(--text-primary);
+    border-bottom: 1.5px solid var(--text-primary);
+    padding-bottom: 2px;
+  }
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition), gap var(--transition);
+    margin-right: auto;
+  }
+  .nav-back:hover { color: var(--text-primary); gap: 8px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── HERO DARK ── */
+  .cs-hero {
+    background: var(--bg-dark);
+    padding: 80px 48px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(168,192,55,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cs-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .cs-hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 11px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tag-dark  { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.15); }
+  .tag-green { background: rgba(168,192,55,0.15); color: #A8C037; border: 1px solid rgba(168,192,55,0.25); }
+
+  .cs-hero h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    max-width: 800px;
+  }
+  .cs-hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  /* ── META GRID ── */
+  .cs-meta {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-meta-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+  .meta-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .meta-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--text-muted);
+  }
+  .meta-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  /* ── SECTIONS ── */
+  .cs-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .cs-section.visible { opacity: 1; transform: translateY(0); }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--text-muted);
+  }
+  .section-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--purple);
+    letter-spacing: 0.05em;
+    margin-right: 4px;
+  }
+  .cs-section h2 {
+    font-family: var(--font-body);
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin-bottom: 24px;
+    max-width: 680px;
+  }
+  .cs-section h2 em {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+  .cs-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    max-width: 620px;
+  }
+
+  .cs-divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── 03 DESIGN PROCESS ── */
+  .process-section {
+    background: var(--bg-card);
+    padding: 80px 0;
+    overflow: hidden;
+  }
+  .process-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .process-header {
+    margin-bottom: 64px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .process-header.visible { opacity: 1; transform: translateY(0); }
+
+  .process-title-block {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .process-title-big {
+    font-family: var(--font-body);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 300;
+    color: var(--text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    opacity: 0.12;
+  }
+  .process-title-accent {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(48px, 8vw, 96px);
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-left: 16px;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 32px 48px;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.7s ease 0.2s;
+  }
+  .process-grid.visible { opacity: 1; }
+
+  .step-col-left  { display: flex; flex-direction: column; gap: 28px; }
+  .step-col-right { display: flex; flex-direction: column; gap: 28px; }
+  .process-laptop { grid-row: 1 / 3; grid-column: 2; display: flex; align-items: center; justify-content: center; }
+
+  .step-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px 22px;
+    position: relative;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .step-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(123,110,232,0.09);
+  }
+  .step-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 52px;
+    color: rgba(123,110,232,0.07);
+    line-height: 1;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .step-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .step-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .step-bullets li {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .step-bullets li::before {
+    content: '·';
+    color: var(--purple);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg-dark);
+    color: rgba(255,255,255,0.7);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+  .step-badge-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ets-green);
+    display: inline-block;
+  }
+
+  /* ── CSS Laptop Mockup ── */
+  .laptop-wrap {
+    width: 360px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 40px 60px rgba(20,18,42,0.2));
+  }
+  .laptop-lid {
+    background: linear-gradient(160deg, #2a2828 0%, #1a1818 100%);
+    border-radius: 14px 14px 0 0;
+    padding: 10px 10px 6px;
+    position: relative;
+  }
+  .laptop-lid::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #3a3838;
+  }
+  .laptop-screen {
+    background: var(--ets-dark);
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    position: relative;
+  }
+  .laptop-screen-content {
+    width: 100%;
+    height: 100%;
+    background: var(--ets-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .screen-nav {
+    background: rgba(30,32,22,0.95);
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(168,192,55,0.15);
+  }
+  .screen-logo {
+    font-size: 8px;
+    font-weight: 500;
+    color: var(--ets-green);
+    letter-spacing: 0.08em;
+    font-family: var(--font-body);
+  }
+  .screen-nav-links { display: flex; gap: 6px; margin-left: 8px; }
+  .screen-nav-links span {
+    font-size: 5px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+  }
+  .screen-hero { padding: 14px 12px; position: relative; }
+  .screen-tag {
+    font-size: 5px;
+    color: var(--ets-green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-family: var(--font-body);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .screen-tag::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 1px;
+    background: var(--ets-green);
+  }
+  .screen-h1 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    margin-bottom: 2px;
+  }
+  .screen-h1 span { color: var(--ets-green); }
+  .screen-desc {
+    font-size: 4px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+    max-width: 120px;
+    margin: 6px 0 8px;
+    font-family: var(--font-body);
+  }
+  .screen-cta {
+    display: inline-block;
+    background: var(--ets-green);
+    color: #14120A;
+    font-size: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-family: var(--font-body);
+  }
+  .screen-turbine {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 80px;
+    height: 110px;
+    opacity: 0.18;
+  }
+  .screen-bg-logo {
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--ets-green);
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+  .laptop-base {
+    background: linear-gradient(180deg, #2c2a2a 0%, #222020 100%);
+    height: 18px;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .laptop-base-notch {
+    width: 60px;
+    height: 5px;
+    background: #1a1818;
+    border-radius: 0 0 4px 4px;
+  }
+  .laptop-stand {
+    width: 110%;
+    margin-left: -5%;
+    height: 6px;
+    background: linear-gradient(180deg, #2a2828 0%, #1e1c1c 100%);
+    border-radius: 0 0 12px 12px;
+  }
+
+  /* ── 04 OUTCOMES ── */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .outcome-card {
+    background: var(--bg-surface);
+    border-radius: 14px;
+    padding: 28px 24px;
+    transition: transform var(--transition);
+  }
+  .outcome-card:hover { transform: translateY(-2px); }
+  .outcome-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 44px;
+    color: var(--purple);
+    line-height: 1;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .outcome-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .collab-card {
+    background: var(--bg-dark);
+    border-radius: 14px;
+    padding: 28px 24px;
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .collab-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(123,110,232,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .collab-icon svg { width: 24px; height: 24px; }
+  .collab-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+  .collab-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.55;
+  }
+  .collab-badge {
+    margin-left: auto;
+    flex-shrink: 0;
+    background: rgba(123,110,232,0.2);
+    color: var(--purple-mid);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid rgba(123,110,232,0.25);
+  }
+
+  /* ── 05 GALLERY ── */
+  .gallery-section {
+    background: var(--bg-dark);
+    padding: 80px 0;
+  }
+  .gallery-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .gallery-header { margin-bottom: 40px; }
+  .gallery-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple-mid);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .gallery-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--purple-mid);
+  }
+  .gallery-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(28px, 4vw, 40px);
+    color: #ffffff;
+    font-weight: 400;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .gallery-item {
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.07);
+    aspect-ratio: 16/9;
+    position: relative;
+    transition: transform var(--transition);
+  }
+  .gallery-item:hover { transform: scale(1.015); }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gallery-item-label {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(8px);
+    color: rgba(255,255,255,0.8);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* ── CS FOOTER ── */
+  .cs-footer {
+    background: var(--bg-dark);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 48px;
+  }
+  .cs-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .cs-footer-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.5;
+    max-width: 400px;
+  }
+  .cs-footer-cta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color var(--transition), gap var(--transition);
+    white-space: nowrap;
+  }
+  .cs-footer-cta:hover { color: #ffffff; gap: 9px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .step-col-left, .step-col-right { flex-direction: row; flex-wrap: wrap; }
+    .step-card { flex: 1; min-width: 240px; }
+    .process-laptop { grid-row: auto; grid-column: auto; }
+    .laptop-wrap { width: 300px; }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 16px 0; }
+    .nav-inner { padding: 0 24px; }
+    .cs-hero { padding: 60px 24px 52px; }
+    .cs-meta-inner { grid-template-columns: 1fr 1fr; padding: 28px 24px; }
+    .cs-section { padding: 60px 24px; }
+    .cs-divider { padding: 0 24px; }
+    .process-inner { padding: 0 24px; }
+    .gallery-inner { padding: 0 24px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .collab-card { grid-column: span 1; flex-direction: column; }
+    .collab-badge { margin-left: 0; }
+    .cs-footer { padding: 40px 24px; }
+    .cs-footer-inner { flex-direction: column; align-items: flex-start; }
+    .process-grid { display: flex; flex-direction: column; gap: 24px; }
+    .laptop-wrap { width: 100%; max-width: 340px; align-self: center; }
+  }
+  @media (max-width: 480px) {
+    .cs-hero h1 { font-size: 34px; }
+    .cs-meta-inner { grid-template-columns: 1fr; }
+    .step-col-left, .step-col-right { flex-direction: column; }
+    .step-card { min-width: unset; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="work.html" class="nav-back">← Work</a>
+    <a href="index.html">About</a>
+    <a href="work.html" class="active">Work</a>
+    <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
+  </div>
+</nav>
+
+<!-- HERO DARK -->
+<section class="cs-hero">
+  <div class="cs-hero-inner">
+    <div class="cs-hero-tags">
+      <span class="tag tag-green">Vibe Coding</span>
+      <span class="tag tag-dark">UX Research</span>
+      <span class="tag tag-dark">UI Design</span>
+      <span class="tag tag-dark">Frontend</span>
+    </div>
+    <h1>ETS Wind — Energy Transition Services</h1>
+    <p class="cs-hero-sub">A complete landing page designed and built in collaboration with Claude AI. From UX research to final deployment, using the vibe coding approach to turn ideas into a live product.</p>
+  </div>
+</section>
+
+<!-- META GRID -->
+<div class="cs-meta">
+  <div class="cs-meta-inner">
+    <div class="meta-item">
+      <div class="meta-label">Role</div>
+      <div class="meta-value">UX Designer &amp; Frontend Developer</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Duration</div>
+      <div class="meta-value">2 Weeks · 2024–2025</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Tools</div>
+      <div class="meta-value">Claude Code · HTML/CSS/JS · Figma</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Type</div>
+      <div class="meta-value">Vibe Coding · AI-Assisted Design</div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 OVERVIEW -->
+<section class="cs-section" id="overview">
+  <div class="section-label"><span class="section-num">01</span>Overview</div>
+  <h2>A real landing page, built in real time<br><em>with an AI as co-designer.</em></h2>
+  <p class="cs-body">ETS Wind is a renewable energy company specialized in the installation, maintenance and upgrade of next-generation wind turbines across 11 countries in Europe, the Middle East and North Africa. They operate at scale — over 2.6GW installed in 5 years.</p>
+  <p class="cs-body" style="margin-top:16px">The project was a complete marketing website built from scratch, using <strong style="color:var(--text-primary);font-weight:500">vibe coding</strong> — a collaborative approach where design decisions, UX structure, and frontend implementation were explored in real time through conversation with Claude AI.</p>
+</section>
+
+<hr class="cs-divider">
+
+<!-- 02 CHALLENGE -->
+<section class="cs-section" id="challenge">
+  <div class="section-label"><span class="section-num">02</span>Challenge</div>
+  <h2>Communicating industrial authority<br><em>without losing human clarity.</em></h2>
+  <p class="cs-body">ETS Wind operates across three distinct audiences: technical operators on the field, C-suite stakeholders making investment decisions, and sustainability-focused partners looking for verified environmental impact. Each group enters with different expectations and reads the page differently.</p>
+  <p class="cs-body" style="margin-top:16px">The challenge was to design a single landing page that holds authority for all three — bold and industrial enough for technical credibility, clear and trustworthy enough for executive confidence, and mission-driven enough to communicate environmental purpose.</p>
+</section>
+
+<hr class="cs-divider">
+
+<!-- 03 DESIGN PROCESS -->
+<section class="process-section" id="process">
+  <div class="process-inner">
+
+    <div class="process-header" id="process-header">
+      <div class="section-label"><span class="section-num">03</span>Design Process</div>
+      <div class="process-title-block">
+        <span class="process-title-big">DESIGN</span>
+        <span class="process-title-accent">Process</span>
+      </div>
+    </div>
+
+    <div class="process-grid" id="process-grid">
+
+      <!-- LEFT — steps 01 + 02 -->
+      <div class="step-col-left">
+        <div class="step-card">
+          <span class="step-num">01</span>
+          <div class="step-title">UX Research</div>
+          <ul class="step-bullets">
+            <li>Analyzed the wind energy sector and key competitors</li>
+            <li>Defined tone of voice: industrial precision + human mission</li>
+            <li>Identified user barriers: complexity, trust, navigation overload</li>
+          </ul>
+          <div class="step-badge"><span class="step-badge-dot"></span>5 Days</div>
+        </div>
+        <div class="step-card">
+          <span class="step-num">02</span>
+          <div class="step-title">Target Audience</div>
+          <ul class="step-bullets">
+            <li>Three distinct personas: field operators, executives, sustainability partners</li>
+            <li>Each required a different emotional entry point on the same page</li>
+            <li>Focus on: trust, scale, and environmental credibility</li>
+          </ul>
+          <div class="step-badge"><span class="step-badge-dot"></span>3 Days</div>
+        </div>
+      </div>
+
+      <!-- CENTER — laptop mockup -->
+      <div class="process-laptop">
+        <div class="laptop-wrap">
+          <div class="laptop-lid">
+            <div class="laptop-screen">
+              <div class="laptop-screen-content">
+                <div class="screen-nav">
+                  <div class="screen-logo">ETS</div>
+                  <div class="screen-nav-links">
+                    <span>Home</span>
+                    <span>About</span>
+                    <span>Services</span>
+                    <span>Projects</span>
+                    <span>Contact</span>
+                  </div>
+                </div>
+                <div class="screen-hero">
+                  <div class="screen-tag">Safety – Quality – Productivity</div>
+                  <div class="screen-h1">ENERGY<br><span>TRANSITION</span><br>SERVICES</div>
+                  <div class="screen-desc">We are a company skilled in the installation, maintenance and upgrade of next-generation wind turbines.</div>
+                  <div class="screen-cta">DISCOVER MORE →</div>
+                  <div class="screen-bg-logo"></div>
+                  <svg class="screen-turbine" viewBox="0 0 80 120" fill="none">
+                    <line x1="40" y1="20" x2="40" y2="120" stroke="#A8C037" stroke-width="2"/>
+                    <ellipse cx="40" cy="20" rx="3" ry="3" fill="#A8C037"/>
+                    <line x1="40" y1="20" x2="10" y2="5" stroke="#A8C037" stroke-width="1.5"/>
+                    <line x1="40" y1="20" x2="70" y2="5" stroke="#A8C037" stroke-width="1.5"/>
+                    <line x1="40" y1="20" x2="40" y2="-10" stroke="#A8C037" stroke-width="1.5"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="laptop-base"><div class="laptop-base-notch"></div></div>
+          <div class="laptop-stand"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT — steps 03 + 04 -->
+      <div class="step-col-right">
+        <div class="step-card">
+          <span class="step-num">03</span>
+          <div class="step-title">Wireframing</div>
+          <ul class="step-bullets">
+            <li>6-page structure: Home, About, Services, Projects, Sustainability, Contact</li>
+            <li>Hero-first layout with a single clear value proposition above the fold</li>
+            <li>Stats section anchored with real data (11 countries, 2.6GW+)</li>
+          </ul>
+          <div class="step-badge"><span class="step-badge-dot"></span>4 Days</div>
+        </div>
+        <div class="step-card">
+          <span class="step-num">04</span>
+          <div class="step-title">UI Design</div>
+          <ul class="step-bullets">
+            <li>Dark industrial palette (#1A1C14) with vibrant green (#A8C037) accents</li>
+            <li>Bold uppercase typography — authority without aggression</li>
+            <li>Scroll animations, hover states, and team card interactions</li>
+          </ul>
+          <div class="step-badge"><span class="step-badge-dot"></span>12 Days</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 04 OUTCOMES -->
+<section class="cs-section" id="outcomes">
+  <div class="section-label"><span class="section-num">04</span>Outcomes</div>
+  <h2>From idea to live site<br><em>in two weeks.</em></h2>
+  <div class="outcomes-grid">
+    <div class="outcome-card">
+      <span class="outcome-num">6</span>
+      <div class="outcome-label">Pages designed and built, covering the full site architecture from homepage to contact</div>
+    </div>
+    <div class="outcome-card">
+      <span class="outcome-num">11</span>
+      <div class="outcome-label">Countries represented across ETS's European and MENA operations, featured in the team section</div>
+    </div>
+    <div class="outcome-card">
+      <span class="outcome-num">2.6GW</span>
+      <div class="outcome-label">Installed capacity highlighted through data storytelling in the stats hero section</div>
+    </div>
+    <div class="collab-card">
+      <div class="collab-icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#AFA9EC" stroke-width="1.2"/>
+          <path d="M8 9l4 3-4 3M12 9h4" stroke="#AFA9EC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="collab-title">100% Vibe Coded — built in live dialogue with Claude AI</div>
+        <div class="collab-desc">Every design decision — from layout to color, from copy to animation timing — was explored and refined through real-time conversation with Claude Code. No templates, no boilerplate.</div>
+      </div>
+      <div class="collab-badge">Vibe Coding</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <div class="gallery-label"><span style="color:var(--purple-mid);font-family:var(--font-display);font-style:italic;font-size:11px;margin-right:4px">05</span>Gallery</div>
+      <div class="gallery-title">Site in detail</div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/ets-screen-hero.png" alt="ETS Wind — Hero section">
+        <div class="gallery-item-label">Hero</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/ets-screen-stats.jpg" alt="ETS Wind — Stats section">
+        <div class="gallery-item-label">Data</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/ets-screen-services.jpg" alt="ETS Wind — Services section">
+        <div class="gallery-item-label">Services</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/ets-screen-team.jpg" alt="ETS Wind — Meet the Team">
+        <div class="gallery-item-label">Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="cs-footer">
+  <div class="cs-footer-inner">
+    <p class="cs-footer-note">Project built in collaboration with Claude AI (Claude Code) using a vibe coding approach — exploring design and development decisions through natural conversation. Live at <a href="https://etswind.com" target="_blank" style="color:rgba(255,255,255,0.5);text-decoration:underline;text-underline-offset:3px">etswind.com</a></p>
+    <a href="work.html" class="cs-footer-cta">Back to all projects →</a>
+  </div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.cs-section').forEach(el => observer.observe(el));
+
+  const processObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+
+  const ph = document.getElementById('process-header');
+  const pg = document.getElementById('process-grid');
+  if (ph) processObs.observe(ph);
+  if (pg) processObs.observe(pg);
+</script>
+
+</body>
+</html>
