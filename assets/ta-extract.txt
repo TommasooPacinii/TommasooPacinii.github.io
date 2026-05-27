@@ -1,0 +1,210 @@
+﻿info\">","+        <div class=\"ta-name\">Pietrino Ferrara</div>","+        <div class=\"ta-role\">COO / CFO</div>","       </div>","-      <div class=\"team-card-body\">","-        <div class=\"team-name\">Pietrino Ferrara</div>","-        <div class=\"team-role\">COO/CFO</div>","-      </div>","     </div>","-    <div class=\"team-card reveal\" onclick=\"openTeamModal(this)\">","-      <div class=\"avatar-ring avatar-rebecca\">","-        <img src=\"assets/images/Rebecca_De_Souza.png\" alt=\"Rebecca De Souza\">","+    <!-- Rebecca De Souza -->","+    <div class=\"ta-card\">","+      <img class=\"ta-img\" src=\"assets/images/Rebecca_De_Souza.png\" alt=\"Rebecca De Souza\" style=\"object-position:center 20%;\">","+      <div class=\"ta-overlay\"></div>","+      <span class=\"ta-label\">Rebecca De Souza</span>","+      <div class=\"ta-info\">","+        <div class=\"ta-name\">Rebecca De Souza</div>","+        <div class=\"ta-role\">CMO</div>","       </div>","-      <div class=\"team-card-body\">","-        <div class=\"team-name\">Rebecca De Souza</div>","-        <div class=\"team-role\">CMO</div>","-      </div>","     </div>","-    <div class=\"team-card reveal\" onclick=\"openTeamModal(this)\">","-      <div class=\"avatar-ring avatar-piotr\">","-        <img src=\"assets/images/Piotr_Tyburski.png\" alt=\"Piotr Tyburski\">","+    <!-- Piotr Tyburski -->","+    <div class=\"ta-card\">","+      <img class=\"ta-img\" src=\"assets/images/Piotr_Tyburski.png\" alt=\"Piotr Tyburski\" style=\"object-position:center 18%;\">","+      <div class=\"ta-overlay\"></div>","+      <span class=\"ta-label\">Piotr Tyburski</span>","+      <div class=\"ta-info\">","+        <div class=\"ta-name\">Piotr Tyburski</div>","+        <div class=\"ta-role\">Tooling Manager</div>","       </div>","-      <div class=\"team-card-body\">","-        <div class=\"team-name\">Piotr Tyburski</div>","-        <div class=\"team-role\">Tooling Manager</div>","-      </div>","     </div>","-    <div class=\"team-card reveal\" onclick=\"openTeamModal(this)\">","-      <div class=\"avatar-ring avatar-francesco\">","-        <img src=\"assets/images/Francesco_Lotti.png\" alt=\"Francesco Lotti\">","+    <!-- Francesco Lotti -->","+    <div class=\"ta-card\">","+      <img class=\"ta-img\" src=\"assets/images/Francesco_Lotti.png\" alt=\"Francesco Lotti\" style=\"object-position:center 15%;\">","+      <div class=\"ta-overlay\"></div>","+      <span class=\"ta-label\">Francesco Lotti</span>","+      <div class=\"ta-info\">","+        <div class=\"ta-name\">Francesco Lotti</div>","+        <div class=\"ta-role\">Installation Ldr</div>","       </div>","-      <div class=\"team-card-body\">","-        <div class=\"team-name\">Francesco Lotti</div>","-        <div class=\"team-role\">Installation Ldr</div>","-      </div>","     </div>","-    <div class=\"team-card reveal\" onclick=\"openTeamModal(this)\">","-      <div class=\"avatar-ring avatar-scale-white\">","-        <img src=\"assets/images/Renee_Betz.png\" alt=\"Renee Betz\">","+    <!-- Renee Betz -->","+    <div class=\"ta-card\">","+      <img class=\"ta-img\" src=\"assets/images/Renee_Betz.png\" alt=\"Renee Betz\" style=\"object-position:center 18%;\">","+      <div class=\"ta-overlay\"></div>","+      <span class=\"ta-label\">Renee Betz</span>","+      <div class=\"ta-info\">","+        <div class=\"ta-name\">Renee Betz</div>","+        <div class=\"ta-role\">Service Care</div>","       </div>","-      <div class=\"team-card-body\">","-        <div class=\"team-name\">Renee Betz</div>","-        <div class=\"team-role\">Service Care</div>","-      </div>","     </div>","   </div>","-  </div>","-","-   <!-- MODAL -->","-  <div id=\"teamModal\" class=\"team-modal\" onclick=\"closeTeamModal()\">","-    <div class=\"team-modal-inner\" onclick=\"event.stopPropagation()\">","-      <button class=\"team-modal-close\" onclick=\"closeTeamModal()\">âœ•</button>","-      <img id=\"modalImg\" src=\"\" alt=\"\">","-      <div class=\"team-modal-name\" id=\"modalName\"></div>","-      <div class=\"team-modal-role\" id=\"modalRole\"></div>","-    </div>","-  </div>"," </section>"," "," <!-- â”€â”€ PARTNERS â”€â”€ -->"]}],"userModified":false,"replaceAll":false},"sourceToolAssistantUUID":"02959cae-1f38-4353-9f1c-fd9525d78835","userType":"external","entrypoint":"claude-desktop","cwd":"C:\\Users\	ommaso Piacini\\Desktop\\ets-wind\\assets\\.claude\\worktrees\\ecstatic-edison-c02d84","sessionId":"c733504d-cc22-4df6-8828-d160af242ad4","version":"2.1.128","gitBranch":"claude/ecstatic-edison-c02d84","slug":"generic-riding-tulip"}
+{"parentUuid":"afbd7e1d-555d-407d-9c01-bd6c26d0783c","isSidechain":false,"attachment":{"type":"todo_reminder","content":[],"itemCount":0},"type":"attachment","uuid":"bb238bde-4aaa-4c8a-971b-feb3adfffb44","timestamp":"2026-05-13T10:41:44.855Z","userType":"external","entrypoint":"claude-desktop","cwd":"C:\\Users\	ommaso Piacini\\Desktop\\ets-wind\\assets\\.claude\\worktrees\\ecstatic-edison-c02d84","sessionId":"c733504d-cc22-4df6-8828-d160af242ad4","version":"2.1.128","gitBranch":"claude/ecstatic-edison-c02d84","slug":"generic-riding-tulip"}
+{"type":"last-prompt","lastPrompt":"I miei capi nella sezione settimana non vorrebbero piÃ¹ con le baule pensi vorrebbero praticamente una serie di rettangoli verticali, contenenti tutti membri del team. Che diciamo noi si va a fare la vâ€¦","leafUuid":"bb238bde-4aaa-4c8a-971b-feb3adfffb44","sessionId":"c733504d-cc22-4df6-8828-d160af242ad4"}
+{"type":"ai-title","aiTitle":"Make turbine boxes equal size in index.html","sessionId":"c733504d-cc22-4df6-8828-d160af242ad4"}
+{"parentUuid":"bb238bde-4aaa-4c8a-971b-feb3adfffb44","isSidechain":false,"message":{"model":"claude-sonnet-4-6","id":"msg_016Yze9uDwBrFGn1JMnMWTtf","type":"message","role":"assistant","content":[{"type":"text","text":"Ora aggiungo il CSS completo dell'accordion prima del SPACING SYSTEM block:"}],"stop_reason":"tool_use","stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":2342,"cache_read_input_tokens":117090,"output_tokens":1665,"server_tool_use":{"web_search_requests":0,"web_fetch_requests":0},"service_tier":"standard","cache_creation":{"ephemeral_1h_input_tokens":2342,"ephemeral_5m_input_tokens":0},"inference_geo":"","iterations":[{"input_tokens":1,"output_tokens":1665,"cache_read_input_tokens":117090,"cache_creation_input_tokens":2342,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":2342},"type":"message"}],"speed":"standard"},"diagnostics":null},"requestId":"req_011CazRmPco5gtJ7EfXJhjwf","type":"assistant","uuid":"e59ee347-1075-4fce-b12b-5934c87a4580","timestamp":"2026-05-13T10:41:47.250Z","userType":"external","entrypoint":"claude-desktop","cwd":"C:\\Users\	ommaso Piacini\\Desktop\\ets-wind\\assets\\.claude\\worktrees\\ecstatic-edison-c02d84","sessionId":"c733504d-cc22-4df6-8828-d160af242ad4","version":"2.1.128","gitBranch":"claude/ecstatic-edison-c02d84","slug":"generic-riding-tulip"}
+{"parentUuid":"e59ee347-1075-4fce-b12b-5934c87a4580","isSidechain":false,"message":{"model":"claude-sonnet-4-6","id":"msg_016Yze9uDwBrFGn1JMnMWTtf","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_012dBv9PfrevA51WGFkGkxub","name":"Edit","input":{"replace_all":false,"file_path":"C:\\Users\	ommaso Piacini\\Desktop\\ets-wind\\index.html","old_string":"/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SPACING SYSTEM â€” 8px grid, vertical rhythm","new_string":"/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TEAM ACCORDION
+   Rettangoli verticali â€” si espandono al hover
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.ta-wrap {
+  display: flex;
+  height: 560px;
+  gap: 4px;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 0 var(--section-h);
+}
+
+/* â”€â”€ Card base â”€â”€ */
+.ta-card {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 10px;
+  min-width: 0;
+  transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: flex;
+}
+
+/* Prima card espansa di default */
+.ta-card.ta-active { flex: 4; }
+
+/* Accordion hover: tutti si restringono, l'hovered si espande */
+.ta-wrap:hover .ta-card         { flex: 0.35; }
+.ta-wrap:hover .ta-card:hover   { flex: 4; }
+
+/* â”€â”€ Foto â”€â”€ */
+.ta-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.ta-card:hover .ta-img { transform: scale(1.04); }
+
+/* â”€â”€ Overlay sfumatura dal basso â”€â”€ */
+.ta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,15,10,0)     35%,
+    rgba(10,15,10,0.55)  65%,
+    rgba(10,15,10,0.92) 100%
+  );
+  pointer-events: none;
+}
+
+/* â”€â”€ Nome verticale â€” visibile quando collassata â”€â”€ */
+.ta-label {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%) rotate(-90deg);
+  white-space: nowrap;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+.ta-card.ta-active .ta-label,
+.ta-wrap:hover .ta-card:hover .ta-label { opacity: 0; }
+.ta-wrap:not(:hover) .ta-card.ta-active .ta-label { opacity: 0; }
+
+/* â”€â”€ Info panel â€” visibile quando espansa â”€â”€ */
+.ta-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 22px 24px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease 0.12s, transform 0.35s ease 0.12s;
+  pointer-events: none;
+  z-index: 2;
+}
+.ta-card.ta-active .ta-info,
+.ta-wrap:hover .ta-card:hover .ta-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ta-wrap:hover .ta-card.ta-active:not(:hover) .ta-info { opacity: 0; transform: translateY(10px); }
+
+.ta-badge {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
+  background: rgba(122,179,23,0.12);
+  border: 1px solid rgba(122,179,23,0.35);
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+.ta-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  margin-bottom: 5px;
+}
+
+.ta-role {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+/* â”€â”€ Mobile: griglia 2 colonne â”€â”€ */
+@media (max-width: 768px) {
+  .ta-wrap {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 6px;
+    padding: 0 var(--section-h);
+    border-radius: 0;
+  }
+  .ta-card,
+  .ta-card.ta-active,
+  .ta-wrap:hover .ta-card,
+  .ta-wrap:hover .ta-card:hover {
+    flex: none;
+    width: calc(50% - 3px);
+    height: 260px;
+  }
+  .ta-label { display: none; }
+  .ta-info { opacity: 1; transform: none; }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SPACING SYSTEM â€” 8px grid, vertical rhythm"},"caller":{"type":"direct"}}],"stop_reason":"tool_use","stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":2342,"cache_read_input_tokens":117090,"output_tokens":1665,"server_tool_use":{"web_search_requests":0,"web_fetch_requests":0},"service_tier":"standard","cache_creation":{"ephemeral_1h_input_tokens":2342,"ephemeral_5m_input_tokens":0},"inference_geo":"","iterations":[{"input_tokens":1,"output_tokens":1665,"cache_read_input_tokens":117090,"cache_creation_input_tokens":2342,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":2342},"type":"message"}],"speed":"standard"},"diagnostics":null},"requestId":"req_011CazRmPco5gtJ7EfXJhjwf","type":"assistant","uuid":"3e5a2ff2-4b80-4667-ba55-a70aad8470d7","timestamp":"2026-05-13T10:42:07.231Z","userType":"external","entrypoint":"claude-desktop","cwd":"C:\\Users\	ommaso Piacini\\Desktop\\ets-wind\\assets\\.claude\\worktrees\\ecstatic-edison-c02d84","sessionId":"c733504d-cc22-4df6-8828-d160af242ad4","version":"2.1.128","gitBranch":"claude/ecstatic-edison-c02d84","slug":"generic-riding-tulip"}
+{"parentUuid":"3e5a2ff2-4b80-4667-ba55-a70aad8470d7","isSidechain":false,"promptId":"76bdfedf-cb04-494e-ba5a-36a5eccfab33","type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_012dBv9PfrevA51WGFkGkxub","type":"tool_result","content":"The file C:\\Users\	ommaso Piacini\\Desktop\\ets-wind\\index.html has been updated successfully. (file state is current in your context â€” no need to Read it back)"}]},"uuid":"6ab63dea-ba98-4313-b4b1-ef5ac61bd4b8","timestamp":"2026-05-13T10:42:07.333Z","toolUseResult":{"filePath":"C:\\Users\	ommaso Piacini\\Desktop\\ets-wind\\index.html","oldString":"/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SPACING SYSTEM â€” 8px grid, vertical rhythm","newString":"/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TEAM ACCORDION
+   Rettangoli verticali â€” si espandono al hover
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.ta-wrap {
+  display: flex;
+  height: 560px;
+  gap: 4px;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 0 var(--section-h);
+}
+
+/* â”€â”€ Card base â”€â”€ */
+.ta-card {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 10px;
+  min-width: 0;
+  transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: flex;
+}
+
+/* Prima card espansa di default */
+.ta-card.ta-active { flex: 4; }
+
+/* Accordion hover: tutti si restringono, l'hovered si espande */
+.ta-wrap:hover .ta-card         { flex: 0.35; }
+.ta-wrap:hover .ta-card:hover   { flex: 4; }
+
+/* â”€â”€ Foto â”€â”€ */
+.ta-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.ta-card:hover .ta-img { transform: scale(1.04); }
+
+/* â”€â”€ Overlay sfumatura dal basso â”€â”€ */
+.ta-overlay {
+  position: absolute;
+  inset: 0;
+  background: l
