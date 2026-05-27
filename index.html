@@ -39,7 +39,7 @@
 <meta property="og:title" content="ETS Wind | Wind Turbine Installation &amp; Maintenance — Europe &amp; EMEA">
 <meta property="og:description" content="Expert wind turbine installation, major component exchange, preventive maintenance and technical staffing across Europe and EMEA. 750,000+ installation hours, 2.6 GW installed across 11 countries.">
 <meta property="og:url" content="https://www.etswind.com/">
-<meta property="og:image" content="https://www.etswind.com/assets/images/new_back.png">
+<meta property="og:image" content="https://www.etswind.com/assets/images/new_back.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="ETS Wind — Wind Turbine Installation Services across Europe and EMEA">
@@ -52,7 +52,7 @@
 <meta name="twitter:site" content="@etswind">
 <meta name="twitter:title" content="ETS Wind | Wind Turbine Installation &amp; Maintenance — Europe &amp; EMEA">
 <meta name="twitter:description" content="Expert wind turbine installation, major component exchange, preventive maintenance and technical staffing across Europe and EMEA.">
-<meta name="twitter:image" content="https://www.etswind.com/assets/images/new_back.png">
+<meta name="twitter:image" content="https://www.etswind.com/assets/images/new_back.jpg">
 <meta name="twitter:image:alt" content="ETS Wind — Wind Turbine Installation Services Europe">
 
 <!-- ── AI / LLM CRAWLER SIGNAL ── -->
@@ -78,7 +78,7 @@
         "width": 200,
         "height": 60
       },
-      "image": "https://www.etswind.com/assets/images/new_back.png",
+      "image": "https://www.etswind.com/assets/images/new_back.jpg",
       "description": "ETS Wind is a leading European wind energy services company specializing in wind turbine installation, major component exchange, preventive maintenance and technical staffing across Europe and EMEA. With over 750,000 installation work hours and 2.6 GW of capacity installed across 11 countries.",
       "slogan": "Safety – Quality – Productivity",
       "areaServed": [
@@ -244,7 +244,7 @@
 }
 </script>
 
-<link rel="preload" as="image" href="assets/images/new_back.png" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/new_back.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
@@ -294,7 +294,7 @@
     --nav-height: 92px;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overscroll-behavior: none; }
 
   body {
     font-family: 'Barlow', sans-serif;
@@ -378,7 +378,7 @@ nav.scrolled {
   .hero-bg {
     position: absolute;
     inset: -15% 0;
-    background-image: url('assets/images/new_back.png');
+    background-image: url('assets/images/new_back.jpg');
     background-size: cover;
     background-position: center 40%;
     will-change: transform;
@@ -1727,9 +1727,6 @@ nav.scrolled {
 }
 
 /* ── SCROLL REVEAL — canonical rule at line ~3122 ── */
-  .reveal {
-    /* duplicate removed */
-  }
 
   /* ── RESPONSIVE ── */
 
@@ -2512,6 +2509,7 @@ nav.scrolled {
   height: auto;
   object-fit: contain;
   margin-top: -60px;
+  mix-blend-mode: screen;
   filter: drop-shadow(0 0 40px rgba(122,179,23,0.5));
   will-change: opacity;
   animation: hero-glow 3.5s ease-in-out infinite;
@@ -3088,8 +3086,18 @@ nav a, .nav-links a {
 .service-card-text {
   font-size: 0.9rem;
   line-height: 1.7;
+
+
   color: #777;
 }
+
+/* ── service card fade-in ── */
+@keyframes svcFade { from { opacity:0 } to { opacity:1 } }
+.services-grid.svc-go .service-card { animation: svcFade 0.65s ease both; }
+.services-grid.svc-go .service-card:nth-child(2) { animation-delay:.12s }
+.services-grid.svc-go .service-card:nth-child(3) { animation-delay:.24s }
+
+
 
 /* ── 6. STAT CARDS ── */
 .stats1-card {
@@ -3117,31 +3125,20 @@ nav a, .nav-links a {
 }
 
 /* ── 9. SCROLL REVEAL — smooth fade + gentle rise ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  /* GPU layer pre-promosso: zero jank al primo frame */
-  will-change: opacity, transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition-delay: var(--reveal-delay, 0s);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-  will-change: auto; /* rilascia layer dopo animazione */
-}
-/* Scroll veloce: body class rimuove transizioni su tutti i reveal */
-body.is-fast-scroll .reveal {
-  transition-duration: 0s !important;
-  transition-delay: 0s !important;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Accessibilità */
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-}
+
 
 /* ── 10. FOCUS STATES — WCAG AA ── */
 a:focus-visible,
@@ -3428,25 +3425,25 @@ textarea:focus-visible {
     <span></span><span></span><span></span>
   </button>
   <div class="mobile-dropdown" id="mobileDropdown">
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#hero" onclick="toggleMobileMenu()">Home</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#stats1" onclick="toggleMobileMenu()">About</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#services" onclick="toggleMobileMenu()">Services</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#footprint" onclick="toggleMobileMenu()">Projects</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#slider-section" onclick="toggleMobileMenu()">Sustainability</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#footer" onclick="toggleMobileMenu()">Contact</a>
+    <a href="#hero" onclick="toggleMobileMenu()">Home</a>
+    <a href="#stats1" onclick="toggleMobileMenu()">About</a>
+    <a href="#services" onclick="toggleMobileMenu()">Services</a>
+    <a href="#footprint" onclick="toggleMobileMenu()">Projects</a>
+    <a href="#slider-section" onclick="toggleMobileMenu()">Sustainability</a>
+    <a href="#footer" onclick="toggleMobileMenu()">Contact</a>
   </div>
   <div class="nav-links">
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#hero">Home</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#stats1">About</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#services">Services</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#footprint">Projects</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#slider-section">Sustainability</a>
-    <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#footer">Contact</a>
+    <a href="#hero">Home</a>
+    <a href="#stats1">About</a>
+    <a href="#services">Services</a>
+    <a href="#footprint">Projects</a>
+    <a href="#slider-section">Sustainability</a>
+    <a href="#footer">Contact</a>
   </div>
-  <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#footer" class="nav-cta-btn">GET IN TOUCH →</a>
+  <a href="#footer" class="nav-cta-btn">GET IN TOUCH →</a>
 </nav>
 <section id="hero">
-  <div class="hero-bg" id="heroBg" style="background-image: url(&quot;assets/images/new_back.png&quot;)"></div>
+  <div class="hero-bg" id="heroBg" style="background-image: url(&quot;assets/images/new_back.jpg&quot;)"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
   <div class="hero-left">
@@ -3454,13 +3451,13 @@ textarea:focus-visible {
     <h1 class="hero-h1">ENERGY<br><span class="green">TRANSITION</span><br>SERVICES</h1>
     <p class="hero-sub">We are a company skilled in the installation, maintenance and upgrade of next-generation wind turbines, driven by the mission of making the energy transition safer, faster, and more cost-efficient. We measure our performance on our core values: LEAN to improve and Technologies to Innovate.</p>
     <div class="hero-ctas">
-      <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#services" class="btn-hero-primary">DISCOVER MORE →</a>
-      <a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#footprint" class="btn-hero-text">OUR PROJECTS</a>
+      <a href="#services" class="btn-hero-primary">DISCOVER MORE &rarr;</a>
+      <a href="#footprint" class="btn-hero-text">OUR PROJECTS</a>
     </div>
   </div>
   <img loading="lazy" decoding="async" src="assets/images/Logo.png" alt="" class="hero-mob-watermark" aria-hidden="true">
   <div class="hero-right">
-    <img class="hero-logo-big" src="assets/images/Logo.png" alt="ETS Wind logo">
+    <img class="hero-logo-big" src="assets/images/Logo_4K_web.png" alt="ETS Wind logo">
   </div>
 </div>
 <div class="scroll-indicator">
@@ -3477,7 +3474,7 @@ textarea:focus-visible {
   <div class="stats1-card left">
     <div class="stat-number" data-target="11" data-suffix="">11</div>
     <div class="stat-label">Participating countries</div>
-    <p class="stat-text">With offices in Germany, Italy, Romania and Kosovo, we deliver high-quality wind energy services across Europe, Middle East and North Africa — from Finland and Sweden to Morocco and Turkey.</p>
+    <p class="stat-text">With offices in Germany, Italy, Romania and Kosovo, we deliver high-quality wind energy services across Europe, Middle East and North Africa &mdash; from Finland and Sweden to Morocco and Turkey.</p>
   </div>
   <div class="stats-mob-divider">
     <img loading="lazy" decoding="async" src="assets/images/Logo.png" alt="" class="stats-mob-logo">
@@ -3500,22 +3497,22 @@ textarea:focus-visible {
   <div class="section-tag">What we do</div>
   <div class="section-title">Our Services</div>
   <div class="services-grid">
-    <div class="service-card reveal visible" style="--reveal-delay: 0s;">
-      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80" alt="Pre-Installation">
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80" alt="Pre-Installation">
       <div class="service-card-body">
         <div class="service-card-title">Major components exchange</div>
         <p class="service-card-text">We ensure optimal turbine performance, through the replacement of components such as blades, bearings, generators, gearboxes, hubs, main bearings and yaw systems.</p>
       </div>
     </div>
-    <div class="service-card reveal visible" style="--reveal-delay: 0.15s;">
-      <img loading="lazy" decoding="async" src="assets/images/tecnici.jpeg" alt="Preventive Maintenance">
+    <div class="service-card">
+      <img src="assets/images/tecnici.jpeg" alt="Preventive Maintenance">
       <div class="service-card-body">
         <div class="service-card-title">Pre-Installation and Preventive Maintenance</div>
         <p class="service-card-text">In the pre-installation phase, we provide complete support for concrete and steel towers, along with preventive programs including cleaning, lubrication, torquing operations, and UT/DT checks.</p>
       </div>
     </div>
-    <div class="service-card reveal visible" style="--reveal-delay: 0.3s;">
-      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=600&q=80" alt="Staffing Solutions">
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=600&q=80" alt="Staffing Solutions">
       <div class="service-card-body">
         <div class="service-card-title">Staffing</div>
         <p class="service-card-text">We offer staffing solutions across Europe, providing qualified technical professionals across different phases of Installations and Major Components Upgrade.</p>
@@ -3586,7 +3583,7 @@ textarea:focus-visible {
 
 <!-- ── FOOTPRINT ── -->
 <section id="footprint">
-  <div class="reveal visible">
+  <div>
     <p class="section-tag">Where we operate</p>
     <h2 class="footprint-title">Our European <span>Footprint</span></h2>
     <p class="footprint-sub">ETS operates across key renewable markets</p>
@@ -3618,7 +3615,7 @@ textarea:focus-visible {
 
     </div>
   </div>
-  <div class="map-container reveal visible">
+  <div class="map-container">
 
   <!-- ── Layer decorativo: turbine + anelli vento ── -->
   <div class="map-deco" aria-hidden="true">
@@ -3810,7 +3807,7 @@ textarea:focus-visible {
 <g class="map-arcs-layer"><path d="M 579.3009033203125 718.0394897460938 Q 660.0851135253906 355.19165954589846 740.8693237304688 403.6621856689453" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 660.0851135253906 355.19165954589846 740.8693237304688 403.6621856689453" class="map-arc-draw" style="stroke-dasharray: 383.079; stroke-dashoffset: 383.079;"></path><path d="M 579.3009033203125 718.0394897460938 Q 660.0851135253906 355.19165954589846 740.8693237304688 403.6621856689453" class="map-arc-glow" style="animation-delay: 0s; stroke-dasharray: 8, 375.079; stroke-dashoffset: 383.079;"></path><path d="M 579.3009033203125 718.0394897460938 Q 660.0851135253906 355.19165954589846 740.8693237304688 403.6621856689453" class="map-arc" style="stroke-dasharray: 4, 379.079; stroke-dashoffset: 383.079; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="740.8693237304688" cy="403.6621856689453" r="7" class="map-dot-ring" style="animation-delay: 0s;"></circle><circle cx="740.8693237304688" cy="403.6621856689453" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 645.382568359375 610.7736083984375 711.4642333984375 650.422607421875" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 645.382568359375 610.7736083984375 711.4642333984375 650.422607421875" class="map-arc-draw" style="stroke-dasharray: 167.179; stroke-dashoffset: 167.179;"></path><path d="M 579.3009033203125 718.0394897460938 Q 645.382568359375 610.7736083984375 711.4642333984375 650.422607421875" class="map-arc-glow" style="animation-delay: 0.3s; stroke-dasharray: 8, 159.179; stroke-dashoffset: 167.179;"></path><path d="M 579.3009033203125 718.0394897460938 Q 645.382568359375 610.7736083984375 711.4642333984375 650.422607421875" class="map-arc" style="stroke-dasharray: 4, 163.179; stroke-dashoffset: 167.179; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="711.4642333984375" cy="650.422607421875" r="7" class="map-dot-ring" style="animation-delay: 0.15s;"></circle><circle cx="711.4642333984375" cy="650.422607421875" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 659.4866485595703 130.81647796630858 739.6723937988281 178.92792510986328" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 659.4866485595703 130.81647796630858 739.6723937988281 178.92792510986328" class="map-arc-draw" style="stroke-dasharray: 587.841; stroke-dashoffset: 587.841;"></path><path d="M 579.3009033203125 718.0394897460938 Q 659.4866485595703 130.81647796630858 739.6723937988281 178.92792510986328" class="map-arc-glow" style="animation-delay: 0.6s; stroke-dasharray: 8, 579.841; stroke-dashoffset: 587.841;"></path><path d="M 579.3009033203125 718.0394897460938 Q 659.4866485595703 130.81647796630858 739.6723937988281 178.92792510986328" class="map-arc" style="stroke-dasharray: 4, 583.841; stroke-dashoffset: 587.841; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="739.6723937988281" cy="178.92792510986328" r="7" class="map-dot-ring" style="animation-delay: 0.3s;"></circle><circle cx="739.6723937988281" cy="178.92792510986328" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 628.6172485351562 450.13133850097654 677.93359375 479.7211456298828" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 628.6172485351562 450.13133850097654 677.93359375 479.7211456298828" class="map-arc-draw" style="stroke-dasharray: 275.256; stroke-dashoffset: 275.256;"></path><path d="M 579.3009033203125 718.0394897460938 Q 628.6172485351562 450.13133850097654 677.93359375 479.7211456298828" class="map-arc-glow" style="animation-delay: 0.9s; stroke-dasharray: 8, 267.256; stroke-dashoffset: 275.256;"></path><path d="M 579.3009033203125 718.0394897460938 Q 628.6172485351562 450.13133850097654 677.93359375 479.7211456298828" class="map-arc" style="stroke-dasharray: 4, 271.256; stroke-dashoffset: 275.256; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="677.93359375" cy="479.7211456298828" r="7" class="map-dot-ring" style="animation-delay: 0.45s;"></circle><circle cx="677.93359375" cy="479.7211456298828" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 608.6857147216797 230.48794860839843 638.0705261230469 248.11883544921875" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 608.6857147216797 230.48794860839843 638.0705261230469 248.11883544921875" class="map-arc-draw" style="stroke-dasharray: 479.546; stroke-dashoffset: 479.546;"></path><path d="M 579.3009033203125 718.0394897460938 Q 608.6857147216797 230.48794860839843 638.0705261230469 248.11883544921875" class="map-arc-glow" style="animation-delay: 1.2s; stroke-dasharray: 8, 471.546; stroke-dashoffset: 479.546;"></path><path d="M 579.3009033203125 718.0394897460938 Q 608.6857147216797 230.48794860839843 638.0705261230469 248.11883544921875" class="map-arc" style="stroke-dasharray: 4, 475.546; stroke-dashoffset: 479.546; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="638.0705261230469" cy="248.11883544921875" r="7" class="map-dot-ring" style="animation-delay: 0.6s;"></circle><circle cx="638.0705261230469" cy="248.11883544921875" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 558.8777694702148 479.17396087646483 538.4546356201172 491.42784118652344" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 558.8777694702148 479.17396087646483 538.4546356201172 491.42784118652344" class="map-arc-draw" style="stroke-dasharray: 235.385; stroke-dashoffset: 235.385;"></path><path d="M 579.3009033203125 718.0394897460938 Q 558.8777694702148 479.17396087646483 538.4546356201172 491.42784118652344" class="map-arc-glow" style="animation-delay: 1.5s; stroke-dasharray: 8, 227.385; stroke-dashoffset: 235.385;"></path><path d="M 579.3009033203125 718.0394897460938 Q 558.8777694702148 479.17396087646483 538.4546356201172 491.42784118652344" class="map-arc" style="stroke-dasharray: 4, 231.385; stroke-dashoffset: 235.385; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="538.4546356201172" cy="491.42784118652344" r="7" class="map-dot-ring" style="animation-delay: 0.75s;"></circle><circle cx="538.4546356201172" cy="491.42784118652344" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 522.6727523803711 427.8502426147461 466.0446014404297 461.82713317871094" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 522.6727523803711 427.8502426147461 466.0446014404297 461.82713317871094" class="map-arc-draw" style="stroke-dasharray: 300.336; stroke-dashoffset: 300.336;"></path><path d="M 579.3009033203125 718.0394897460938 Q 522.6727523803711 427.8502426147461 466.0446014404297 461.82713317871094" class="map-arc-glow" style="animation-delay: 1.8s; stroke-dasharray: 8, 292.336; stroke-dashoffset: 300.336;"></path><path d="M 579.3009033203125 718.0394897460938 Q 522.6727523803711 427.8502426147461 466.0446014404297 461.82713317871094" class="map-arc" style="stroke-dasharray: 4, 296.336; stroke-dashoffset: 300.336; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="466.0446014404297" cy="461.82713317871094" r="7" class="map-dot-ring" style="animation-delay: 0.9s;"></circle><circle cx="466.0446014404297" cy="461.82713317871094" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 514.83740234375 460.8513641357422 450.3739013671875 499.5294647216797" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 514.83740234375 460.8513641357422 450.3739013671875 499.5294647216797" class="map-arc-draw" style="stroke-dasharray: 277.685; stroke-dashoffset: 277.685;"></path><path d="M 579.3009033203125 718.0394897460938 Q 514.83740234375 460.8513641357422 450.3739013671875 499.5294647216797" class="map-arc-glow" style="animation-delay: 2.1s; stroke-dasharray: 8, 269.685; stroke-dashoffset: 277.685;"></path><path d="M 579.3009033203125 718.0394897460938 Q 514.83740234375 460.8513641357422 450.3739013671875 499.5294647216797" class="map-arc" style="stroke-dasharray: 4, 273.685; stroke-dashoffset: 277.685; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="450.3739013671875" cy="499.5294647216797" r="7" class="map-dot-ring" style="animation-delay: 1.05s;"></circle><circle cx="450.3739013671875" cy="499.5294647216797" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 487.58619689941406 519.3525543212891 395.8714904785156 574.3813781738281" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 487.58619689941406 519.3525543212891 395.8714904785156 574.3813781738281" class="map-arc-draw" style="stroke-dasharray: 263.676; stroke-dashoffset: 263.676;"></path><path d="M 579.3009033203125 718.0394897460938 Q 487.58619689941406 519.3525543212891 395.8714904785156 574.3813781738281" class="map-arc-glow" style="animation-delay: 2.4s; stroke-dasharray: 8, 255.676; stroke-dashoffset: 263.676;"></path><path d="M 579.3009033203125 718.0394897460938 Q 487.58619689941406 519.3525543212891 395.8714904785156 574.3813781738281" class="map-arc" style="stroke-dasharray: 4, 259.676; stroke-dashoffset: 263.676; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="395.8714904785156" cy="574.3813781738281" r="7" class="map-dot-ring" style="animation-delay: 1.2s;"></circle><circle cx="395.8714904785156" cy="574.3813781738281" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 500.35645294189453 670.672819519043 421.41200256347656 910.9810791015625" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 500.35645294189453 670.672819519043 421.41200256347656 910.9810791015625" class="map-arc-draw" style="stroke-dasharray: 278.472; stroke-dashoffset: 278.472;"></path><path d="M 579.3009033203125 718.0394897460938 Q 500.35645294189453 670.672819519043 421.41200256347656 910.9810791015625" class="map-arc-glow" style="animation-delay: 2.7s; stroke-dasharray: 8, 270.472; stroke-dashoffset: 278.472;"></path><path d="M 579.3009033203125 718.0394897460938 Q 500.35645294189453 670.672819519043 421.41200256347656 910.9810791015625" class="map-arc" style="stroke-dasharray: 4, 274.472; stroke-dashoffset: 278.472; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="421.41200256347656" cy="910.9810791015625" r="7" class="map-dot-ring" style="animation-delay: 1.35s;"></circle><circle cx="421.41200256347656" cy="910.9810791015625" r="3.5" class="map-dot"></circle><path d="M 579.3009033203125 718.0394897460938 Q 884.4778137207031 534.9333435058594 1189.6547241210938 797.7655029296875" class="map-arc-base"></path><path d="M 579.3009033203125 718.0394897460938 Q 884.4778137207031 534.9333435058594 1189.6547241210938 797.7655029296875" class="map-arc-draw" style="stroke-dasharray: 665.168; stroke-dashoffset: 665.168;"></path><path d="M 579.3009033203125 718.0394897460938 Q 884.4778137207031 534.9333435058594 1189.6547241210938 797.7655029296875" class="map-arc-glow" style="animation-delay: 3s; stroke-dasharray: 8, 657.168; stroke-dashoffset: 665.168;"></path><path d="M 579.3009033203125 718.0394897460938 Q 884.4778137207031 534.9333435058594 1189.6547241210938 797.7655029296875" class="map-arc" style="stroke-dasharray: 4, 661.168; stroke-dashoffset: 665.168; animation: auto ease 0s 1 normal none running none; transition: none;"></path><circle cx="1189.6547241210938" cy="797.7655029296875" r="7" class="map-dot-ring" style="animation-delay: 1.5s;"></circle><circle cx="1189.6547241210938" cy="797.7655029296875" r="3.5" class="map-dot"></circle><circle cx="579.3009033203125" cy="718.0394897460938" r="12" class="map-hub-ring"></circle><circle cx="579.3009033203125" cy="718.0394897460938" r="5" class="map-dot-center"></circle></g></svg>
 
   </div>
-  <div class="footprint-stats reveal visible" style="--reveal-delay: 0.2s;">
+  <div class="footprint-stats">
   <div class="fp-stat">
     <div class="fp-stat-icon">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
@@ -3864,7 +3861,7 @@ textarea:focus-visible {
 
 <!-- ── TEAM ── -->
 <section id="team">
-  <div class="reveal visible" style="text-align:center;">
+  <div style="text-align:center;">
     <h2 class="team-title">Meet the <span>Team</span></h2>
     <p class="team-sub" style="text-align:center; margin:0 auto;">Leadership driving ETS renewable operations across Europe</p>
   </div>
@@ -3878,7 +3875,7 @@ textarea:focus-visible {
       <div class="ta-info">
         <div class="ta-name">Jhon Chatwin</div>
         <div class="ta-divider"></div>
-        <div class="ta-role">CEO &amp; Founder</div>
+        <div class="ta-role">CEO</div>
       </div>
     </div>
     <!-- Petrino Ferrara -->
@@ -3889,7 +3886,7 @@ textarea:focus-visible {
       <div class="ta-info">
         <div class="ta-name">Petrino Ferrara</div>
         <div class="ta-divider"></div>
-        <div class="ta-role">COO / CFO</div>
+        <div class="ta-role">CCO</div>
       </div>
     </div>
     <!-- Rebecca De Souza -->
@@ -3900,7 +3897,7 @@ textarea:focus-visible {
       <div class="ta-info">
         <div class="ta-name">Rebecca De Souza</div>
         <div class="ta-divider"></div>
-        <div class="ta-role">CMO</div>
+        <div class="ta-role">CHRO</div>
       </div>
     </div>
     <!-- Piotr Tyburski -->
@@ -3911,7 +3908,7 @@ textarea:focus-visible {
       <div class="ta-info">
         <div class="ta-name">Piotr Tyburski</div>
         <div class="ta-divider"></div>
-        <div class="ta-role">Tooling Manager</div>
+        <div class="ta-role">Head of Tooling Operations</div>
       </div>
     </div>
     <!-- Francesco Lotti -->
@@ -3922,7 +3919,7 @@ textarea:focus-visible {
       <div class="ta-info">
         <div class="ta-name">Francesco Lotti</div>
         <div class="ta-divider"></div>
-        <div class="ta-role">Installation Ldr</div>
+        <div class="ta-role">Head of Resources Operations &amp; ERP</div>
       </div>
     </div>
     <!-- Renee Betz -->
@@ -3931,9 +3928,9 @@ textarea:focus-visible {
       <div class="ta-overlay"></div>
       <span class="ta-label">Renee Betz</span>
       <div class="ta-info">
-        <div class="ta-name">Renee Betz</div>
+        <div class="ta-name">Renee Bajorath</div>
         <div class="ta-divider"></div>
-        <div class="ta-role">Service Care</div>
+        <div class="ta-role">COO</div>
       </div>
     </div>
     <!-- Lynne Flaherty -->
@@ -3944,7 +3941,7 @@ textarea:focus-visible {
       <div class="ta-info">
         <div class="ta-name">Lynne Flaherty</div>
         <div class="ta-divider"></div>
-        <div class="ta-role">Transition &amp; Mobility Dir.</div>
+        <div class="ta-role">Head of Logistics &amp; Mobility</div>
       </div>
     </div>
     <!-- Anna Chatwin -->
@@ -3955,7 +3952,7 @@ textarea:focus-visible {
       <div class="ta-info">
         <div class="ta-name">Anna Chatwin</div>
         <div class="ta-divider"></div>
-        <div class="ta-role">ERP &amp; Mobility Support</div>
+        <div class="ta-role">Mobility &amp; ERP Coordinator</div>
       </div>
     </div>
   </div>
@@ -3963,23 +3960,23 @@ textarea:focus-visible {
 
 <!-- ── PARTNERS ── -->
 <section id="partners">
-  <div class="reveal visible">
+  <div>
     <h2 class="partners-title">Partner with <span>Us</span></h2>
     <p class="partners-sub">ETS collaborates with strategic partners to deliver advanced renewable energy solutions, combining engineering expertise, digital innovation, and operational excellence across Europe.</p>
   </div>
-  <div class="partners-box reveal visible" style="--reveal-delay: 0.07s;">
-    <div class="partner-item">
+  <div class="partners-box">
+    <a href="https://www.messotron.com" target="_blank" rel="noopener" class="partner-item">
       <img loading="lazy" decoding="async" src="assets/images/images.png" alt="Messotron" class="partner-img">
       <div class="partner-name messotron">Messotron</div>
-    </div>
-    <div class="partner-item">
+    </a>
+    <a href="https://kiber.tech/" target="_blank" rel="noopener" class="partner-item">
       <img loading="lazy" decoding="async" src="assets/images/Kiber_logo.png" alt="Kiber" class="partner-img partner-dark kiber">
       <div class="partner-name kiber">Kiber</div>
-    </div>
-    <div class="partner-item">
+    </a>
+    <a href="https://hermescorporate.it/" target="_blank" rel="noopener" class="partner-item">
       <img loading="lazy" decoding="async" src="assets/images/hermes.png" alt="Hermes" class="partner-img partner-dark">
       <div class="partner-name hermes">Hermes</div>
-    </div>
+    </a>
   </div>
   <button class="btn-outline" onclick="openPartnerModal()">Be a Partner</button>
 </section>
@@ -3994,21 +3991,29 @@ textarea:focus-visible {
       <a href="mailto:info@etswind.com" class="btn-green">Get in Touch</a>
     </div>
     <div class="footer-right">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px">
         <div class="footer-links-col">
           <h4>Services</h4>
           <ul>
-            <li><a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#">Installation</a></li>
-            <li><a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#">Wind Turbine</a></li>
-            <li><a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#">Maintenance</a></li>
+            <li><a href="#">Installation</a></li>
+            <li><a href="#">Wind Turbine</a></li>
+            <li><a href="#">Maintenance</a></li>
           </ul>
         </div>
         <div class="footer-links-col">
           <h4>Company</h4>
           <ul>
-            <li><a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#">About Us</a></li>
-            <li><a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#">Team</a></li>
-            <li><a href="file:///C:/Users/Tommaso%20Piacini/Desktop/ets-wind/index.html#">Partners</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Partners</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Partners</h4>
+          <ul>
+            <li><a href="https://www.messotron.com" target="_blank" rel="noopener">Messotron</a></li>
+            <li><a href="https://kiber.tech/" target="_blank" rel="noopener">Kiber</a></li>
+            <li><a href="https://hermescorporate.it/" target="_blank" rel="noopener">Hermes</a></li>
           </ul>
         </div>
         <div class="footer-links-col">
@@ -4112,98 +4117,42 @@ const statsObserver = new IntersectionObserver((entries) => {
   // ── prefers-reduced-motion: disabilita tutto se utente lo richiede ──
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── Velocity tracker (px/s) ─────────────────────────────────────────
-  let lastScrollY    = window.scrollY;
-  let lastScrollT    = performance.now();
-  let scrollVelocity = 0;
-  const FAST_THRESHOLD = 600; // px/s sopra cui skip animazioni
-
-  // ── Scroll handler unificato + rAF throttle ──────────────────────────
+  // ── Navbar + parallax hero (lerp-smoothed) ──────────────────────────
   const navbar = document.getElementById('navbar');
   const heroBg = document.getElementById('heroBg');
-  let rafPending = false;
+  let parallaxCurrent = 0;
+  let parallaxTarget  = 0;
+  let parallaxRunning = false;
 
-  function onScrollFrame() {
-    const sy  = window.scrollY;
-    const now = performance.now();
-    const dt  = now - lastScrollT;
-    if (dt > 0) scrollVelocity = Math.abs(sy - lastScrollY) / dt * 1000;
-    lastScrollY = sy;
-    lastScrollT = now;
+  function lerp(a, b, t) { return a + (b - a) * t; }
 
+  function parallaxTick() {
+    parallaxCurrent = lerp(parallaxCurrent, parallaxTarget, 0.09);
+    if (heroBg) {
+      heroBg.style.transform = `translate3d(0,${parallaxCurrent.toFixed(2)}px,0)`;
+    }
+    // keep running until settled (< 0.15px diff = invisible)
+    if (Math.abs(parallaxTarget - parallaxCurrent) > 0.15) {
+      requestAnimationFrame(parallaxTick);
+    } else {
+      parallaxCurrent = parallaxTarget;
+      if (heroBg) heroBg.style.transform = `translate3d(0,${parallaxTarget}px,0)`;
+      parallaxRunning = false;
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    const sy = window.scrollY;
     navbar.classList.toggle('scrolled', sy > 60);
-
-    // Attiva/disattiva classe body per skip animazioni su scroll veloce
-    const fast = reducedMotion || scrollVelocity > FAST_THRESHOLD;
-    document.body.classList.toggle('is-fast-scroll', fast);
-
-    // Parallax hero: translate3d forza GPU compositing, zero jank
-    heroBg.style.transform = `translate3d(0, ${sy * 0.3}px, 0)`;
-
-
-    rafPending = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!rafPending) { rafPending = true; requestAnimationFrame(onScrollFrame); }
+    parallaxTarget = Math.min(sy * 0.25, 180);
+    if (!parallaxRunning && heroBg) {
+      parallaxRunning = true;
+      requestAnimationFrame(parallaxTick);
+    }
   }, { passive: true });
 
-  // Azzera velocità e rimuovi classe quando si smette di scrollare
-  let velResetTimer;
-  window.addEventListener('scroll', () => {
-    clearTimeout(velResetTimer);
-    velResetTimer = setTimeout(() => {
-      scrollVelocity = 0;
-      document.body.classList.remove('is-fast-scroll');
-    }, 150);
-  }, { passive: true });
 
-  // ── Calcola stagger locale per ogni elemento reveal ───────────────────
-  function assignStagger(el) {
-    if (el.closest('#services')) {
-      const siblings = Array.from(el.closest('.services-grid').querySelectorAll('.reveal'));
-      const idx = siblings.indexOf(el);
-      el.style.setProperty('--reveal-delay', `${idx * 0.15}s`);
-    } else if (el.closest('.footprint-stats')) {
-      const siblings = Array.from(el.parentElement.children);
-      const idx = siblings.indexOf(el);
-      el.style.setProperty('--reveal-delay', `${idx * 0.1}s`);
-    } else if (el.closest('.partners-box')) {
-      const siblings = Array.from(el.parentElement.children);
-      const idx = siblings.indexOf(el);
-      el.style.setProperty('--reveal-delay', `${idx * 0.07}s`);
-    }
-    // tutti gli altri: nessun delay aggiuntivo (usa default 0s da CSS)
-  }
-
-  // ── Scroll reveal — IntersectionObserver adattivo ────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(el => {
-    // Reduced motion: mostra subito tutto, nessuna animazione
-    if (reducedMotion) {
-      el.classList.add('visible');
-      return;
-    }
-
-    // Elementi già visibili a pagina caricata: niente animazione
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      el.classList.add('visible');
-      return;
-    }
-
-    // Assegna stagger tramite CSS custom property (non inline style)
-    assignStagger(el);
-
-    observer.observe(el);
-  });
+  
 
   // ── Slider — si ferma quando tab non è visibile ──────────────────────
   let cur = 0;
@@ -4301,8 +4250,10 @@ activePaths.forEach((path, i) => {
   });
 
   path.addEventListener('mousemove', (e) => {
-    tooltip.style.left = (e.clientX + 16) + 'px';
-    tooltip.style.top  = (e.clientY - 80) + 'px';
+    // compensate body scale on large screens (transform: scale moves fixed coord space)
+    const s = parseFloat((document.body.style.transform || '').replace(/[^0-9.]/g, '')) || 1;
+    tooltip.style.left = (e.clientX / s + 16) + 'px';
+    tooltip.style.top  = (e.clientY / s - 80) + 'px';
   });
 
   path.addEventListener('mouseleave', () => {
@@ -4332,8 +4283,8 @@ function drawMapArcs() {
   const arcGroup = document.createElementNS(NS, 'g');
   arcGroup.setAttribute('class', 'map-arcs-layer');
 
-  const connections = ['lithuania','serbia','finland','poland','sweden','germany','netherlands','belgium','france','morocco','turkey'];
-  const delays = [0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0];
+  const connections = ['lithuania','serbia','finland','poland','sweden','germany','netherlands','belgium','france','spain','morocco','turkey'];
+  const delays = [0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0, 3.3];
 
   // Mappa paese → elementi arco per hover
   const arcElements = {};
@@ -4499,6 +4450,26 @@ function submitPartnerForm() {
 ⚠️ **Nota importante** — il percorso dell'immagine turbina nel tooltip:
 ```
 src="assets/images/TurbinaHover.png"
+
+  
+
+  
+
+  /* ── service cards fade ── */
+  (function() {
+    var grid = document.querySelector('.services-grid');
+    if (!grid) return;
+    function trigger() { grid.classList.add('svc-go'); }
+    var r = grid.getBoundingClientRect();
+    if (r.top < window.innerHeight) {
+      trigger();
+    } else {
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { trigger(); obs.disconnect(); }
+      }, { threshold: 0.1 });
+      obs.observe(grid);
+    }
+  }());
 </script><div class="map-tooltip" style="left: 796px; top: 405px;">
   <img class="map-tooltip-turbine" src="assets/images/TurbinaHover.png" alt="turbina">
   <div class="map-tooltip-country" id="ttCountry">Spain</div>
@@ -4517,4 +4488,25 @@ src="assets/images/TurbinaHover.png"
 </div>
 
 
-</body></html>
+<script>
+function scaleForLargeScreens() {
+  const baseWidth = 1440;
+  const currentWidth = window.innerWidth;
+  const hero = document.getElementById('hero');
+  if (currentWidth > 1440) {
+    const scale = currentWidth / baseWidth;
+    document.body.style.transform = 'scale(' + scale + ')';
+    document.body.style.transformOrigin = 'top left';
+    document.body.style.width = (100 / scale) + '%';
+    document.body.style.overflowX = 'hidden';
+    // Compensate hero height so it stays exactly 100vh after scaling
+    if (hero) hero.style.height = Math.round(window.innerHeight / scale) + 'px';
+  } else {
+    document.body.style.transform = '';
+    document.body.style.width = '';
+    if (hero) hero.style.height = '';
+  }
+}
+scaleForLargeScreens();
+window.addEventListener('resize', scaleForLargeScreens);
+</script></body></html>
