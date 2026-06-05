@@ -2,6 +2,7 @@
 
 <html lang="en"><head>
 
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- iOS status bar: dark background matching site navbar -->
 <meta name="theme-color" content="#080808">
@@ -417,6 +418,7 @@ nav.scrolled {
   align-items: center;
   padding: 0 64px 0 52px;
   gap: 24px;
+  isolation: isolate;
 }
 .hero-title-row {
   position: relative;
@@ -434,7 +436,7 @@ nav.scrolled {
 }
 .hero-text-block {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -2827,7 +2829,7 @@ nav {
   top: 40%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 3;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3440,14 +3442,14 @@ textarea:focus-visible {
     <a href="#slider-section">Sustainability</a>
     <a href="#footer">Contact</a>
   </div>
-  <a href="#footer" class="nav-cta-btn">GET IN TOUCH →</a>
+  <a href="#footer" class="nav-cta-btn">GET IN TOUCH &rarr;</a>
 </nav>
 <section id="hero">
   <div class="hero-bg" id="heroBg" style="background-image: url(&quot;assets/images/new_back.jpg&quot;)"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
   <div class="hero-left">
-    <div class="hero-eyebrow">Safety – Quality – Productivity</div>
+    <div class="hero-eyebrow">Safety &ndash; Quality &ndash; Productivity</div>
     <h1 class="hero-h1">ENERGY<br><span class="green">TRANSITION</span><br>SERVICES</h1>
     <p class="hero-sub">We are a company skilled in the installation, maintenance and upgrade of next-generation wind turbines, driven by the mission of making the energy transition safer, faster, and more cost-efficient. We measure our performance on our core values: LEAN to improve and Technologies to Innovate.</p>
     <div class="hero-ctas">
@@ -4423,6 +4425,21 @@ function drawMapArcs() {
 
 window.addEventListener('load', () => { setTimeout(drawMapArcs, 80); });
 
+/* ── service cards fade ── */
+(function() {
+  var grid = document.querySelector('.services-grid');
+  if (!grid) return;
+  function trigger() { grid.classList.add('svc-go'); }
+  var r = grid.getBoundingClientRect();
+  if (r.top < window.innerHeight) {
+    trigger();
+  } else {
+    var obs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) { trigger(); obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(grid);
+  }
+}());
 
 function openPartnerModal() {
   document.getElementById('partnerModal').classList.add('open');
@@ -4435,57 +4452,28 @@ function closePartnerModal(e) {
   }
 }
 function submitPartnerForm() {
-  const name = document.getElementById('pName').value.trim();
-  const email = document.getElementById('pEmail').value.trim();
+  const name    = document.getElementById('pName').value.trim();
+  const email   = document.getElementById('pEmail').value.trim();
   const company = document.getElementById('pCompany').value.trim();
   if (!name || !email || !company) {
     alert('Please fill in all required fields.');
     return;
   }
+  const subject = encodeURIComponent('Partnership Request – ' + company);
+  const body    = encodeURIComponent(
+    'Hello ETS Wind,\n\n' +
+    'We are interested in a partnership.\n\n' +
+    'Name: ' + name + '\n' +
+    'Company: ' + company + '\n' +
+    'Reply-to: ' + email + '\n\n' +
+    'Please get back to us at your earliest convenience.\n\n' +
+    'Best regards,\n' + name
+  );
+  window.location.href = 'mailto:info@etswind.com?subject=' + subject + '&body=' + body;
   document.getElementById('partnerFormWrap').style.display = 'none';
   document.getElementById('partnerSuccess').style.display = 'block';
 }
-```
-
-⚠️ **Nota importante** — il percorso dell'immagine turbina nel tooltip:
-```
-src="assets/images/TurbinaHover.png"
-
-  
-
-  
-
-  /* ── service cards fade ── */
-  (function() {
-    var grid = document.querySelector('.services-grid');
-    if (!grid) return;
-    function trigger() { grid.classList.add('svc-go'); }
-    var r = grid.getBoundingClientRect();
-    if (r.top < window.innerHeight) {
-      trigger();
-    } else {
-      var obs = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) { trigger(); obs.disconnect(); }
-      }, { threshold: 0.1 });
-      obs.observe(grid);
-    }
-  }());
-</script><div class="map-tooltip" style="left: 796px; top: 405px;">
-  <img class="map-tooltip-turbine" src="assets/images/TurbinaHover.png" alt="turbina">
-  <div class="map-tooltip-country" id="ttCountry">Spain</div>
-  <div class="map-tooltip-divider"></div>
-  <div class="map-tooltip-row" id="ttRowMw" style="display: none;">
-    <span class="map-tooltip-label">Power</span>
-    <span class="map-tooltip-value" id="ttMw">416 MW</span>
-  </div>
-  <div class="map-tooltip-row" id="ttRowWtg" style="display: none;">
-    <span class="map-tooltip-label">WTGs</span>
-    <span class="map-tooltip-value" id="ttWtg">93 WTGs</span>
-  </div>
-  <div class="map-tooltip-row" id="ttRowOp" style="">
-    <span class="map-tooltip-label" style="color:rgba(122,179,23,0.9);letter-spacing:0.12em;font-size:9px">OPERATIVE AREA</span>
-  </div>
-</div>
+</script>
 
 
 <script>
