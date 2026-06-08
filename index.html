@@ -1966,110 +1966,107 @@ nav.scrolled {
     display: flex !important;
   }
 
-  /* ── HERO MOBILE ── */
+  /* ── HERO MOBILE — editorial left-aligned ── */
   html, body { overflow-x: hidden; }
-  .hero-bg {
-    background-position: 72% 40%;
-  }
+  .hero-bg { background-position: 68% 40%; }
+
   .hero-content {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* top: nav (52px) + extra push-down; bottom: iOS safe area */
-    padding: calc(52px + 72px) 24px calc(env(safe-area-inset-bottom, 20px) + 48px);
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: calc(52px + 40px) 24px calc(env(safe-area-inset-bottom, 0px) + 64px);
     gap: 0;
-    text-align: center;
+    text-align: left;
   }
   .hero-left {
     max-width: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
-  .hero-right {
-    display: none !important;
-  }
-  /* Watermark logo ETS — destra hero, sopra l'immagine di sfondo */
+  .hero-right { display: none !important; }
+
+  /* Ghost ETS logo — angolo top-right, filigrana sottile */
   .hero-mob-watermark {
     display: block;
     position: absolute;
-    right: 12px;
+    right: -24px;
     top: 50%;
-    transform: translateY(-60%);
-    width: 140px;
+    transform: translateY(-55%);
+    width: 220px;
     height: auto;
-    opacity: 0.08;
+    opacity: 0.045;
     pointer-events: none;
     filter: brightness(0) invert(1);
-    z-index: 3;
+    z-index: 1;
   }
-  .hero-h1 {
-    font-size: clamp(42px, 13vw, 58px);
-    line-height: 0.92;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .hero-sub {
-    font-size: 13px;
-    max-width: 88%;
-    line-height: 1.65;
-    text-align: center;
-    margin-bottom: 32px;
-  }
+
+  /* Eyebrow — left, linea solo a sinistra */
   .hero-eyebrow {
-    font-size: 8px;
-    margin-bottom: 14px;
-    justify-content: center;
-    letter-spacing: 0.24em;
+    font-size: 9px;
+    margin-bottom: 18px;
+    justify-content: flex-start;
+    letter-spacing: 0.22em;
     gap: 10px;
-    /* reset eventuali stili residui */
     background: none;
     border: none;
     border-radius: 0;
     padding: 0;
   }
-  /* Linea sinistra — stessa larghezza della destra */
   .hero-eyebrow::before {
     display: block;
-    width: 18px;
+    width: 24px;
     height: 1px;
     background: #7AB317;
     flex-shrink: 0;
-    opacity: 0.9;
+    opacity: 1;
   }
-  /* Linea destra — speculare */
-  .hero-eyebrow::after {
-    content: '';
-    display: block;
-    width: 18px;
-    height: 1px;
-    background: #7AB317;
-    flex-shrink: 0;
-    opacity: 0.9;
+  .hero-eyebrow::after { display: none; }
+
+  /* H1 — grande e bold */
+  .hero-h1 {
+    font-size: clamp(52px, 16vw, 72px);
+    line-height: 0.90;
+    text-align: left;
+    margin-bottom: 22px;
+    letter-spacing: -0.02em;
   }
+
+  /* Body copy */
+  .hero-sub {
+    font-size: 13px;
+    max-width: 90%;
+    line-height: 1.7;
+    text-align: left;
+    margin-bottom: 36px;
+    color: rgba(255,255,255,0.62);
+  }
+
+  /* CTAs — primary full row, secondary inline */
   .hero-ctas {
-    gap: 12px;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
     width: 100%;
   }
   .btn-hero-primary {
     font-size: 11px;
-    padding: 14px 28px;
-    width: 100%;
+    padding: 15px 28px;
+    width: auto;
+    flex: 1;
+    min-width: 140px;
     text-align: center;
     justify-content: center;
   }
   .btn-hero-text {
     font-size: 11px;
     letter-spacing: 0.14em;
+    flex-shrink: 0;
   }
 
-  /* ── LOGO SOPRA TITOLO HERO ── */
-  .hero-left::before {
-    display: none;
-  }
+  .hero-left::before { display: none; }
 
   /* ── SCROLL INDICATOR: nascosto su mobile ── */
   .scroll-indicator { display: none !important; }
@@ -2168,11 +2165,165 @@ nav.scrolled {
   .team-name { font-size: 12px; }
   .team-role { font-size: 9px; }
 
-  /* ── PARTNERS MOBILE ── */
-  #partners { padding: var(--section-v-compact) var(--section-h) var(--section-v); }
-  .partners-box { gap: 36px; flex-wrap: wrap; justify-content: center; padding: 16px 0; }
-  .partner-img { height: 44px; }
-  .partner-img.kiber { height: 56px; }
+  /* ── FOOTPRINT COUNTRIES MOBILE ── */
+  /* ── FOOTPRINT: layout verticale pulito ── */
+  .footprint-two-col {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .footprint-col-offices {
+    border-right: none !important;
+    padding-right: 0 !important;
+    padding-bottom: 16px !important;
+    border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+  }
+
+  /* Uffici — lista verticale con dot */
+  .footprint-offices {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  .fp-office {
+    padding: 3px 0 !important;
+    border: none !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    color: rgba(20,40,5,0.75) !important;
+    gap: 7px !important;
+  }
+  .fp-office-dot {
+    width: 4px !important;
+    height: 4px !important;
+    background: #6aa318 !important;
+  }
+
+  /* Operative areas — due colonne semplici */
+  .footprint-markets {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1px 0 !important;
+    flex-wrap: unset !important;
+  }
+  .footprint-markets span {
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 5px 0 !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    color: rgba(20,40,5,0.55) !important;
+    letter-spacing: 0.01em !important;
+    text-transform: capitalize !important;
+    white-space: nowrap !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+  }
+  .footprint-markets span::after { display: none !important; }
+
+  /* Offices — 2x2 mini-card grid */
+  .footprint-offices {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    flex-wrap: unset !important;
+  }
+  .fp-office {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 4px 0 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+    color: rgba(20, 40, 5, 0.70) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+  }
+  .fp-office-dot {
+    width: 4px !important;
+    height: 4px !important;
+    border-radius: 50% !important;
+    background: #6aa318 !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Operative areas — testo fluente senza bordi */
+  .footprint-col-areas { position: relative; padding-left: 0 !important; }
+
+  /* ── PARTNERS MOBILE — iOS Settings card list ── */
+  #partners {
+    padding: 60px 20px 60px;
+  }
+  .partners-box {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    margin: 28px 0 32px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0,0,0,0.08) !important;
+    background: #f7f9f5 !important;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06) !important;
+  }
+  .partner-item {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
+    padding: 20px 22px !important;
+    border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+    transition: background 0.18s ease !important;
+  }
+  .partner-item:last-child { border-bottom: none !important; }
+  .partner-item:active { background: rgba(122,179,23,0.08) !important; }
+
+  /* Logo */
+  .partner-img {
+    height: 28px !important;
+    max-width: 110px !important;
+    object-fit: contain !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    mix-blend-mode: multiply !important;
+    flex-shrink: 0 !important;
+  }
+  .partner-img.kiber {
+    height: 38px !important;
+    mix-blend-mode: multiply !important;
+  }
+  .partner-img.messotron { height: 28px !important; }
+
+  /* Name */
+  .partner-name {
+    flex: 1 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: rgba(20,35,5,0.55) !important;
+    color: rgba(20,35,5,0.55) !important;
+    text-transform: uppercase !important;
+  }
+
+  /* Arrow chevron — verde */
+  .partner-item::after {
+    content: '';
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-top: 1.5px solid rgba(90,144,16,0.65);
+    border-right: 1.5px solid rgba(90,144,16,0.65);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
 
   /* ── FOOTER MOBILE ── */
   .footer-content { padding: var(--footer-top) 20px 0; gap: var(--footer-col-gap); }
@@ -3969,15 +4120,12 @@ textarea:focus-visible {
   <div class="partners-box">
     <a href="https://www.messotron.com" target="_blank" rel="noopener" class="partner-item">
       <img loading="lazy" decoding="async" src="assets/images/images.png" alt="Messotron" class="partner-img">
-      <div class="partner-name messotron">Messotron</div>
     </a>
     <a href="https://kiber.tech/" target="_blank" rel="noopener" class="partner-item">
       <img loading="lazy" decoding="async" src="assets/images/Kiber_logo.png" alt="Kiber" class="partner-img partner-dark kiber">
-      <div class="partner-name kiber">Kiber</div>
     </a>
     <a href="https://hermescorporate.it/" target="_blank" rel="noopener" class="partner-item">
       <img loading="lazy" decoding="async" src="assets/images/hermes.png" alt="Hermes" class="partner-img partner-dark">
-      <div class="partner-name hermes">Hermes</div>
     </a>
   </div>
   <button class="btn-outline" onclick="openPartnerModal()">Be a Partner</button>
@@ -3993,7 +4141,7 @@ textarea:focus-visible {
       <a href="mailto:info@etswind.com" class="btn-green">Get in Touch</a>
     </div>
     <div class="footer-right">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:40px">
         <div class="footer-links-col">
           <h4>Services</h4>
           <ul>
@@ -4024,6 +4172,14 @@ textarea:focus-visible {
             <li><a href="https://www.linkedin.com/company/ets-energy-transition-services/?originalSubdomain=de" target="_blank" rel="noopener">LinkedIn</a></li>
           </ul>
         </div>
+        <div class="footer-links-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="legal.html">Legal Notes</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="cookie-policy.html">Cookie Policy</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -4035,7 +4191,11 @@ textarea:focus-visible {
         </svg>
       </a>
     </div>
-    <span class="footer-copy">© 2024 ETS Wind — Energy Transition Services. All rights reserved.</span>
+    <span class="footer-copy">© 2025 ETS Wind S.r.l. &mdash; VAT IT07315970488 &mdash; All rights reserved. &nbsp;
+      <a href="legal.html" style="color:inherit;opacity:0.6;text-decoration:none;margin-left:8px;">Legal Notes</a> &middot;
+      <a href="privacy-policy.html" style="color:inherit;opacity:0.6;text-decoration:none;margin-left:6px;">Privacy</a> &middot;
+      <a href="cookie-policy.html" style="color:inherit;opacity:0.6;text-decoration:none;margin-left:6px;">Cookie Policy</a>
+    </span>
   </div>
 </footer>
 
