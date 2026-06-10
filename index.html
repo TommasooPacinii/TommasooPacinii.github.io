@@ -2463,7 +2463,7 @@ nav.scrolled {
   border-radius: 10px;
   padding: 10px 14px;
   pointer-events: none;
-  z-index: 999;
+  z-index: 9999;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -4552,11 +4552,12 @@ tooltip.innerHTML = `
     <span class="map-tooltip-label" style="color:rgba(122,179,23,0.9);">OPERATIVE AREA</span>
   </div>
 `;
-document.documentElement.appendChild(tooltip);
+document.body.appendChild(tooltip);
 
 // Assegna data-country ai path attivi in base all'ordine
+// Confronto case-insensitive: i CDN possono minificare #B8C6A6 → #b8c6a6
 const activePaths = Array.from(document.querySelectorAll('.map-svg path'))
-  .filter(p => p.getAttribute('fill') === '#B8C6A6');
+  .filter(p => (p.getAttribute('fill') || '').toUpperCase() === '#B8C6A6');
 
 const countryKeys = ['lithuania','serbia','finland','poland','sweden','italy','germany','netherlands','belgium','france','spain','morocco','turkey'];
 
@@ -4583,9 +4584,12 @@ activePaths.forEach((path, i) => {
   });
 
   path.addEventListener('mousemove', (e) => {
-    // tooltip è su <html> (non su body) → position:fixed è relativo al viewport, nessuna compensazione necessaria
-    tooltip.style.left = (e.clientX + 16) + 'px';
-    tooltip.style.top  = (e.clientY - 80) + 'px';
+    // Se scaleForLargeScreens ha applicato transform:scale al body,
+    // position:fixed vive nel sistema di coordinate scalato → compensare
+    const rawScale = (document.body.style.transform || '').match(/scale\(([\d.]+)/);
+    const s = rawScale ? parseFloat(rawScale[1]) : 1;
+    tooltip.style.left = (e.clientX / s + 16) + 'px';
+    tooltip.style.top  = (e.clientY / s - 80) + 'px';
   });
 
   path.addEventListener('mouseleave', () => {
