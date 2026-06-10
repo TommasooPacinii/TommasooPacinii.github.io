@@ -331,7 +331,10 @@ nav {
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
-  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+nav.nav-hidden {
+  transform: translateY(-100%);
 }
 nav.scrolled {
   background: rgba(8, 8, 8, 0.68);
@@ -2499,6 +2502,7 @@ nav.scrolled {
   margin-bottom: 4px;
 }
 .map-tooltip-label {
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 8px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -4442,6 +4446,7 @@ const statsObserver = new IntersectionObserver((entries) => {
   let parallaxCurrent = 0;
   let parallaxTarget  = 0;
   let parallaxRunning = false;
+  let lastScrollY = window.scrollY;
 
   function lerp(a, b, t) { return a + (b - a) * t; }
 
@@ -4463,6 +4468,15 @@ const statsObserver = new IntersectionObserver((entries) => {
   window.addEventListener('scroll', () => {
     const sy = window.scrollY;
     navbar.classList.toggle('scrolled', sy > 60);
+
+    // Hide navbar on scroll-down, reveal on scroll-up
+    if (sy > lastScrollY && sy > 120) {
+      navbar.classList.add('nav-hidden');
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
+    lastScrollY = sy;
+
     parallaxTarget = Math.min(sy * 0.25, 180);
     if (!parallaxRunning && heroBg) {
       parallaxRunning = true;
@@ -4535,10 +4549,10 @@ tooltip.innerHTML = `
     <span class="map-tooltip-value" id="ttWtg"></span>
   </div>
   <div class="map-tooltip-row" id="ttRowOp" style="display:none">
-    <span class="map-tooltip-label" style="color:rgba(122,179,23,0.9);letter-spacing:0.12em;font-size:9px">OPERATIVE AREA</span>
+    <span class="map-tooltip-label" style="color:rgba(122,179,23,0.9);">OPERATIVE AREA</span>
   </div>
 `;
-document.body.appendChild(tooltip);
+document.documentElement.appendChild(tooltip);
 
 // Assegna data-country ai path attivi in base all'ordine
 const activePaths = Array.from(document.querySelectorAll('.map-svg path'))
@@ -4569,10 +4583,9 @@ activePaths.forEach((path, i) => {
   });
 
   path.addEventListener('mousemove', (e) => {
-    // compensate body scale on large screens (transform: scale moves fixed coord space)
-    const s = parseFloat((document.body.style.transform || '').replace(/[^0-9.]/g, '')) || 1;
-    tooltip.style.left = (e.clientX / s + 16) + 'px';
-    tooltip.style.top  = (e.clientY / s - 80) + 'px';
+    // tooltip è su <html> (non su body) → position:fixed è relativo al viewport, nessuna compensazione necessaria
+    tooltip.style.left = (e.clientX + 16) + 'px';
+    tooltip.style.top  = (e.clientY - 80) + 'px';
   });
 
   path.addEventListener('mouseleave', () => {
