@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celine &amp; Gucci — Tommaso Pacini</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:#fff; --g-50:#fafafa; --g-100:#f7f7f7; --g-150:#f0f0f0; --g-200:#dedede;
+  --g-300:#b8b8b8; --g-500:#828282; --g-600:#545454; --g-800:#2b2b2b; --black:#000;
+  --accent:#1a1a1a;
+  --font-display:'InterDisplay','Inter Display','Inter',sans-serif;
+  --font-body:'Inter',sans-serif; --font-mono:'Fragment Mono',monospace;
+  --r-card:16px; --r-pill:100px;
+  --shadow-card:0px 0.597144px 0.597144px -0.9375px rgba(0,0,0,0.07),0px 1.81088px 1.81088px -1.875px rgba(0,0,0,0.07),0px 4.78699px 4.78699px -2.8125px rgba(0,0,0,0.06),0px 15px 15px -3.75px rgba(0,0,0,0.03);
+  --shadow-float:0px 0.602187px 0.602187px -1.25px rgba(0,0,0,0.18),0px 2.288533px 2.288533px -2.5px rgba(0,0,0,0.16),0px 10px 10px -3.75px rgba(0,0,0,0.06);
+  --ease:cubic-bezier(0.44,0,0.56,1); --ease-spring:cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--white);color:var(--black);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.frame{max-width:1200px;margin:0 auto;border-left:1px solid var(--g-150);border-right:1px solid var(--g-150);background:var(--g-50);min-height:100vh;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:300;background:rgba(250,250,250,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:20px 0;}
+.nav-inner{display:flex;align-items:center;gap:32px;max-width:1200px;margin:0 auto;padding:0 48px;}
+nav a{font-size:13px;letter-spacing:0.01em;color:var(--g-500);text-decoration:none;transition:color .25s var(--ease);}
+nav a:hover,nav a.active{color:var(--black);}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding:70px 48px 56px;border-bottom:1px solid var(--g-150);}
+.hero::before{content:'';position:absolute;top:-140px;right:-90px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.05),transparent 70%);pointer-events:none;}
+.hero>*{position:relative;z-index:1;}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--g-500);text-decoration:none;margin-bottom:40px;transition:gap .25s var(--ease),color .25s var(--ease);}
+.back:hover{gap:12px;color:var(--black);}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--g-150);border-radius:var(--r-pill);padding:8px 16px;font-size:13px;font-weight:500;color:var(--black);box-shadow:var(--shadow-float);margin-bottom:28px;}
+.hero-grid{display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:center;}
+.hero h1{font-family:var(--font-display);font-size:clamp(40px,5vw,68px);font-weight:600;letter-spacing:-0.03em;line-height:1.02;margin-bottom:14px;}
+.role{font-family:var(--font-display);font-size:clamp(18px,2vw,24px);font-weight:600;letter-spacing:-0.02em;color:var(--accent);margin-bottom:20px;}
+.intro{font-size:17px;font-weight:500;letter-spacing:-0.015em;line-height:1.6;color:var(--g-500);max-width:560px;}
+.intro strong{color:var(--black);font-weight:600;}
+
+/* logos card */
+.logos-card{background:linear-gradient(140deg,#fff,var(--g-100));border:1px solid var(--g-150);border-radius:var(--r-card);box-shadow:var(--shadow-card);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:36px;}
+.logos-row{display:flex;align-items:center;justify-content:center;gap:30px;width:100%;}
+.logos-row img{width:auto;max-width:42%;object-fit:contain;}
+.logos-row img[alt="Celine"]{height:54px;}
+.logos-row img[alt="Gucci"]{height:20px;}
+.logos-div{width:1px;height:36px;background:var(--g-200);}
+.logos-cap{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--g-500);}
+
+/* META */
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--g-150);border-bottom:1px solid var(--g-150);}
+.meta div{background:var(--g-50);padding:26px 28px;}
+.meta .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--g-500);margin-bottom:8px;}
+.meta .v{font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--black);}
+
+/* BRAND SECTION */
+.brand{padding:70px 48px;border-bottom:1px solid var(--g-150);}
+.brand-head{display:flex;align-items:center;gap:20px;margin-bottom:40px;justify-content:space-between;flex-wrap:wrap;}
+.brand-head-left{display:flex;align-items:center;gap:20px;}
+.brand-period{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.pchip{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--g-150);border-radius:var(--r-pill);padding:8px 15px;font-size:13px;font-weight:500;letter-spacing:-0.01em;color:var(--black);box-shadow:var(--shadow-card);}
+.pchip .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.pchip .dot.past{background:var(--g-300);}
+.pchip .dot.live{background:#21b30b;animation:pulse 2.2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(33,179,11,.4);}50%{box-shadow:0 0 0 6px rgba(33,179,11,0);}}
+.brand-logo{display:flex;align-items:center;}
+.brand-logo img{width:auto;object-fit:contain;}
+.brand-logo img[alt="Celine"]{height:46px;}
+.brand-logo img[alt="Gucci"]{height:20px;}
+.brand-head .sep{width:1px;height:34px;background:var(--g-200);}
+.brand-head .lab{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--g-500);}
+
+.resp{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.resp li{display:flex;gap:16px;background:var(--white);border:1px solid var(--g-150);border-radius:var(--r-card);box-shadow:var(--shadow-card);padding:20px 22px;align-items:flex-start;transition:transform .25s var(--ease-spring),box-shadow .25s var(--ease-spring);}
+.resp li:hover{transform:translateY(-3px);box-shadow:var(--shadow-card),0 22px 40px -22px rgba(0,0,0,.2);}
+.resp .n{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--accent);flex-shrink:0;width:26px;line-height:1.5;}
+.resp p{font-size:14.5px;font-weight:450;letter-spacing:-0.01em;line-height:1.55;color:var(--g-600);}
+.resp p b{color:var(--black);font-weight:600;}
+
+/* tools */
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;}
+.tool{background:var(--white);border:1px solid var(--g-150);border-radius:var(--r-pill);padding:9px 16px;font-size:13px;font-weight:500;letter-spacing:-0.01em;color:var(--black);box-shadow:var(--shadow-card);}
+
+/* footer */
+.foot{padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.foot a.cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#2b2b2b,#000);color:#fff;font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:-0.01em;text-decoration:none;border-radius:var(--r-pill);padding:14px 26px;transition:transform .3s var(--ease-spring);}
+.foot a.cta:hover{transform:translateY(-2px);}
+.foot .muted{font-size:13px;color:var(--g-500);}
+
+@media(max-width:960px){
+  .nav-inner,.hero,.brand,.foot{padding-left:28px;padding-right:28px;}
+  .hero-grid{grid-template-columns:1fr;}
+  .logos-card{max-width:340px;}
+  .meta{grid-template-columns:1fr 1fr;}
+  .resp{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <a href="work.html" class="active">Work</a>
+      <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <a class="back" href="work.html">← Back to work</a>
+    <div class="hero-grid">
+      <div>
+        <span class="badge">Experience</span>
+        <h1>Celine &amp; Gucci</h1>
+        <div class="role">BI &amp; Data Analysis · Luxury Retail</div>
+        <p class="intro">
+          <strong>Business Intelligence and data support for two luxury maisons.</strong>
+          From Power BI and Tableau dashboards to data quality, migrations and ticketing — I kept reporting reliable and
+          aligned with the business, working closely with the teams in France and within the Kering group.
+        </p>
+      </div>
+      <div class="logos-card">
+        <div class="logos-row">
+          <img src="images/celine.png" alt="Celine">
+          <span class="logos-div"></span>
+          <img src="images/gucci.png" alt="Gucci">
+        </div>
+        <span class="logos-cap">BI &amp; Data Analysis support</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- META -->
+  <div class="meta">
+    <div><div class="k">Role</div><div class="v">BI &amp; Data Analyst</div></div>
+    <div><div class="k">Field</div><div class="v">Luxury Retail</div></div>
+    <div><div class="k">Focus</div><div class="v">Dashboards &amp; Data Quality</div></div>
+    <div><div class="k">Tools</div><div class="v">Power BI · Tableau · GCP</div></div>
+  </div>
+
+  <!-- CELINE -->
+  <section class="brand">
+    <div class="brand-head">
+      <div class="brand-head-left">
+        <span class="brand-logo"><img src="images/celine.png" alt="Celine"></span>
+        <span class="sep"></span>
+        <span class="lab">Activities</span>
+      </div>
+      <div class="brand-period">
+        <span class="pchip"><span class="dot past"></span>Dec 2024 — May 2025</span>
+        <span class="pchip"><span class="dot live"></span>Apr 2026 — Present</span>
+      </div>
+    </div>
+    <ul class="resp">
+      <li><span class="n">01</span><p><b>Inventory management</b> — JD Edwards (Oracle) to perform updates and adjustments to Celine's inventory database.</p></li>
+      <li><span class="n">02</span><p><b>IT &amp; business support</b> — technical and functional assistance to internal departments to solve issues and improve business processes.</p></li>
+      <li><span class="n">03</span><p><b>Business Intelligence consulting</b> — support in developing and optimizing Power BI reports and dashboards based on business logic.</p></li>
+      <li><span class="n">04</span><p><b>Collaboration with the French team</b> — regular interaction with Celine's HQ in France for analysis, development and clarification of business requests.</p></li>
+      <li><span class="n">05</span><p><b>Data flow monitoring</b> — continuous supervision of data pipelines to ensure information coherence, accuracy and availability.</p></li>
+      <li><span class="n">06</span><p><b>Dashboard troubleshooting &amp; maintenance</b> — prompt identification and fixing of issues for data reliability and a smooth user experience.</p></li>
+      <li><span class="n">07</span><p><b>Data quality control via GCP</b> — querying and verifying data on Google Cloud Platform to ensure reliability and alignment with official sources.</p></li>
+      <li><span class="n">08</span><p><b>PLM system &amp; data migration</b> — operational and technical coordination of tasks related to the PLM migration and associated data.</p></li>
+      <li><span class="n">09</span><p><b>Debugging &amp; application fixing</b> — analysis and resolution of errors or malfunctions during and after system migrations or upgrades.</p></li>
+      <li><span class="n">10</span><p><b>Application control &amp; validation</b> — checking that all applications and data are correctly mapped and operate properly across systems, intervening on discrepancies.</p></li>
+      <li><span class="n">11</span><p><b>Ticket management via ServiceNow</b> — full handling of technical tickets (opening, managing, resolving) and ongoing communication with the French team for changes or escalations.</p></li>
+      <li><span class="n">12</span><p><b>Technical reports &amp; documentation</b> — workflow documentation built as HTML/CSS web pages for internal and external users.</p></li>
+    </ul>
+    <div class="tools">
+      <span class="tool">JD Edwards (Oracle)</span>
+      <span class="tool">Power BI</span>
+      <span class="tool">Google Cloud Platform</span>
+      <span class="tool">ServiceNow</span>
+      <span class="tool">PLM</span>
+      <span class="tool">HTML / CSS</span>
+    </div>
+  </section>
+
+  <!-- GUCCI -->
+  <section class="brand">
+    <div class="brand-head">
+      <div class="brand-head-left">
+        <span class="brand-logo"><img src="images/gucci.png" alt="Gucci"></span>
+        <span class="sep"></span>
+        <span class="lab">Activities</span>
+      </div>
+      <div class="brand-period">
+        <span class="pchip"><span class="dot past"></span>2022 — 2024</span>
+      </div>
+    </div>
+    <ul class="resp">
+      <li><span class="n">01</span><p><b>Tableau expertise</b> — Tableau Server and Desktop for maintenance and development of virtual dashboards.</p></li>
+      <li><span class="n">02</span><p><b>Data querying</b> — DBeaver for querying views linked to various virtual dashboards to fully resolve user-reported issues.</p></li>
+      <li><span class="n">03</span><p><b>Front End management</b> — resolution of Front End problems on dashboards through the Kering Connect ticketing platform.</p></li>
+      <li><span class="n">04</span><p><b>Front End development</b> — development and editing on Tableau for clients.</p></li>
+      <li><span class="n">05</span><p><b>Data security monitoring</b> — monitoring Back End flows to ensure data security and integrity.</p></li>
+      <li><span class="n">06</span><p><b>Client communication</b> — meetings with clients to discuss modifications and resolve dashboard issues.</p></li>
+      <li><span class="n">07</span><p><b>Sales &amp; KPI knowledge</b> — familiar with luxury retail sales processes and corporate KPIs.</p></li>
+      <li><span class="n">08</span><p><b>Excel data manipulation</b> — skilled in extracting and manipulating data in Excel.</p></li>
+    </ul>
+    <div class="tools">
+      <span class="tool">Tableau (Server &amp; Desktop)</span>
+      <span class="tool">DBeaver</span>
+      <span class="tool">Kering Connect</span>
+      <span class="tool">Excel</span>
+      <span class="tool">KPI Reporting</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <span class="muted">© 2025 Tommaso Pacini — Data &amp; Design</span>
+    <a class="cta" href="work.html">← Back to all work</a>
+  </div>
+
+</div>
+</body>
+</html>
