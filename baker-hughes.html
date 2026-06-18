@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baker Hughes — Tommaso Pacini</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:#fff; --g-50:#fafafa; --g-100:#f7f7f7; --g-150:#f0f0f0; --g-200:#dedede;
+  --g-300:#b8b8b8; --g-500:#828282; --g-600:#545454; --g-800:#2b2b2b; --black:#000;
+  --bh:#00833f; --bh-dark:#0a3d2b;
+  --font-display:'InterDisplay','Inter Display','Inter',sans-serif;
+  --font-body:'Inter',sans-serif; --font-mono:'Fragment Mono',monospace;
+  --r-card:16px; --r-pill:100px;
+  --shadow-card:0px 0.597144px 0.597144px -0.9375px rgba(0,0,0,0.07),0px 1.81088px 1.81088px -1.875px rgba(0,0,0,0.07),0px 4.78699px 4.78699px -2.8125px rgba(0,0,0,0.06),0px 15px 15px -3.75px rgba(0,0,0,0.03);
+  --shadow-float:0px 0.602187px 0.602187px -1.25px rgba(0,0,0,0.18),0px 2.288533px 2.288533px -2.5px rgba(0,0,0,0.16),0px 10px 10px -3.75px rgba(0,0,0,0.06);
+  --ease:cubic-bezier(0.44,0,0.56,1); --ease-spring:cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--white);color:var(--black);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.frame{max-width:1200px;margin:0 auto;border-left:1px solid var(--g-150);border-right:1px solid var(--g-150);background:var(--g-50);min-height:100vh;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:300;background:rgba(250,250,250,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:20px 0;}
+.nav-inner{display:flex;align-items:center;gap:32px;max-width:1200px;margin:0 auto;padding:0 48px;}
+nav a{font-size:13px;letter-spacing:0.01em;color:var(--g-500);text-decoration:none;transition:color .25s var(--ease);}
+nav a:hover,nav a.active{color:var(--black);}
+
+/* HERO */
+.hero{padding:70px 48px 56px;border-bottom:1px solid var(--g-150);}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--g-500);text-decoration:none;margin-bottom:40px;transition:gap .25s var(--ease),color .25s var(--ease);}
+.back:hover{gap:12px;color:var(--black);}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--g-150);border-radius:var(--r-pill);padding:8px 16px;font-size:13px;font-weight:500;color:var(--black);box-shadow:var(--shadow-float);margin-bottom:28px;}
+.hero-grid{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:center;}
+.hero h1{font-family:var(--font-display);font-size:clamp(40px,5vw,68px);font-weight:600;letter-spacing:-0.03em;line-height:1.02;margin-bottom:14px;}
+.role{font-family:var(--font-display);font-size:clamp(18px,2vw,24px);font-weight:600;letter-spacing:-0.02em;color:var(--bh);margin-bottom:20px;}
+.intro{font-size:17px;font-weight:500;letter-spacing:-0.015em;line-height:1.6;color:var(--g-500);max-width:560px;}
+.intro strong{color:var(--black);font-weight:600;}
+.logo-card{background:linear-gradient(140deg,#fff,var(--g-100));border:1px solid var(--g-150);border-radius:var(--r-card);box-shadow:var(--shadow-card);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:36px;}
+.logo-card img{max-width:78%;height:auto;}
+
+/* META */
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--g-150);border-bottom:1px solid var(--g-150);}
+.meta div{background:var(--g-50);padding:26px 28px;}
+.meta .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--g-500);margin-bottom:8px;}
+.meta .v{font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--black);}
+
+/* SECTION */
+.sec{padding:70px 48px;border-bottom:1px solid var(--g-150);}
+.eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--g-500);margin-bottom:14px;}
+.sec h2{font-family:var(--font-display);font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-0.03em;line-height:1.1;margin-bottom:36px;}
+
+/* responsibilities */
+.resp{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.resp li{display:flex;gap:16px;background:var(--white);border:1px solid var(--g-150);border-radius:var(--r-card);box-shadow:var(--shadow-card);padding:22px 24px;align-items:flex-start;}
+.resp .n{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--bh);flex-shrink:0;width:26px;line-height:1.5;}
+.resp p{font-size:15px;font-weight:450;letter-spacing:-0.01em;line-height:1.55;color:var(--g-600);}
+.resp p b{color:var(--black);font-weight:600;}
+
+/* tools */
+.tools{display:flex;flex-wrap:wrap;gap:10px;}
+.tool{background:var(--white);border:1px solid var(--g-150);border-radius:var(--r-pill);padding:10px 18px;font-size:14px;font-weight:500;letter-spacing:-0.01em;color:var(--black);box-shadow:var(--shadow-card);}
+
+/* footer */
+.foot{padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.foot a.cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#2b2b2b,#000);color:#fff;font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:-0.01em;text-decoration:none;border-radius:var(--r-pill);padding:14px 26px;transition:transform .3s var(--ease-spring);}
+.foot a.cta:hover{transform:translateY(-2px);}
+.foot .muted{font-size:13px;color:var(--g-500);}
+
+/* ambient accent nell'hero */
+.hero{position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-140px;right:-90px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(0,131,63,0.10),transparent 70%);pointer-events:none;}
+.hero>*{position:relative;z-index:1;}
+
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,131,63,.4);}50%{box-shadow:0 0 0 7px rgba(0,131,63,0);}}
+
+/* timeline periodo */
+.timeline{display:flex;align-items:center;gap:18px;margin-top:30px;max-width:520px;}
+.tl-end{display:flex;flex-direction:column;gap:3px;}
+.tl-end.right{align-items:flex-end;text-align:right;}
+.tl-date{font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--black);}
+.tl-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--g-500);}
+.tl-track{flex:1;display:flex;align-items:center;}
+.tl-line{flex:1;height:2px;background:linear-gradient(90deg,rgba(0,131,63,.3),var(--bh));border-radius:2px;}
+.tl-node{width:12px;height:12px;border-radius:50%;background:var(--white);border:2px solid var(--bh);flex-shrink:0;}
+.tl-node.now{background:var(--bh);border-color:var(--bh);animation:pulse 2.2s ease-in-out infinite;}
+
+/* highlights */
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.hl-card{background:var(--white);border:1px solid var(--g-150);border-radius:var(--r-card);box-shadow:var(--shadow-card);padding:28px;transition:transform .3s var(--ease-spring),box-shadow .3s var(--ease-spring);}
+.hl-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card),0 24px 44px -20px rgba(0,0,0,.22);}
+.hl-card.accent{background:radial-gradient(120% 130% at 80% 10%,#0c5236,#062017);border-color:transparent;color:#fff;}
+.hl-ico{width:48px;height:48px;border-radius:13px;background:var(--g-100);display:flex;align-items:center;justify-content:center;color:var(--bh);margin-bottom:20px;}
+.hl-card.accent .hl-ico{background:rgba(255,255,255,.12);color:#fff;}
+.hl-title{font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:-0.02em;margin-bottom:8px;color:var(--black);}
+.hl-card.accent .hl-title{color:#fff;}
+.hl-card p{font-size:14px;line-height:1.55;color:var(--g-600);}
+.hl-card.accent p{color:rgba(255,255,255,.72);}
+
+@media(max-width:960px){
+  .nav-inner,.hero,.sec,.foot{padding-left:28px;padding-right:28px;}
+  .hero-grid{grid-template-columns:1fr;}
+  .logo-card{max-width:320px;}
+  .meta{grid-template-columns:1fr 1fr;}
+  .resp{grid-template-columns:1fr;}
+  .hl-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <a href="work.html" class="active">Work</a>
+      <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <a class="back" href="work.html">← Back to work</a>
+    <div class="hero-grid">
+      <div>
+        <span class="badge">Experience</span>
+        <h1>Baker Hughes</h1>
+        <div class="role">Project Controls &amp; Cost Analyst</div>
+        <p class="intro">
+          <strong>Project controls and cost analysis across major and minor energy projects.</strong>
+          I supported the full project lifecycle — building reporting, tracking budgets and resources, and automating
+          workflows for Project Management, Engineering, Finance and Operations teams.
+        </p>
+
+        <div class="timeline">
+          <div class="tl-end">
+            <span class="tl-date">Jun 2025</span>
+            <span class="tl-label">Joined</span>
+          </div>
+          <div class="tl-track">
+            <span class="tl-node"></span>
+            <span class="tl-line"></span>
+            <span class="tl-node now"></span>
+          </div>
+          <div class="tl-end right">
+            <span class="tl-date">Present</span>
+            <span class="tl-label">Current role</span>
+          </div>
+        </div>
+      </div>
+      <div class="logo-card">
+        <img src="images/baker-hughes.png" alt="Baker Hughes">
+      </div>
+    </div>
+  </section>
+
+  <!-- META -->
+  <div class="meta">
+    <div><div class="k">Period</div><div class="v">Jun 2025 — Present</div></div>
+    <div><div class="k">Role</div><div class="v">Project Controls Analyst</div></div>
+    <div><div class="k">Focus</div><div class="v">Cost &amp; KPI Reporting</div></div>
+    <div><div class="k">Tools</div><div class="v">Excel · VBA · MS Project</div></div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <section class="sec">
+    <div class="eyebrow">// Impact</div>
+    <h2>Highlights</h2>
+    <div class="hl-grid">
+      <div class="hl-card accent">
+        <div class="hl-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+        <div class="hl-title">Workflow automation</div>
+        <p>Completed several custom <b style="color:#fff">VBA macros</b> that automated repetitive tasks and measurably improved daily work processes across departments.</p>
+      </div>
+      <div class="hl-card">
+        <div class="hl-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg></div>
+        <div class="hl-title">Cost &amp; KPI visibility</div>
+        <p>Advanced Excel reporting with Pivot Tables and Power Query, giving clear tracking of costs, resources and KPIs.</p>
+      </div>
+      <div class="hl-card">
+        <div class="hl-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg></div>
+        <div class="hl-title">Multi-project control</div>
+        <p>Planning and progress tracking in Microsoft Project across multiple concurrent projects, keeping timelines on track.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPONSIBILITIES -->
+  <section class="sec">
+    <div class="eyebrow">// What I did</div>
+    <h2>Responsibilities</h2>
+    <ul class="resp">
+      <li><span class="n">01</span><p><b>Project lifecycle support</b> — from initial concept to final delivery, on both major and minor projects.</p></li>
+      <li><span class="n">02</span><p><b>Advanced Excel reporting</b> — Pivot Tables, nested formulas, VLOOKUP and Power Query to track KPIs, resource usage and project costs.</p></li>
+      <li><span class="n">03</span><p><b>Cost &amp; resource control</b> — monitoring actual costs, planned costs and resource allocation across multiple concurrent projects.</p></li>
+      <li><span class="n">04</span><p><b>Project reviews &amp; stakeholders</b> — participation in review meetings, cross-functional team calls and meetings with engineering managers and stakeholders.</p></li>
+      <li><span class="n">05</span><p><b>Enterprise Architecture support</b> — creation and management of EA, including system integration checks and technical troubleshooting.</p></li>
+      <li><span class="n">06</span><p><b>Cross-team collaboration</b> — with Project Management, Engineering, Finance and Operations to ensure project alignment and budget compliance.</p></li>
+      <li><span class="n">07</span><p><b>Custom cost reports</b> — built on request by Project Managers to provide detailed cost tracking for the departments involved.</p></li>
+      <li><span class="n">08</span><p><b>VBA automation</b> — custom macros to automate repetitive workflows and streamline operational efficiency across departments.</p></li>
+      <li><span class="n">09</span><p><b>Microsoft Project planning</b> — creation and maintenance of tasks and projects, with weekly progress calls to track advancement and ensure timeline adherence.</p></li>
+    </ul>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="sec">
+    <div class="eyebrow">// Toolkit</div>
+    <h2>Tools &amp; skills</h2>
+    <div class="tools">
+      <span class="tool">Excel (Pivot · Power Query)</span>
+      <span class="tool">VBA Macros</span>
+      <span class="tool">Microsoft Project</span>
+      <span class="tool">KPI Reporting</span>
+      <span class="tool">Cost Control</span>
+      <span class="tool">Resource Planning</span>
+      <span class="tool">Enterprise Architecture</span>
+      <span class="tool">Stakeholder Management</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <span class="muted">© 2025 Tommaso Pacini — Data &amp; Design</span>
+    <a class="cta" href="work.html">← Back to all work</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -6,7 +6,9 @@
 <title>Tommaso Pacini — Digital Works</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F0EEE6;
@@ -19,8 +21,8 @@
     --border: #E0DED8;
     --purple: #7B6EE8;
     --purple-light: #AFA9EC;
-    --font-body: 'DM Sans', sans-serif;
-    --font-display: 'DM Serif Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-display: 'InterDisplay', 'Inter Display', 'Inter', sans-serif;
     --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
   }
 
@@ -650,6 +652,15 @@
     .cs-meta-grid { grid-template-columns: 1fr 1fr; }
     .cs-outcomes { grid-template-columns: 1fr; }
     .cs-gallery { grid-template-columns: 1fr; }
+  }
+
+  /* ── Unified typography (Inter) — display headings come work.html ── */
+  .hero h1, .hero h1 .name,
+  .stat-num,
+  .experience h2, .toolkit h2, .beyond h2, footer h2 {
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: -0.02em;
   }
 </style>
 </head>

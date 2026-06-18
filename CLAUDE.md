@@ -32,8 +32,9 @@ Tutte le nuove pagine usano il NUOVO design system qui sotto.
   --text-secondary: #6B6880;    /* corpo testo, descrizioni */
   --text-muted: #9896A8;        /* label, meta info, placeholder */
   --border: #D6D4E8;            /* bordi card e divisori */
-  --font-display: 'DM Serif Display', serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'InterDisplay', 'Inter Display', 'Inter', sans-serif;  /* AGGIORNATO: era DM Serif Display */
+  --font-body: 'Inter', sans-serif;                                       /* AGGIORNATO: era DM Sans */
+  --font-mono: 'Fragment Mono', monospace;                                /* label/eyebrow */
   --radius-card: 20px;
   --radius-pill: 100px;
   --radius-sm: 8px;
@@ -189,8 +190,8 @@ export function NomeComponente(): Override {
 
 ## Regole Claude — Errori da non ripetere
 
-- NON usare Inter, Roboto, Arial, Space Grotesk — usare DM Sans + DM Serif Display
-- NON usare sfondo bianco puro come bg pagina — usare #ECEAF4
+- FONT (v3 — aggiornato): tutto il sito usa Inter + Inter Display + Fragment Mono. NON reintrodurre DM Sans/DM Serif né Roboto/Arial/Space Grotesk. I display heading sono Inter Display weight 600, non-italic.
+- NOTA: le sezioni "tipografia DM Sans/Serif" più sotto in questo file sono storiche (design v2 lavanda) e superate dal sistema Inter su index.html / work.html / ets-case-study.html / baker-hughes.html / celine-gucci.html
 - NON usare font-weight > 500
 - NON aggiungere ombre decorative pesanti — solo box-shadow leggero su hover card
 - NON usare colori accentuati fuori dalla palette viola (no rossi, verdi brillanti)
