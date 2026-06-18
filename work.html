@@ -1114,18 +1114,94 @@ footer {
 /* ════════════════════════════════════════════
    RESPONSIVE
 ═════════════════════════════════════════════ */
+/* ════════════════════════════════════════════
+   CLOSING / CONTACT — mobile-first
+═════════════════════════════════════════════ */
+.contact {
+  background: radial-gradient(120% 120% at 50% 0%, #1c1c1c 0%, #000 62%);
+  color: #fff;
+  padding: 100px 48px;
+  border-top: 1px solid var(--g-150);
+}
+.contact-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.contact-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--r-pill);
+  padding: 8px 16px;
+  font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 26px;
+}
+.contact-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #21b30b; flex-shrink: 0;
+  animation: contact-pulse 2.2s ease-in-out infinite;
+}
+@keyframes contact-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(33,179,11,0.4); }
+  50%     { box-shadow: 0 0 0 6px rgba(33,179,11,0); }
+}
+.contact-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 7vw, 62px);
+  font-weight: 600; letter-spacing: -0.03em; line-height: 1.03;
+  margin-bottom: 18px;
+}
+.contact-sub {
+  font-size: 17px; line-height: 1.6;
+  color: rgba(255,255,255,0.55);
+  max-width: 480px; margin: 0 auto 36px;
+}
+.contact-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.contact-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  border-radius: var(--r-pill);
+  padding: 15px 26px;
+  font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease-spring), background 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.contact-btn.primary { background: #fff; color: #000; }
+.contact-btn.primary:hover { transform: translateY(-2px); }
+.contact-btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.22); }
+.contact-btn.ghost:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.5); }
+
 @media (max-width: 1080px) {
   .hero { grid-template-columns: 1fr; padding: 48px 32px 40px; min-height: auto; }
   .nav-inner { padding: 0 32px; }
   .hero-right { height: 420px; }
   .shot { width: 360px; }
-  .services, .about-grid, .pricing { grid-template-columns: 1fr; }
-  .services, .about, .pricing { padding: 80px 32px; }
+  .services, .about-grid { grid-template-columns: 1fr; }
+  .services, .about { padding: 80px 32px; }
   .work { padding: 40px 32px 80px; }
   .work-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
-  .final-cta { padding: 90px 32px; }
+  .contact { padding: 90px 32px; }
   footer { flex-direction: column; gap: 18px; padding: 32px; }
+}
+
+@media (max-width: 640px) {
+  .nav-inner { padding: 0 20px; }
+  nav { padding: 16px 0; }
+  .hero { padding: 36px 20px 28px; }
+  .hero h1 { font-size: 40px; }
+  .hero-sub { font-size: 16px; }
+  .hero-right { display: none; }            /* lo stack decorativo si nasconde su telefono */
+  .btn-row { width: 100%; flex-direction: column; align-items: stretch; }
+  .btn-dark, .btn-ghost { justify-content: center; }
+  .work, .services, .about { padding-left: 20px; padding-right: 20px; }
+  .services { padding-top: 64px; padding-bottom: 64px; }
+  .about { padding-top: 64px; padding-bottom: 64px; }
+  .sec-h2 { font-size: clamp(30px, 9vw, 40px); }
+  .logos { padding-bottom: 36px; }
+  .contact { padding: 64px 22px; }
+  .contact-actions { flex-direction: column; }
+  .contact-btn { width: 100%; padding: 16px; font-size: 16px; }
+  .speak { display: none; }                 /* evita overlap col contenuto su mobile */
+  footer { padding: 28px 20px; align-items: flex-start; }
+  .foot-links { flex-wrap: wrap; gap: 14px 20px; }
 }
 </style>
 </head>
@@ -1393,67 +1469,27 @@ footer {
   </div>
 </section>
 
-<!-- ════════ 5 · PRICING + DARK CARD ════════ -->
-<section class="pricing" id="pricing">
-
-  <div>
-    <div class="dark-card">
-      <span class="dark-pill">Pause or cancel anytime</span>
-      <div class="dark-headline">
-        <span class="soft">Subscription design services</span><br>
-        <span class="hard">for brands who move fast.</span>
-      </div>
-    </div>
-
-    <div class="pricing-left-bottom">
-      <div class="slots-badge"><span class="avail-dot"></span>Slots available</div>
-      <h2 class="hire-h2">Hire me today</h2>
-      <p class="hire-sub">Skip the agency markup and work directly with an experienced builder.</p>
-    </div>
-  </div>
-
-  <div class="price-card rv">
-    <div class="price-title">Unlimited Design</div>
-    <p class="price-desc">One flat monthly rate for unlimited design requests.</p>
-    <p class="price-desc price-desc-soft">Ideal for ongoing design requirements.</p>
-
-    <hr class="price-hr">
-
-    <div class="price-amount">
-      <span class="price-num">$3,000</span>
-      <span class="price-per">/ month</span>
-    </div>
-
-    <ul class="price-checks">
-      <li>No contracts or commitments</li>
-      <li>Pause or cancel anytime</li>
-      <li>Multiple brands</li>
-      <li>Unlimited requests</li>
-      <li>Avg 48 hour turnaround</li>
-      <li>Data + design in one role</li>
-    </ul>
-
-    <div class="price-cta-row">
-      <a class="btn-dark" href="mailto:tommasoopacinii@gmail.com" style="padding:14px 28px;">
-        Get Started
+<!-- ════════ 5 · CLOSING / CONTACT (mobile-first) ════════ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="contact-badge rv"><span class="contact-dot"></span>Available for projects · Data &amp; AI</span>
+    <h2 class="contact-h2 rv">Let's build<br>something real.</h2>
+    <p class="contact-sub rv">Data, BI and AI-assisted products — from dashboards to full landing pages. Send a message, I usually reply within 24 hours.</p>
+    <div class="contact-actions rv">
+      <a class="contact-btn primary" href="mailto:tommasoopacinii@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Get in touch
       </a>
-      <span class="stripe-mark">stripe</span>
+      <a class="contact-btn ghost" href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 10v7M7 7v.01M12 10v7M12 13a3 3 0 0 1 6 0v4"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-btn ghost" href="files/Tommaso-Pacini-CV.pdf" target="_blank" rel="noopener" download="Tommaso-Pacini-CV.pdf">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+        Download CV
+      </a>
     </div>
   </div>
-
-</section>
-
-<!-- ════════ 6 · FINAL CTA + FOOTER ════════ -->
-<section class="final-cta">
-  <h2 class="sec-h2 rv">
-    <span class="line-soft">Let's build</span>
-    <span class="line-hard"> something real.</span>
-  </h2>
-  <p class="final-sub rv">Have a project in mind? Drop me an email — I usually reply within 24 hours.</p>
-  <a class="btn-dark rv" href="mailto:tommasoopacinii@gmail.com">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-    Get in touch
-  </a>
 </section>
 
 <footer>
