@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,8 +31,9 @@ a{color:inherit;text-decoration:none;}
 .page-frame{max-width:1200px;margin:0 auto;border-left:1px solid var(--line);border-right:1px solid var(--line);background:var(--bg);min-height:100vh;}
 .wrap{max-width:1200px;margin:0 auto;padding-left:48px;padding-right:48px;}
 
-/* back to work */
-.back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;margin-bottom:26px;transition:gap .25s,color .25s;}
+/* back to work (riga in alto) */
+.back-row{padding-top:24px;}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:gap .25s,color .25s;}
 .back:hover{gap:12px;color:var(--ink);}
 
 /* nav — identica a work.html (sticky minimale, 1200, 13px Inter) */
@@ -63,7 +64,7 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0.88);backdrop-
 .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;}
 
 /* hero */
-.hero{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;min-height:calc(100vh - 60px);padding-top:36px;padding-bottom:40px;}
+.hero{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;min-height:calc(100vh - 130px);padding-top:24px;padding-bottom:40px;}
 .pill{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 18px;box-shadow:0 4px 18px rgba(0,0,0,.05);}
 .pill .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(90,168,50,.16);}
 .pill span.t{font-size:14px;font-weight:600;}
@@ -166,32 +167,34 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0.88);backdrop-
   </div>
 </nav>
 
+<!-- back to work (in alto, sopra la hero) -->
+<div class="wrap back-row"><a class="back" href="work.html">← Back to work</a></div>
+
 <!-- ===================== HERO ===================== -->
 <section class="wrap hero">
   <div>
-    <a class="back" href="work.html">← Back to work</a>
     <div class="pill">
       <span class="dot"></span>
-      <span class="t">Case study · come ho costruito ETS</span>
+      <span class="t">Case study · how I built ETS</span>
     </div>
 
     <h1 class="h1">
-      <span class="tg">Ricerca, design &amp;</span><br>
+      <span class="tg">Research, design &amp;</span><br>
       <span class="ti">vibe coding.</span>
     </h1>
 
     <p class="lead">
-      <b>Sono Tommaso Pacini — Data Engineer &amp; Digital Builder.</b>
-      Questo è il percorso di <b>ETS</b>: dalla ricerca UX alla prototipazione in Figma, fino allo sviluppo assistito dall'AI e al deploy.
+      <b>I'm Tommaso Pacini — Data Engineer &amp; Digital Builder.</b>
+      This is the journey of <b>ETS</b>: from UX research to Figma prototyping, through AI-assisted development and deploy.
     </p>
 
     <div class="hero-cta">
       <a class="btn btn-ink" href="mailto:tommasoopacinii@gmail.com">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="m3.5 7.5 8.5 6 8.5-6"></path></svg>
-        Contattami
+        Get in touch
       </a>
       <a class="btn btn-outline" href="https://www.etswind.com" target="_blank" rel="noopener">
-        Vai al sito
+        Visit the site
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
       </a>
     </div>
@@ -208,46 +211,46 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0.88);backdrop-
 
 <!-- ===================== PROCESS BAR ===================== -->
 <section class="wrap process">
-  <div class="pcard"><div class="n">01</div><div class="t">UX / UI</div><div class="d">Ricerca &amp; wireframe</div></div>
-  <div class="pcard"><div class="n">02</div><div class="t">Figma</div><div class="d">Mock-up &amp; prototipo</div></div>
-  <div class="pcard"><div class="n">03</div><div class="t">Vibe Coding</div><div class="d">Build con l'AI</div></div>
-  <div class="pcard"><div class="n">04</div><div class="t">Deploy</div><div class="d">Online &amp; verifica</div></div>
+  <div class="pcard"><div class="n">01</div><div class="t">UX / UI</div><div class="d">Research &amp; wireframe</div></div>
+  <div class="pcard"><div class="n">02</div><div class="t">Figma</div><div class="d">Mock-up &amp; prototype</div></div>
+  <div class="pcard"><div class="n">03</div><div class="t">Vibe Coding</div><div class="d">Build with AI</div></div>
+  <div class="pcard"><div class="n">04</div><div class="t">Deploy</div><div class="d">Live &amp; checks</div></div>
 </section>
 
 <!-- ===================== 01 UX/UI ===================== -->
 <section class="wrap section">
   <div class="eyebrow"><span class="dot"></span>01 — UX / UI</div>
-  <h2 class="h2" style="margin-top:18px;"><span class="tg">Ricerca &amp;</span> <span class="ti">decisioni UX.</span></h2>
+  <h2 class="h2" style="margin-top:18px;"><span class="tg">Research &amp;</span> <span class="ti">UX decisions.</span></h2>
   <p class="body" style="margin-top:22px;max-width:760px;">
-    Prima del pixel, la <b>ricerca</b>. Ho analizzato portfolio e landing di riferimento, definito l'architettura dell'informazione e costruito i wireframe per fissare gerarchia dei contenuti, griglia e flusso di navigazione.
+    Before pixels, <b>research</b>. I analysed reference portfolios and landing pages, defined the information architecture and built wireframes to lock in content hierarchy, grid and navigation flow.
   </p>
   <div class="feat-grid" style="max-width:760px;">
-    <div class="feat"><span class="ck">✓</span><span class="l">Analisi competitor e benchmark</span></div>
-    <div class="feat"><span class="ck">✓</span><span class="l">Architettura dell'informazione</span></div>
-    <div class="feat"><span class="ck">✓</span><span class="l">Wireframe e gerarchia contenuti</span></div>
-    <div class="feat"><span class="ck">✓</span><span class="l">Sistema di griglia e tipografia</span></div>
+    <div class="feat"><span class="ck">✓</span><span class="l">Competitor analysis &amp; benchmark</span></div>
+    <div class="feat"><span class="ck">✓</span><span class="l">Information architecture</span></div>
+    <div class="feat"><span class="ck">✓</span><span class="l">Wireframes &amp; content hierarchy</span></div>
+    <div class="feat"><span class="ck">✓</span><span class="l">Grid system &amp; typography</span></div>
   </div>
   <!-- REPLACE: screenshot wireframe -->
   <div class="ph" style="margin-top:18px;aspect-ratio:21/9;overflow:hidden;padding:0;">
     <img src="images/Hero.png" alt="ETS — hero" style="width:100%;height:100%;object-fit:cover;display:block;"
          onload="this.parentElement.style.border='1px solid var(--line)';this.parentElement.style.background='var(--card)';"
-         onerror="this.remove();this.parentElement.textContent='wireframe — gerarchia &amp; griglia';">
+         onerror="this.remove();this.parentElement.textContent='wireframe — hierarchy &amp; grid';">
   </div>
 </section>
 
 <!-- ===================== 02 FIGMA ===================== -->
 <section class="wrap section">
-  <div class="eyebrow"><span class="dot"></span>02 — Prototipazione in Figma</div>
+  <div class="eyebrow"><span class="dot"></span>02 — Figma prototyping</div>
   <div class="grid-2 g-115" style="margin-top:18px;">
     <div>
-      <h2 class="h2"><span class="ti">Dal wireframe al</span> <span class="tg">mock-up in Figma.</span></h2>
+      <h2 class="h2"><span class="ti">From wireframe to</span> <span class="tg">Figma mock-up.</span></h2>
       <p class="body" style="margin-top:24px;max-width:540px;">
-        In Figma ho trasformato i wireframe in un <b>mock-up ad alta fedeltà</b>: componenti riutilizzabili, auto-layout, stile tipografico e di colore. Un prototipo interattivo da presentare e validare prima di scrivere codice.
+        In Figma I turned the wireframes into a <b>high-fidelity mock-up</b>: reusable components, auto-layout, typography and color styles. An interactive prototype to present and validate before writing code.
       </p>
       <div class="chips" style="margin-top:24px;">
-        <span class="chip">Componenti</span>
+        <span class="chip">Components</span>
         <span class="chip">Auto-layout</span>
-        <span class="chip">Prototipo interattivo</span>
+        <span class="chip">Interactive prototype</span>
       </div>
     </div>
     <div class="ph" style="aspect-ratio:4/3;border-radius:16px;box-shadow:0 24px 48px rgba(0,0,0,.06);border:1px solid var(--line);background:var(--card);">
@@ -261,9 +264,9 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0.88);backdrop-
   <div class="grid-2 g-085">
     <div>
       <div class="eyebrow"><span class="dot"></span>03 — Vibe Coding</div>
-      <h2 class="h2" style="margin-top:18px;"><span class="tg">Vibe coding</span><br><span class="ti">con l'AI.</span></h2>
+      <h2 class="h2" style="margin-top:18px;"><span class="tg">Vibe coding</span><br><span class="ti">with AI.</span></h2>
       <p class="body" style="margin-top:24px;">
-        Dal mock-up al sito reale parlando in linguaggio naturale: descrivo l'intento, l'AI genera i componenti, io <b>itero e rifinisco</b>. Meno boilerplate, più tempo sulle scelte di design.
+        From mock-up to a real site through natural language: I describe the intent, the AI generates the components, I <b>iterate and refine</b>. Less boilerplate, more time on design decisions.
       </p>
     </div>
     <div>
@@ -275,16 +278,16 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0.88);backdrop-
           <span class="label">vibe-coding · session</span>
         </div>
         <div class="term-body">
-          <div><span class="p">›</span> "Claude, replica il mio mock-up Figma in codice, fedele al design"</div>
-          <div class="r">↳ Claude Code: generati Hero, sezioni e componenti dal mock-up…</div>
-          <div style="margin-top:14px;"><span class="p">›</span> "Rendi tutto responsive e rifinisci le spaziature"</div>
-          <div class="r">↳ aggiornato layout · <span class="ok">deploy ✓</span></div>
+          <div><span class="p">›</span> "Claude, replicate my Figma mock-up in code, faithful to the design"</div>
+          <div class="r">↳ Claude Code: generated Hero, sections and components from the mock-up…</div>
+          <div style="margin-top:14px;"><span class="p">›</span> "Make it responsive and refine the spacing"</div>
+          <div class="r">↳ updated layout · <span class="ok">deploy ✓</span></div>
         </div>
       </div>
       <div class="chips" style="margin-top:16px;">
-        <span class="chip">Prompt → componente</span>
-        <span class="chip">Iterazione veloce</span>
-        <span class="chip">Fedele al mock-up</span>
+        <span class="chip">Prompt → component</span>
+        <span class="chip">Fast iteration</span>
+        <span class="chip">Faithful to the mock-up</span>
       </div>
     </div>
   </div>
@@ -292,14 +295,14 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0.88);backdrop-
 
 <!-- ===================== 04 WORKFLOW ===================== -->
 <section class="wrap section">
-  <div class="eyebrow"><span class="dot"></span>04 — Il workflow</div>
-  <h2 class="h2" style="margin:18px 0 6px;"><span class="tg">Il flusso</span> <span class="ti">che mi ha aiutato.</span></h2>
-  <p class="body" style="font-size:17px;max-width:560px;margin:0 0 30px;">Un percorso lineare, dall'idea alla messa online — ripetibile per ogni progetto.</p>
+  <div class="eyebrow"><span class="dot"></span>04 — The workflow</div>
+  <h2 class="h2" style="margin:18px 0 6px;"><span class="tg">The flow</span> <span class="ti">that helped me.</span></h2>
+  <p class="body" style="font-size:17px;max-width:560px;margin:0 0 30px;">A linear path, from idea to going live — repeatable for every project.</p>
   <div class="workflow">
-    <div class="wcard"><div class="wbadge">01</div><div class="t">Ricerca</div><div class="d">Benchmark, obiettivi e contenuti chiave.</div></div>
-    <div class="wcard"><div class="wbadge">02</div><div class="t">Figma</div><div class="d">Wireframe → mock-up ad alta fedeltà.</div></div>
-    <div class="wcard"><div class="wbadge">03</div><div class="t">Vibe coding</div><div class="d">Build assistito dall'AI dal mock-up.</div></div>
-    <div class="wcard"><div class="wbadge">04</div><div class="t">Deploy</div><div class="d">Messa online e verifica finale.</div></div>
+    <div class="wcard"><div class="wbadge">01</div><div class="t">Research</div><div class="d">Benchmark, goals and key content.</div></div>
+    <div class="wcard"><div class="wbadge">02</div><div class="t">Figma</div><div class="d">Wireframe → high-fidelity mock-up.</div></div>
+    <div class="wcard"><div class="wbadge">03</div><div class="t">Vibe coding</div><div class="d">AI-assisted build from the mock-up.</div></div>
+    <div class="wcard"><div class="wbadge">04</div><div class="t">Deploy</div><div class="d">Going live and final checks.</div></div>
   </div>
 </section>
 
@@ -307,12 +310,12 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0.88);backdrop-
 <section class="wrap cta-sec">
   <div class="cta-band">
     <div>
-      <h2><span class="m">Vuoi vedere</span> il risultato?</h2>
-      <p>Dalla ricerca al deploy — online e pronto.</p>
+      <h2><span class="m">Want to see</span> the result?</h2>
+      <p>From research to deploy — live and ready.</p>
     </div>
     <div class="cta-actions">
-      <a class="cta-white" href="https://www.etswind.com" target="_blank" rel="noopener">Visita ETS live →</a>
-      <a class="cta-ghost" href="mailto:tommasoopacinii@gmail.com">Contattami</a>
+      <a class="cta-white" href="https://www.etswind.com" target="_blank" rel="noopener">Visit ETS live →</a>
+      <a class="cta-ghost" href="mailto:tommasoopacinii@gmail.com">Get in touch</a>
     </div>
   </div>
   <div class="foot-row">
