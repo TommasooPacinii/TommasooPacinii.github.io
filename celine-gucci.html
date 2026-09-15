@@ -12,7 +12,7 @@
 <style>
 :root {
   --white:#fff; --g-50:#fafafa; --g-100:#f7f7f7; --g-150:#f0f0f0; --g-200:#dedede;
-  --g-300:#b8b8b8; --g-500:#828282; --g-600:#545454; --g-800:#2b2b2b; --black:#000;
+  --g-300:#949494; --g-500:#6f6f6f; --g-600:#545454; --g-800:#2b2b2b; --black:#000;
   --accent:#1a1a1a;
   --font-display:'InterDisplay','Inter Display','Inter',sans-serif;
   --font-body:'Inter',sans-serif; --font-mono:'Fragment Mono',monospace;
@@ -101,6 +101,9 @@ nav a:hover,nav a.active{color:var(--black);}
   .meta{grid-template-columns:1fr 1fr;}
   .resp{grid-template-columns:1fr;}
 }
+/* ── a11y (apple-design): focus visibile da tastiera + reduced motion ── */
+a:focus-visible,button:focus-visible,.btn:focus-visible,.btn-dark:focus-visible,.btn-ghost:focus-visible,.contact-btn:focus-visible,.cta-white:focus-visible,.cta-ghost:focus-visible,[tabindex]:focus-visible{outline:2px solid #1a6dff;outline-offset:3px;border-radius:6px;}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}}
 </style>
 </head>
 <body>

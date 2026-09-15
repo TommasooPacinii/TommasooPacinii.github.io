@@ -16,7 +16,7 @@
     --bg-dark: #111111;
     --text-primary: #111111;
     --text-secondary: #555555;
-    --text-muted: #999999;
+    --text-muted: #6a6a6a;
     --accent: #C8A96E;
     --border: #E0DED8;
     --purple: #7B6EE8;
@@ -662,6 +662,9 @@
     font-style: normal;
     letter-spacing: -0.02em;
   }
+/* ── a11y (apple-design): focus visibile da tastiera + reduced motion ── */
+a:focus-visible,button:focus-visible,.btn:focus-visible,.btn-dark:focus-visible,.btn-ghost:focus-visible,.contact-btn:focus-visible,.cta-white:focus-visible,.cta-ghost:focus-visible,[tabindex]:focus-visible{outline:2px solid #1a6dff;outline-offset:3px;border-radius:6px;}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}}
 </style>
 </head>
 <body>
