@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desktop — Tommaso Pacini</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<style>
+:root{
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --win:#1f2024; --win-bar:#2a2b30; --win-line:#3a3b42; --txt:#e9e9ee; --txt-dim:#9a9ba3;
+  --sel:rgba(90,150,255,.28); --sel-line:rgba(120,170,255,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:var(--font);color:var(--txt);overflow:hidden;
+  -webkit-font-smoothing:antialiased;user-select:none;
+  background:
+    url('images/desktop-bg.jpg'),
+    radial-gradient(1200px 820px at 72% 18%, rgba(46,74,120,.45), transparent 60%),
+    radial-gradient(1000px 760px at 16% 95%, rgba(80,46,110,.40), transparent 60%),
+    linear-gradient(165deg,#0c0d11 0%,#15171e 55%,#0a0b0e 100%);
+  background-size:cover,auto,auto,auto;
+  background-position:center;
+}
+
+/* MENU BAR */
+.menubar{
+  position:fixed;top:0;left:0;right:0;height:30px;z-index:9000;
+  display:flex;align-items:center;gap:20px;padding:0 16px;
+  background:rgba(22,23,28,.55);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;
+}
+.menubar .apple{font-size:15px;}
+.menubar .mb-name{font-weight:600;}
+.menubar .mb-item{color:rgba(255,255,255,.82);}
+.menubar .mb-right{margin-left:auto;display:flex;align-items:center;gap:16px;color:rgba(255,255,255,.9);}
+.menubar .mb-right svg{display:block;opacity:.9;}
+.mb-clock{font-variant-numeric:tabular-nums;}
+
+/* DESKTOP */
+.desktop{position:fixed;inset:30px 0 0 0;overflow:hidden;}
+.hero-title{position:absolute;top:44px;left:48px;max-width:46%;pointer-events:none;z-index:1;}
+.hero-title h1{
+  font-size:clamp(44px,6vw,86px);font-weight:800;letter-spacing:-.04em;line-height:.92;
+  color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.4);
+}
+.hero-title h1 .dim{color:rgba(255,255,255,.42);}
+.hero-title p{margin-top:16px;font-size:15px;font-weight:500;color:rgba(255,255,255,.62);letter-spacing:-.01em;max-width:420px;}
+
+.doodle{position:absolute;pointer-events:none;opacity:.5;}
+.doodle path,.doodle line{stroke:#fff;stroke-width:1.6;fill:none;stroke-linecap:round;}
+.star{position:absolute;pointer-events:none;opacity:.55;}
+.star path{stroke:#fff;stroke-width:1.4;fill:none;}
+
+/* ICONE */
+.icon{
+  position:absolute;width:104px;display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:default;border-radius:10px;padding:8px 6px;z-index:2;
+}
+.icon:focus{outline:none;}
+.icon.sel{background:var(--sel);box-shadow:inset 0 0 0 1px var(--sel-line);}
+.icon .glyph{width:78px;height:62px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35));}
+.icon .thumb{width:62px;height:62px;border-radius:9px;overflow:hidden;background:#2a2b30;box-shadow:0 6px 14px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;}
+.icon .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.icon .lbl{font-size:12px;font-weight:500;color:#fff;text-align:center;line-height:1.25;max-width:100px;
+  text-shadow:0 1px 3px rgba(0,0,0,.8);padding:1px 6px;border-radius:5px;word-break:break-word;}
+.icon.sel .lbl{background:#2f6fe0;}
+
+/* FINDER WINDOW */
+.win{
+  position:absolute;width:760px;max-width:92vw;background:var(--win);
+  border-radius:12px;overflow:hidden;z-index:50;
+  box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.07);
+  display:flex;flex-direction:column;
+}
+.win-bar{height:42px;display:flex;align-items:center;gap:8px;padding:0 14px;background:var(--win-bar);
+  border-bottom:1px solid var(--win-line);cursor:grab;}
+.win-bar.drag{cursor:grabbing;}
+.tl{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.tl.r{background:#ff5f57;cursor:pointer;} .tl.y{background:#febc2e;} .tl.g{background:#28c840;}
+.win-title{flex:1;text-align:center;font-size:13px;font-weight:600;color:var(--txt);
+  display:flex;align-items:center;justify-content:center;gap:8px;}
+.win-count{font-size:12px;color:var(--txt-dim);font-weight:500;}
+.win-body{padding:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:20px 10px;max-height:60vh;overflow:auto;background:var(--win);}
+.fi{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;border-radius:8px;padding:8px 4px;
+  transition:background .15s;}
+.fi:hover{background:rgba(255,255,255,.05);}
+.fi .fi-th{width:92px;height:72px;border-radius:9px;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.07);position:relative;}
+.fi .fi-th img{width:100%;height:100%;object-fit:cover;}
+.fi .fi-play{position:absolute;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.55);
+  display:flex;align-items:center;justify-content:center;}
+.fi .fi-play svg{margin-left:2px;}
+.fi .fi-name{font-size:12px;color:var(--txt);text-align:center;line-height:1.25;max-width:116px;word-break:break-word;}
+.fi .fi-sub{font-size:10.5px;color:var(--txt-dim);}
+.empty{grid-column:1/-1;text-align:center;color:var(--txt-dim);font-size:13px;padding:30px;}
+
+/* DOCK */
+.dock{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:8000;
+  display:flex;align-items:flex-end;gap:12px;padding:8px 12px;border-radius:20px;
+  background:rgba(40,42,50,.5);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);
+  box-shadow:0 12px 40px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.1);}
+.dock a{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  font-size:24px;text-decoration:none;color:#fff;font-weight:700;transition:transform .18s cubic-bezier(.22,1,.36,1);
+  box-shadow:0 4px 10px rgba(0,0,0,.3);}
+.dock a:hover{transform:translateY(-10px) scale(1.12);}
+
+.hint{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);z-index:7000;
+  font-size:12px;color:rgba(255,255,255,.5);background:rgba(0,0,0,.3);padding:6px 14px;border-radius:100px;
+  backdrop-filter:blur(8px);transition:opacity .4s;}
+.backx{position:fixed;left:16px;bottom:16px;z-index:8500;font-size:12px;color:rgba(255,255,255,.55);
+  text-decoration:none;background:rgba(0,0,0,.3);padding:7px 14px;border-radius:100px;backdrop-filter:blur(8px);}
+.backx:hover{color:#fff;}
+
+a:focus-visible,[tabindex]:focus-visible{outline:2px solid #1a6dff;outline-offset:3px;border-radius:8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+
+/* MOBILE GUARD */
+.mobile-note{display:none;}
+@media (max-width:900px){
+  .menubar,.desktop,.dock,.hint,.backx{display:none!important;}
+  .mobile-note{display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;height:100vh;padding:32px;gap:18px;}
+  .mobile-note h2{font-size:26px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;}
+  .mobile-note p{font-size:15px;color:rgba(255,255,255,.6);max-width:320px;line-height:1.6;}
+  .mobile-note a{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;
+    font-weight:600;font-size:14px;text-decoration:none;border-radius:100px;padding:13px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="menubar">
+  <span class="apple">&#63743;</span>
+  <span class="mb-name">Tommaso Pacini</span>
+  <span class="mb-item">File</span>
+  <span class="mb-item">Edit</span>
+  <span class="mb-item">View</span>
+  <span class="mb-item">Go</span>
+  <span class="mb-item">Help</span>
+  <span class="mb-right">
+    <svg width="22" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1.5" width="19" height="9" rx="2.5" stroke="#fff" stroke-opacity=".8"/><rect x="2.5" y="3" width="13" height="6" rx="1" fill="#fff"/><rect x="21" y="4" width="2" height="4" rx="1" fill="#fff" fill-opacity=".8"/></svg>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="#fff"><path d="M8.5 2C5.5 2 2.9 3.2 1 5l1.3 1.4C3.9 4.9 6.1 4 8.5 4s4.6.9 6.2 2.4L16 5C14.1 3.2 11.5 2 8.5 2z" opacity=".9"/><path d="M8.5 6c-1.6 0-3 .6-4.1 1.6l1.4 1.5c.7-.7 1.6-1.1 2.7-1.1s2 .4 2.7 1.1l1.4-1.5C11.5 6.6 10.1 6 8.5 6z"/><circle cx="8.5" cy="10.5" r="1.3"/></svg>
+    <span class="mb-clock" id="clock">&mdash;</span>
+  </span>
+</div>
+
+<div class="desktop" id="desktop">
+  <div class="hero-title">
+    <h1><span class="dim">Creative</span><br>Desktop.</h1>
+    <p>Brand work, video edits and personal projects &mdash; double-click a folder to open it.</p>
+  </div>
+
+  <svg class="doodle" style="top:60px;left:38%;width:120px;height:90px;" viewBox="0 0 120 90"><path d="M8 70 C30 10 70 6 95 40 C110 60 100 80 70 80 C40 80 25 60 40 40"/></svg>
+  <svg class="star" style="top:120px;left:30%;width:26px;height:26px;" viewBox="0 0 24 24"><path d="M12 2 L13.5 10 L22 12 L13.5 14 L12 22 L10.5 14 L2 12 L10.5 10 Z"/></svg>
+  <svg class="star" style="bottom:120px;left:12%;width:30px;height:30px;" viewBox="0 0 24 24"><path d="M12 3 L12 21 M3 12 L21 12 M6 6 L18 18 M18 6 L6 18"/></svg>
+  <svg class="doodle" style="bottom:90px;right:30%;width:90px;height:70px;" viewBox="0 0 90 70"><path d="M6 40 C20 10 55 12 70 35 C78 48 70 62 50 60"/></svg>
+</div>
+
+<div class="dock">
+  <a href="work.html" title="Work" style="background:linear-gradient(145deg,#4a93f0,#2a6fd6);">&#128188;</a>
+  <a href="https://www.instagram.com/" target="_blank" rel="noopener" title="Instagram" style="background:linear-gradient(145deg,#f58529,#dd2a7b 50%,#8134af);">&#128247;</a>
+  <a href="https://www.youtube.com/" target="_blank" rel="noopener" title="YouTube" style="background:#ff3b30;">&#9654;</a>
+  <a href="mailto:tommasoopacinii@gmail.com" title="Mail" style="background:linear-gradient(145deg,#3aa0ff,#1e6fe0);">&#9993;</a>
+  <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank" rel="noopener" title="LinkedIn" style="background:#0a66c2;">in</a>
+</div>
+
+<div class="hint" id="hint">Tip: double-click a folder &middot; drag icons around &middot; red dot closes a window</div>
+<a class="backx" href="work.html">&larr; Back to portfolio</a>
+
+<div class="mobile-note">
+  <h2>This desktop is best on a bigger screen</h2>
+  <p>The macOS-style playground is designed for desktop. A mobile version is coming soon.</p>
+  <a href="work.html">&larr; Back to portfolio</a>
+</div>
+
+<script>
+function tick(){
+  var d=new Date();
+  var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var ms=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var h=d.getHours(), m=String(d.getMinutes()).padStart(2,'0');
+  var ap=h>=12?'PM':'AM'; h=h%12||12;
+  var el=document.getElementById('clock');
+  if(el) el.textContent=days[d.getDay()]+' '+d.getDate()+' '+ms[d.getMonth()]+'  '+h+':'+m+' '+ap;
+}
+tick(); setInterval(tick,10000);
+
+var FOLDER='<svg viewBox="0 0 88 70" width="78" height="62" aria-hidden="true">'+
+'<defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#78b6ff"/><stop offset="1" stop-color="#2f7ff0"/></linearGradient>'+
+'<linearGradient id="fb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f97f2"/><stop offset="1" stop-color="#2a6fd6"/></linearGradient></defs>'+
+'<path d="M8 16c0-3 2-5 5-5h20l7 7h30c3 0 5 2 5 5v8H8z" fill="url(#fb)"/>'+
+'<path d="M6 24c0-2 2-4 4-4h68c2 0 4 2 4 4v34c0 3-2 5-5 5H11c-3 0-5-2-5-5z" fill="url(#fg)"/></svg>';
+
+var playIco='<span class="fi-play"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>';
+
+/* REPLACE: link/thumbnail reali. type: video|link|image */
+var FOLDERS=[
+  { name:'Brand Work', x:'18%', y:60, items:[
+    {name:'Brand A — reel', type:'video', sub:'Instagram', href:'#', th:'linear-gradient(140deg,#2b2d33,#15161a)'},
+    {name:'Brand B — promo', type:'video', sub:'YouTube', href:'#', th:'linear-gradient(140deg,#3a2b2d,#1a1416)'},
+    {name:'Brand C — ad', type:'video', sub:'Reel', href:'#', th:'linear-gradient(140deg,#2b333a,#141a1e)'}
+  ]},
+  { name:'Video Edits', x:'18%', y:210, items:[
+    {name:'Edit 2025 #1', type:'video', sub:'mp4', href:'#', th:'linear-gradient(140deg,#30333d,#17181d)'},
+    {name:'Edit 2025 #2', type:'video', sub:'mp4', href:'#', th:'linear-gradient(140deg,#2d2a3a,#16141d)'}
+  ]},
+  { name:'Instagram', x:'86%', y:70, items:[
+    {name:'@tommaso', type:'link', sub:'Profile', href:'https://www.instagram.com/', th:'linear-gradient(145deg,#f58529,#dd2a7b 50%,#8134af)'},
+    {name:'@brandpage', type:'link', sub:'Managed', href:'https://www.instagram.com/', th:'linear-gradient(145deg,#f58529,#dd2a7b 50%,#8134af)'}
+  ]},
+  { name:'Personal', x:'86%', y:360, items:[] }
+];
+/* file sparsi sul desktop (REPLACE img) */
+var LOOSE=[];
+
+var desktop=document.getElementById('desktop');
+var z=50;
+
+function makeIcon(cfg, isFolder){
+  var el=document.createElement('div');
+  el.className='icon'; el.tabIndex=0;
+  el.style.left=cfg.x; el.style.top=cfg.y+'px';
+  if(isFolder){
+    el.innerHTML='<div class="glyph">'+FOLDER+'</div><div class="lbl">'+cfg.name+'</div>';
+    el.addEventListener('dblclick',function(){openWindow(cfg);});
+  }else{
+    el.innerHTML='<div class="thumb"><img src="'+cfg.img+'" alt="'+cfg.name+'" onerror="this.parentElement.innerHTML=String.fromCharCode(55357,56551);this.parentElement.style.fontSize=\'26px\'"></div><div class="lbl">'+cfg.name+'</div>';
+  }
+  makeDraggable(el, el, true);
+  el.addEventListener('mousedown',function(){
+    var s=document.querySelectorAll('.icon.sel'); for(var i=0;i<s.length;i++) s[i].classList.remove('sel');
+    el.classList.add('sel');
+  });
+  desktop.appendChild(el);
+}
+FOLDERS.forEach(function(f){makeIcon(f,true);});
+LOOSE.forEach(function(f){makeIcon(f,false);});
+
+var openWins={};
+function openWindow(folder){
+  if(openWins[folder.name]){ bringFront(openWins[folder.name]); return; }
+  var w=document.createElement('div'); w.className='win';
+  w.style.left=Math.round(window.innerWidth*0.28 + Math.random()*80)+'px';
+  w.style.top=Math.round(120 + Math.random()*60)+'px';
+  var cells;
+  if(folder.items.length){
+    cells=folder.items.map(function(it){
+      var th = it.img ? '<img src="'+it.img+'" alt="">' : '';
+      var play = it.type==='video'?playIco:'';
+      return '<div class="fi" data-href="'+(it.href||'')+'">'+
+        '<div class="fi-th" style="background:'+(it.th||'#2a2b30')+'">'+th+play+'</div>'+
+        '<div class="fi-name">'+it.name+'</div>'+(it.sub?'<div class="fi-sub">'+it.sub+'</div>':'')+
+      '</div>';
+    }).join('');
+  } else {
+    cells='<div class="empty">Empty folder &mdash; content coming soon.</div>';
+  }
+  w.innerHTML='<div class="win-bar">'+
+      '<span class="tl r" title="Close"></span><span class="tl y"></span><span class="tl g"></span>'+
+      '<span class="win-title">'+folder.name+' <span class="win-count">'+folder.items.length+' item'+(folder.items.length===1?'':'s')+'</span></span>'+
+      '<span style="width:52px"></span>'+
+    '</div>'+
+    '<div class="win-body">'+cells+'</div>';
+  document.body.appendChild(w);
+  openWins[folder.name]=w;
+  bringFront(w);
+  w.querySelector('.tl.r').addEventListener('click',function(){w.remove();delete openWins[folder.name];});
+  w.addEventListener('mousedown',function(){bringFront(w);});
+  makeDraggable(w, w.querySelector('.win-bar'), false);
+  var fis=w.querySelectorAll('.fi');
+  for(var i=0;i<fis.length;i++){
+    fis[i].addEventListener('dblclick',function(){var h=this.getAttribute('data-href'); if(h&&h!=='#') window.open(h,'_blank','noopener');});
+  }
+}
+function bringFront(w){ w.style.zIndex=(++z); }
+
+function makeDraggable(moveEl, handle, isIcon){
+  var sx,sy,ox,oy,drag=false;
+  handle.addEventListener('mousedown',function(e){
+    if(e.target.classList && e.target.classList.contains('tl')) return;
+    drag=true; sx=e.clientX; sy=e.clientY;
+    var r=moveEl.getBoundingClientRect();
+    ox=r.left; oy=r.top - (isIcon?30:0);
+    moveEl.style.left=ox+'px'; moveEl.style.top=oy+'px';
+    if(!isIcon){moveEl.style.zIndex=(++z);}
+    if(handle.classList) handle.classList.add('drag');
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove',function(e){
+    if(!drag) return;
+    moveEl.style.left=(ox+e.clientX-sx)+'px';
+    moveEl.style.top=(oy+e.clientY-sy)+'px';
+  });
+  window.addEventListener('mouseup',function(){drag=false; if(handle.classList) handle.classList.remove('drag');});
+}
+
+desktop.addEventListener('mousedown',function(e){ if(e.target===desktop){var s=document.querySelectorAll('.icon.sel');for(var i=0;i<s.length;i++)s[i].classList.remove('sel');} });
+setTimeout(function(){var h=document.getElementById('hint'); if(h) h.style.opacity='0';},6000);
+</script>
+</body>
+</html>
