@@ -1218,6 +1218,17 @@ footer{background:#000!important;border-top:1px solid rgba(255,255,255,.08)!impo
 .foot-left{color:rgba(255,255,255,.55)!important;}
 .foot-links a{color:#fff!important;}
 .foot-links a:hover{color:rgba(255,255,255,.6)!important;}
+/* GEN AI nav link — oro brillante + stelline (sostituibile in futuro) */
+.genai-link{position:relative;display:inline-flex;align-items:center;text-decoration:none;font-weight:600;letter-spacing:.02em;line-height:1;overflow:visible;}
+.genai-text{background:linear-gradient(100deg,#8a6a1f 0%,#d4af37 22%,#f6e27a 42%,#fff7d6 50%,#f6e27a 58%,#d4af37 78%,#8a6a1f 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:genaiShimmer 3.2s linear infinite;}
+@keyframes genaiShimmer{to{background-position:-200% center;}}
+.genai-spark{position:absolute;fill:#f6e27a;filter:drop-shadow(0 0 3px rgba(246,214,110,.85));opacity:0;animation:genaiTwinkle 2.4s ease-in-out infinite;pointer-events:none;}
+.genai-spark.s1{width:10px;height:10px;top:-8px;right:-10px;animation-delay:0s;}
+.genai-spark.s2{width:7px;height:7px;bottom:-7px;left:-7px;animation-delay:.9s;}
+.genai-spark.s3{width:6px;height:6px;top:-3px;right:17px;animation-delay:1.6s;}
+@keyframes genaiTwinkle{0%,100%{opacity:0;transform:scale(.3) rotate(0);}50%{opacity:1;transform:scale(1) rotate(90deg);}}
+.genai-link:hover .genai-text{animation-duration:1.3s;}
+@media (prefers-reduced-motion:reduce){.genai-text{animation:none;}.genai-spark{animation:none;opacity:.85;}}
 </style>
 </head>
 <body>
@@ -1229,6 +1240,7 @@ footer{background:#000!important;border-top:1px solid rgba(255,255,255,.08)!impo
   <div class="nav-inner">
     <a href="index.html">Home</a>
     <a href="work.html" class="active">Work</a>
+    <a href="#" class="genai-link" aria-label="Gen AI"><span class="genai-text">GEN AI</span><svg class="genai-spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></svg><svg class="genai-spark s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></svg><svg class="genai-spark s3" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></svg></a>
     <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank">LinkedIn</a>
   </div>
 </nav>
