@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gen AI — Tommaso Pacini</title>
+<meta name="description" content="Gen AI by Tommaso Pacini — turning ideas into real stories with AI. Filmmaking, content and AI-assisted products.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<style>
+:root{
+  --font:'Inter','SF Pro Display',system-ui,-apple-system,sans-serif;
+  --bg:#0a0a0d; --bg-2:#101014; --surface:#15151c; --surface-2:#1b1b23;
+  --line:rgba(255,255,255,.09); --line-soft:rgba(255,255,255,.05);
+  --text:#f4f4f6; --text-2:rgba(244,244,246,.62); --text-3:rgba(244,244,246,.34);
+  --gold-1:#8a6a1f; --gold-2:#d4af37; --gold-3:#f6e27a; --gold-4:#fff7d6;
+  --gold-grad:linear-gradient(100deg,#8a6a1f 0%,#d4af37 22%,#f6e27a 46%,#fff7d6 52%,#f6e27a 58%,#d4af37 80%,#8a6a1f 100%);
+  --r-pill:100px; --r-card:18px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font);background:var(--bg);color:var(--text);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;line-height:1.5;
+}
+body::before{ /* film grain */
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 40px;position:relative;z-index:1;}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,13,.72);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-soft);}
+.nav-inner{max-width:1120px;margin:0 auto;padding:16px 40px;display:flex;align-items:center;gap:34px;}
+nav a{font-size:13px;color:var(--text-2);text-decoration:none;letter-spacing:.01em;transition:color .2s var(--ease);}
+nav a:hover{color:var(--text);}
+/* gold GEN AI link */
+.genai-link{position:relative;display:inline-flex;align-items:center;font-weight:600;letter-spacing:.02em;line-height:1;}
+.genai-text{background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:genaiShimmer 3.2s linear infinite;}
+@keyframes genaiShimmer{to{background-position:-200% center;}}
+.genai-spark{position:absolute;fill:#f6e27a;filter:drop-shadow(0 0 3px rgba(246,214,110,.85));opacity:0;animation:genaiTwinkle 2.4s ease-in-out infinite;pointer-events:none;}
+.genai-spark.s1{width:9px;height:9px;top:-7px;right:-9px;animation-delay:0s;}
+.genai-spark.s2{width:6px;height:6px;bottom:-6px;left:-6px;animation-delay:.9s;}
+@keyframes genaiTwinkle{0%,100%{opacity:0;transform:scale(.3) rotate(0);}50%{opacity:1;transform:scale(1) rotate(90deg);}}
+
+/* ── HERO ── */
+.hero{position:relative;padding:120px 0 110px;overflow:clip;}
+.hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(760px 440px at 70% 8%, rgba(212,175,55,.16), transparent 62%),
+    radial-gradient(680px 520px at 12% 92%, rgba(138,106,31,.14), transparent 62%);}
+.hero .wrap{position:relative;z-index:1;}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:34px;}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold-2);opacity:.7;display:inline-block;}
+.hero h1{font-family:'Inter Display',var(--font);font-weight:650;
+  font-size:clamp(52px,9vw,124px);line-height:.95;letter-spacing:-.04em;text-transform:uppercase;}
+.hero h1 .dim{color:var(--text-3);}
+.hero h1 .gold{background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:genaiShimmer 5s linear infinite;}
+.hero-sub{margin-top:34px;max-width:560px;font-size:clamp(16px,2vw,19px);font-weight:400;
+  line-height:1.6;color:var(--text-2);text-wrap:pretty;}
+.hero-sub b{color:var(--text);font-weight:600;}
+.scroll-cue{margin-top:56px;display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);}
+.scroll-cue svg{animation:bob 1.8s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+
+/* ── SECTION SHELL ── */
+section.block{padding:100px 0;border-top:1px solid var(--line-soft);position:relative;}
+.sec-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);margin-bottom:40px;}
+.sec-label::before{content:"";width:22px;height:1px;background:var(--gold-2);opacity:.6;display:inline-block;}
+
+/* ── STORY ── */
+.story-head{font-family:'Inter Display',var(--font);font-weight:600;
+  font-size:clamp(28px,4vw,46px);line-height:1.08;letter-spacing:-.025em;max-width:760px;margin-bottom:56px;}
+.story-head .gold{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px 72px;max-width:900px;}
+.story-grid p{font-size:16px;line-height:1.75;color:var(--text-2);text-wrap:pretty;}
+.story-grid p b{color:var(--text);font-weight:600;}
+
+/* ── WHAT I CREATE ── */
+.create-head{font-family:'Inter Display',var(--font);font-weight:600;
+  font-size:clamp(28px,4vw,46px);line-height:1.08;letter-spacing:-.025em;margin-bottom:52px;}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:30px 28px;transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);}
+.card:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.4);background:var(--surface-2);}
+.card-ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,rgba(212,175,55,.16),rgba(212,175,55,.05));
+  border:1px solid rgba(212,175,55,.22);margin-bottom:22px;}
+.card-ico svg{stroke:var(--gold-3);}
+.card h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;}
+.card p{font-size:14.5px;line-height:1.6;color:var(--text-2);}
+.card .num{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--text-3);margin-bottom:18px;display:block;}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--line-soft);padding:46px 0;}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.foot-left{font-size:13px;color:var(--text-3);}
+.foot-links{display:flex;gap:24px;}
+.foot-links a{font-size:13px;color:var(--text-2);text-decoration:none;transition:color .2s var(--ease);}
+.foot-links a:hover{color:var(--gold-3);}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#1a1403;
+  text-decoration:none;background:var(--gold-grad);background-size:160% auto;border-radius:var(--r-pill);
+  padding:12px 22px;transition:background-position .4s var(--ease),transform .2s var(--ease);}
+.btn-gold:hover{background-position:right center;transform:translateY(-1px);}
+
+/* ── ENTRY ANIM ── */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.rv.in{opacity:1;transform:none;}
+
+a:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold-3);outline-offset:3px;border-radius:6px;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}.rv{opacity:1;transform:none;}}
+
+@media (max-width:760px){
+  .wrap,.nav-inner{padding-left:22px;padding-right:22px;}
+  .nav-inner{gap:22px;}
+  .hero{padding:80px 0 72px;}
+  .story-grid{grid-template-columns:1fr;gap:28px;}
+  .cards{grid-template-columns:1fr;}
+  section.block{padding:72px 0;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="gen-ai.html" class="genai-link" aria-current="page"><span class="genai-text">GEN AI</span><svg class="genai-spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></svg><svg class="genai-spark s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></svg></a>
+    <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank" rel="noopener" style="margin-left:auto;">LinkedIn</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="eyebrow rv">Gen AI · Filmmaking &amp; Content</div>
+    <h1 class="rv"><span class="dim">From</span> <span class="gold">idea</span><br><span class="dim">to</span> <span class="gold">reality</span>.</h1>
+    <p class="hero-sub rv"><b>I turn inspiration into real stories — with AI as my camera.</b> Data engineer and digital builder, I use generative tools and editing to craft films, content and products: from the first spark to the finished piece.</p>
+    <div class="scroll-cue rv">Scroll to explore
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- STORY -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label rv">The story</div>
+    <h2 class="story-head rv">A filmmaker's eye, <span class="gold">an AI toolkit</span>.</h2>
+    <div class="story-grid">
+      <p class="rv"><b>I'm a filmmaker at heart</b> — a guy who grew up in love with cinema, with the films of an era when a single frame could carry a whole feeling. I blend that old-school craft with the tools of today.</p>
+      <p class="rv">For years I've been editing video — first for myself, as a way to tell stories, then for brands and companies around my city. It taught me rhythm, intention, and how a single cut can change what a viewer feels.</p>
+      <p class="rv">My inspiration comes from the greats — idols in sport and in music — and, above all, from history and the story of the individual: the people who turned a vision into something the world still remembers.</p>
+      <p class="rv"><b>AI changed everything.</b> It lets me express that art without a camera — using inspiration and editing to build real stories from the ground up. Whether to entertain, or to bring an audience to a brand, I can now turn an idea into a finished film.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I CREATE -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label rv">What I create</div>
+    <h2 class="create-head rv">Four ways I put AI to work.</h2>
+    <div class="cards">
+      <div class="card rv">
+        <span class="num">01</span>
+        <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8M12 18v3"/></svg></div>
+        <h3>AI-assisted products</h3>
+        <p>Sites, apps and tools, designed and built with AI from idea to launch — fast, custom, production-ready.</p>
+      </div>
+      <div class="card rv">
+        <span class="num">02</span>
+        <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 9 5-3v12l-5-3"/></svg></div>
+        <h3>Video &amp; reels</h3>
+        <p>Cinematic edits and AI-generated video for brands and social — stories crafted to move an audience.</p>
+      </div>
+      <div class="card rv">
+        <span class="num">03</span>
+        <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></div>
+        <h3>Visual &amp; brand content</h3>
+        <p>Images, identity and campaigns made with generative tools, shaped by a designer's eye for detail.</p>
+      </div>
+      <div class="card rv">
+        <span class="num">04</span>
+        <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg></div>
+        <h3>Prompt &amp; workflows</h3>
+        <p>Prompt engineering and AI pipelines that turn a messy process into a repeatable, reliable output.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-inner">
+    <span class="foot-left">© 2026 Tommaso Pacini — Gen AI</span>
+    <div class="foot-links">
+      <a class="btn-gold" href="mailto:tommasoopacinii@gmail.com">Get in touch</a>
+      <a href="work.html">Work</a>
+      <a href="https://www.linkedin.com/in/tommaso-pacini-035a2924a/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e,i){ e.style.transitionDelay=(Math.min(i,6)*0.06)+'s'; io.observe(e); });
+})();
+</script>
+</body>
+</html>
